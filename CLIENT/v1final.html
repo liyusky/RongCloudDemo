@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>聊天</title>
+    <link type="text/css" rel="stylesheet" href="./css/RongIMWidget.css">
+    <script type="text/javascript" src="./javascript/require.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./javascript/jquery.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./javascript/RongIMLib-2.2.5.min.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <div id="rong-widget-box" class="rongcloud-container">
+        <div id="rong-conversation" data-current-target-id="" class="rongcloud-kefuChatBox rongcloud-both rongcloud-am-fade-and-slide-top" style="height: 600px; width: 500px; position: absolute; right: 201px; bottom: 3px;">
+            <div class="rongcloud-kefuChat">
+                <div id="header" class="rongcloud-rong-header rongcloud-blueBg rongcloud-online">
+                    <div class="rongcloud-infoBar rongcloud-pull-left">
+                        <div class="rongcloud-infoBarTit">
+                            <span class="rongcloud-kefuName"></span>
+                        </div>
+                    </div>
+                    <div class="rongcloud-toolBar rongcloud-headBtn rongcloud-pull-right">
+                        <a href="javascript:;" class="rongcloud-kefuChatBoxHide rongcloud-sprite" style="margin-right:6px" onclick="javascript: WebChat.hideConversation();" title="隐藏"></a>
+                        <a href="javascript:;" class="rongcloud-kefuChatBoxClose rongcloud-sprite" onclick="javascript: WebChat.closeConversation();" title="结束对话"></a>
+                    </div>
+                </div>
+                <div class="rongcloud-outlineBox" id="conversation-outLineBox" style="display:none;">
+                    <div class="rongcloud-sprite"></div>
+                    <span></span>
+                </div>
+                <div id="Messages">
+                    <div class="rongcloud-emptyBox">暂时没有新消息</div>
+                    <div class="rongcloud-MessagesInner">
+                        <div class="rongcloud-Messages-history">
+                            <b onclick="showHistory($(this))" data-first-get="true">查看历史消息</b>
+                        </div>
+                    </div>
+                </div>
+                <div id="footer" class="rongcloud-rong-footer" style="display: block">
+                    <div class="rongcloud-footer-con">
+                        <div class="rongcloud-text-layout">
+                            <textarea id="inputMsg" class="rongcloud-text rongcloud-grey" style="background-color: rgba(0, 0, 0, 0); color: rgb(169, 169, 169);width: 100%;padding-right: 80px;font-size: 16px;letter-spacing: 1px;" contenteditable="contenteditable" placeholder="请输入文字..." ondrop="return false"></textarea>
+                        </div>
+                        <div class="rongcloud-powBox">
+                            <button type="button" style="background-color: #0099ff" class="rongcloud-rong-btn rongcloud-rong-send-btn" id="rong-sendBtn" onclick="javascript: WebChat.send();">发送</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="rong-conversation-list" class="rongcloud-kefuListBox rongcloud-both" style="height: 600px; position: absolute; display: inline-block; right: 3px; bottom: 3px;">
+            <div class="rongcloud-kefuList">
+                <div class="rongcloud-rong-header rongcloud-blueBg">
+                    <div class="rongcloud-toolBar rongcloud-headBtn">
+                        <div class="rongcloud-sprite rongcloud-people"></div>
+                        <span class="rongcloud-recent">最近联系人</span>
+                        <div class="rongcloud-sprite rongcloud-arrow-down" style="cursor: pointer" onclick="javascript: WebChat.minWindow();"></div>
+                    </div>
+                </div>
+                <div class="rongcloud-content">
+                    <div class="rongcloud-netStatus" style="display:none;">
+                        <div class="rongcloud-sprite"></div>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="rong-widget-minbtn" class="rongcloud-kefuBtnBox rongcloud-blueBg" onclick="javascript: WebChat.showWindow();" style="position: absolute; display: none; right: 3px; bottom: 3px;">
+            <a class="rongcloud-kefuBtn" href="javascript: void(0);">
+                <div class="rongcloud-sprite rongcloud-people"></div>
+                <span class="rongcloud-recent">最近联系人</span>
+                <span class="rongcloud-recent">
+                    <span class="ng-hide">(有未读消息)</span>
+                </span>
+            </a>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var WebChat = {
+            Token:                     null,
+            AppKey:                    null,
+            targetId:                  null,                                    //当前交谈的客户id
+            RongIMClient:              null,                                    //实例化的融云连接对象
+            targetIdJson:              null,                                    //存储建立连接的所有客户id (json)
+            unreadMsgJson:             null,                                    //存储每个用户对应的未读消息数 (json)
+            hasHistoryMark:            null,                                    //是否存在历史记录 true 存在 / false 不存在
+            RongCloudMessagesInnerDom: null,                                    //会话展现wrap对象
+            RongConversationListDom:   null,                                    //列表区Dom
+            RongConversationDom:       null,                                    //会话区Dom
+            RongWidgetMinBtnDom:       null,                                    //最小化按钮Dom
+            ConversationOutLineBoxDom: null,                                    //会话区掉线通知
+            ListOutLineBoxDom:         null,                                    //掉线区掉线通知
+            inputMsgDom:               null,                                    //输入对象
+            RongCloudListDom:          null,                                    //用户列表
+            main: function() {
+                this.initParamet();
+                this.initDom();
+                this.getToken();
+                this.loadRongCloud();
+            },
+            /**
+             * [getToken 获取Token]
+             * @method  getToken
+             * @author 潘剑
+             * @version [1.0]
+             * @date    2017-03-19T15:18:36+080
+             */
+            getToken: function() {
+                // $.ajax({
+                //     url: '/path/to/file',
+                //     type: 'POST',
+                //     async: false,
+                //     dataType: 'JSON',
+                //     data: {userId: userId},
+                //     success: function(data) {
+                //         this.AppKey = data.AppKey;
+                //         this.Token = data.Token;
+                //     }
+                // });
+                this.targetId = "2";
+                this.AppKey   = "ik1qhw09i234p";
+                this.Token    = "VP0ZdYropmGlbsLs+5NlyXquDCdi0JfiOlIY+u/RT1ov/JV3R9myhP2bLOW96DXsbPEAgGQkW74j5rl6YL+a0w==";
+            },
+            /**
+             * [initParamet 初始化参数]
+             * @method  initParamet
+             * @return  {[type]}                [description]
+             * @author 潘剑
+             * @version [1.0]
+             * @date    2017-03-19T15:18:54+080
+             */
+            initParamet: function() {
+                this.hasHistoryMark = true;
+                this.targetIdJson   = {};
+                this.unreadMsgJson  = {};
+            },
+            /**
+             * [initDom 初始化Dom]
+             * @method  initDom
+             * @author 潘剑
+             * @version [1.0]
+             * @date    2017-03-19T15:19:33+080
+             */
+            initDom: function() {
+                this.RongCloudMessagesInnerDom = $(".rongcloud-MessagesInner").eq(0);
+                this.RongConversationListDom   = $("#rong-conversation-list");
+                this.RongConversationDom       = $("#rong-conversation");
+                this.RongWidgetMinBtnDom       = $("#rong-widget-minbtn");
+                this.ConversationOutLineBoxDom = $(".rongcloud-outlineBox").eq(0);
+                this.ListOutLineBoxDom         = $(".rongcloud-netStatus").eq(0);
+                this.inputMsgDom               = $("#inputMsg");
+                this.RongCloudListDom          = $(".rongcloud-content").eq(0);
+            },
+            /**
+             * [minWindow 整体窗口最小化]
+             * @method  minWindow
+             * @author 潘剑
+             * @version [1.0]
+             * @date    2017-03-19T14:00:12+080
+             */
+            minWindow:         function() {
+                this.RongConversationDom.hide(); //会话区关闭
+                this.RongConversationListDom.hide(); //列表区关闭
+                this.RongWidgetMinBtnDom.show(); //最小化标签展现
+            },
+            /**
+             * [showWindow 展示窗口整体]
+             * @method  showWindow
+             * @author 潘剑
+             * @version [1.0]
+             * @date    2017-03-19T14:00:55+080
+             */
+            showWindow:        function() {
+                this.RongConversationDom.show(); //会话区show
+                this.RongConversationListDom.show(); //列表区show
+                this.RongWidgetMinBtnDom.hide(); //最小化标签hide
+            },
+            /**
+             * [closeConversation 关闭会话窗口]
+             * @method  closeConversation
+             * @return  {[type]}                [description]
+             * @author 潘剑
+             * @version [1.0]
+             * @date    2017-03-19T14:01:18+080
+             */
+            closeConversation: function() {
+                var htmlStr = "<div class='rongcloud-Messages-history'>" +
+                    "<b onclick='getHistory()'>查看历史消息</b>" +
+                    "</div>";
+                this.RongConversationDom.hide(); //会话区hide
+                this.RongCloudMessagesInnerDom.html(htmlStr); //清空会话展现区所有消息内容
+            },
+            /**
+             * [hideConversation 隐藏会话窗口]
+             * @method  hideConversation
+             * @author 潘剑
+             * @version [1.0]
+             * @date    2017-03-19T14:01:45+080
+             */
+            hideConversation:  function() {
+                this.RongConversationDom.hide(); //会话区hide
+            },
+            /**
+             * [Warning 掉线通知]
+             * @method  Warning
+             * @param   {[string]}                warningMsg [错误信息]
+             * @author 潘剑
+             * @version [1.0]
+             * @date    2017-03-19T14:02:48+080
+             */
+            Warning:    function(warningMsg) {
+                this.ConversationOutLineBoxDom.find("span").eq(0).html(warningMsg); //会话区展示错误信息
+                this.ListOutLineBoxDom.find("span").eq(0).html(warningMsg); //列表区展示错误信息
+                this.ConversationOutLineBoxDom.show();
+                this.ListOutLineBoxDom.show();
+            },
+            /**
+             * [removeList 清除列表区客户标签]
+             * @method  removeList
+             * @param   {Boolean}               thisDom [description]
+             * @return  {[type]}                [description]
+             * @author 潘剑
+             * @version [1.0]
+             * @date    2017-03-19T14:03:26+080
+             */
+            removeTip:        function(thisDom) {
+                var htmlStr = "<div class='rongcloud-Messages-history'>" +
+                    "<b onclick='getHistory()'>查看历史消息</b>" +
+                    "</div>";
+                var wrapDom = thisDom.parents(".father-sign").eq(0); //找到当前元素对应的客户tip
+                var id = wrapDom.attr("data-target-id"); //获得点击的客户id
+                wrapDom.remove(); //删除该客户的tip
+                this.targetIdJson[id] = false; //设置该客户在列表区未展示
+                this.RongCloudMessagesInnerDom.html(htmlStr); //清空会话区所有消息
+            },
+            /**
+             * [showConversation 选择某个客户，打开会话窗口]
+             * @method  showConversation
+             * @param   {dom}               thisDom [当前点击的Dom]
+             * @author 潘剑
+             * @version [1.0]
+             * @date    2017-03-19T14:05:19+080
+             */
+            showConversation: function(thisDom) {
+                this.unreadMsgJson[this.targetId] = 0;    //清空当前客户的未读消息数
+                thisTargetId = thisDom.attr("data-target-id");    //获得点击的客户id
+                thisTargetName = thisDom.attr("data-target-name"); //获得点击的客户name
+                if (thisTargetId != this.targetId) {   //若与当前聊天对象不符
+                    this.hasHistoryMark = true;    //设置可以获取历史记录
+                    this.targetId = thisTargetId;    //修改当前聊天对象
+                    var htmlStr = "<div class='rongcloud-Messages-history'>" +
+                    "<b onclick='showHistory($(this))' data-first-get='true'>查看历史消息</b>" +
+                    "</div>";
+                    this.RongCloudMessagesInnerDom.html(htmlStr);    //清空会话区所有消息
+                    if (thisDom.attr("data-badge")) {    //判断该客户是否存在未读消息
+                        thisDom.find(".rongcloud-badge").remove();    //移除未读消息标志
+                        thisDom.attr("data-badge", "");    //是否存在未读消息设置为否
+                        this.loadUnreadMsg(function (amount) {    //加载未读消息数
+                            console.log(amount);
+                            WebChat.loadHistoryMsg("unread", amount);    //在历史消息中获取对应数量的消息
+                        });
+                    }
+                    // this.RongConversationDom.attr("data-current-target-id", targetId);
+                    this.RongConversationDom.find(".rongcloud-kefuName").text("客户：" + thisTargetName);    //改变会话区标题
+                    this.RongConversationDom.show();    //会话区show
+                }
+            },
+            /**
+             * [send 发送消息]
+             * @method  send
+             * @author 潘剑
+             * @version [1.0]
+             * @date    2017-03-19T14:13:36+080
+             */
+            send: function() {
+                var saying = this.inputMsgDom.val();    //获取输入的内容
+                if (saying && this.targetId) {    //若对象目标和输入内容都存在
+                    if (!this.targetIdJson[this.targetId]) {    //列表区没有该用户的tip
+                        this.addListTip(this.targetId, this.targetId);    //添加该客户的tip
+                        this.targetIdJson[this.targetId] = true;    //设置存在该tip
+                    }
+                    this.sendTextMsg(saying);    //发送文本消息
+                    this.RongCloudMessagesInnerDom.parent().scrollTop(this.RongCloudMessagesInnerDom.height()); //永远显示最底部
+                    this.inputMsgDom.val("");    //清空输入框
+                }
+            },
+            /**
+             * [sendTextMsg 发送文本消息]
+             * @method  sendTextMsg
+             * @param   {[type]}                saying [输入的文本内容]
+             * @author 潘剑
+             * @version [1.0]
+             * @date    2017-03-19T14:08:17+080
+             */
+            sendTextMsg: function(saying) {
+                var msg = new RongIMLib.TextMessage({    // 设置发送到信息
+                    content: saying,
+                    extra: ""
+                });
+                var conversationtype = 1; // 私聊,其他会话选择相应的消息类型即可。
+                this.RongIMClient.getInstance().sendMessage(conversationtype, this.targetId, msg, {    //发送文本消息
+                    onSuccess: function(message) {
+                        WebChat.addConversationSaying(message, "only");    //在会话区添加消息
+                    },
+                    onError: function(errorCode, message) {
+                        console.log(errorCode);
+                        alert(JSON.stringify(errorCode));
+                    }
+                });
+            },
+            /**
+             * [addConversationSaying 向会话区添加消息]
+             * @method  addConversationSaying
+             * @param   {[json / array]}                message [融云格式的消息或者消息数组]
+             * @param   {[string]}                      amount  [添加消息的数量 "only"(一条) / "whole"(所有)]
+             * @author 潘剑
+             * @version [1.0]
+             * @date    2017-03-19T14:16:57+080
+             */
+            addConversationSaying: function(message, amount) {
+                var htmlStr = "";
+                //设置添加的htmlString
+                if ($.isArray(message)) {    //判断是不是多个消息组成的数组
+                    var len = message.length;
+                    for (var i = 0; i < len; i++) {
+                        htmlStr += this.setSayingHtml(message[i]);    //设置对应的html
+                    }
+                }
+                else {    //单读发送或读取的消息
+                    htmlStr = this.setSayingHtml(message);    //设置对应的html
+                }
+
+                //在对应位置插入htmlString
+                if (amount == "only") {    //单条消息
+                    this.RongCloudMessagesInnerDom.children().last().after(htmlStr);    //在最后面添加
+                }
+                else if (amount == "whole") {    //多条消息
+                    this.RongCloudMessagesInnerDom.children().first().after(htmlStr);    //最前面添加
+                }
+            },
+            /**
+             * [setSayingHtml 设置信息的HTML]
+             * @method  setSayingHtml
+             * @param   {[json]}                message [融云格式的消息json]
+             * @author 潘剑
+             * @version [1.0]
+             * @date    2017-03-19T14:22:55+080
+             */
+            setSayingHtml: function(message) {
+                var saying = "";    //消息内容
+                var htmlStr = "";    //模板
+                switch (message.objectName) {
+                    case "RC:TxtMsg":
+                        saying = "<pre class='rongcloud-Message-entry'>" + message.content.content + "</pre>";
+                        break;
+                    case "RC:ImgMsg":
+                        saying = "<img class='rongcloud-Message-entry' src='" + message.content.imageUri + "'>";
+                        break;
+                }
+                if (message.senderUserId == this.targetId) {        // 发送者id == 接受者ID  即此条消息是对方发送
+                    htmlStr = "<div class='rongcloud-Message'>" +
+                    "<div class='rongcloud-Messages-unreadLine'></div>" +
+                    "<div class='rongcloud-Message-header'>" +
+                    "<img class='rongcloud-img rongcloud-u-isActionable rongcloud-Message-avatar rongcloud-avatar' src='http://7xo1cb.com1.z0.glb.clouddn.com/rongcloudkefu2.png'>" +
+                    "<div class='rongcloud-Message-author rongcloud-clearfix'>" +
+                    "<a class='rongcloud-author rongcloud-u-isActionable'>" + JSON.parse(message.content.extra).name + "</a>" +
+                    "</div>" +
+                    "</div>" +
+                    "<div class='rongcloud-Message-body'>" +
+                    "<div class='rongcloud-Message-text'>" +
+                    saying +
+                    "</div>" +
+                    "</div>" +
+                    "</div>";
+                }
+                else {                                        //我方发送
+                    htmlStr = "<div class='rongcloud-Message' style='padding-left: 0;padding-right: 3pc;'>" +
+                    "<div class='rongcloud-Messages-unreadLine'></div>" +
+                    "<div>" +
+                    "<div class='rongcloud-Message-header' style='text-align:right;'>" +
+                    "<a style='color:#8e969f;'>我</a>" +
+                    "<img style='margin-left: 1pc;' class='rongcloud-img rongcloud-u-isActionable rongcloud-Message-avatar rongcloud-avatar' src='http://7xo1cb.com1.z0.glb.clouddn.com/rongcloudkefu2.png'>" +
+                    "</div>" +
+                    "</div>" +
+                    "<div class='rongcloud-Message-body' style='text-align:right;'>" +
+                    "<div>" +
+                    "<div class='rongcloud-Message-text'>" +
+                    saying +
+                    "</div>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>";
+                }
+                return htmlStr;
+            },
+            /**
+             * [addListTip 列表区添加用户标签]
+             * @method  addListTip
+             * @param   {[string]}                targetId [交谈对象的Id]
+             * @param   {[string]}                name     [用户名称]
+             * @author 潘剑
+             * @version [1.0]
+             * @date    2017-03-19T14:24:53+080
+             */
+            addListTip: function(targetId, name) {
+                var htmlStr = "<div class='father-sign' data-target-name='" + name + "' data-target-id='" + targetId + "' data-badge='' onclick='javascript: WebChat.showConversation($(this));'>" +
+                    "<div class='rongcloud-chatList'>" +
+                    "<div class='rongcloud-chat_item'>" +
+                    "<div class='rongcloud-ext'>" +
+                    "<p class='rongcloud-attr clearfix'>" +
+                    "<i class='rongcloud-sprite rongcloud-no-remind' onclick='javascript: WebChat.removeTip($(this));'></i>" +
+                    "</p>" +
+                    "</div>" +
+                    "<div class='rongcloud-photo'>" +
+                    "<img class='rongcloud-img' src='http://7xo1cb.com1.z0.glb.clouddn.com/rongcloudkefu2.png'>" +
+                    "<i class='rongcloud-Presence rongcloud-Presence--stacked rongcloud-Presence--mainBox'></i>" +
+                    "</div>" +
+                    "<div class='rongcloud-info'>" +
+                    "<h3 class='rongcloud-nickname'>" +
+                    "<span class='rongcloud-nickname_text'>" + name + "</span>" +
+                    "</h3>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>";
+                this.RongCloudListDom.children().last().after(htmlStr);    //列表区添加tip
+            },
+            /**
+            * [loadRongCloud 加载融云模块]
+            * @method  loadRongCloud
+            * @author 潘剑
+            * @version [1.0]
+            * @date    2017-03-19T14:28:21+080
+            */
+            loadRongCloud: function () {
+                require.config({    //导入文件
+                    paths: {
+                        protobuf: './javascript/protobuf-2.1.5.min',
+                        RongIMLib: './javascript/RongIMLib-2.2.5.min'
+                    }
+                });
+                require(['protobuf', 'RongIMLib'], function(protobuf, RongIMLib) {    //加载导入的文件
+                    WebChat.RongIMClient = RongIMLib.RongIMClient;
+                    WebChat.initRongCloud();
+                    WebChat.setRongCloudListen();
+                    WebChat.connectRongCloudSever();
+                });
+            },
+            /**
+            * [initRongCloud 初始化融云模块]
+            * @method  initRongCloud
+            * @author 潘剑
+            * @version [1.0]
+            * @date    2017-03-19T14:31:24+080
+            */
+            initRongCloud: function() {
+                //初始化
+                this.RongIMClient.init(this.AppKey);
+            },
+            /**
+            * [setRongCloudListen 设置消息监听和状态监听]
+            * @method  setRongCloudListen
+            * @author 潘剑
+            * @version [1.0]
+            * @date    2017-03-19T14:32:25+080
+            */
+            setRongCloudListen: function() {
+                // 连接状态监听器
+                this.RongIMClient.setConnectionStatusListener({
+                    onChanged: function(status) {
+                        switch (status) {
+                            case 0: //CONNECTED 链接成功
+                            break;
+                            case 1: //CONNECTING 正在链接
+                            break;
+                            case 2: //DISCONNECTED 断开连接
+                            WebChat.Warning("连接断开,请刷新重连");
+                            break;
+                            case 3: //NETWORK_UNAVAILABLE 网络不可用
+                            WebChat.Warning("网络不可用");
+                            break;
+                            case 6: //KICKED_OFFLINE_BY_OTHER_CLIENT 其他设备登录
+                            WebChat.Warning("其他设备登录");
+                            break;
+                        }
+                    }
+                });
+
+                // 消息监听器
+                this.RongIMClient.setOnReceiveMessageListener({
+                    // 接收到的消息
+                    onReceived: function(message) {
+                        var senderUserId = message.senderUserId;    //发送者Id
+                        var userName = JSON.parse(message.content.extra).name;
+                        if (!WebChat.targetIdJson[senderUserId]) {        //会话列表不存在该用户的tip
+                            WebChat.addListTip(senderUserId, userName);        //添加该用户的tip
+                            WebChat.targetIdJson[senderUserId] = true;             //设置列表已存在该用户的tip
+                        }
+                        if (senderUserId == WebChat.targetId || WebChat.targetId === null) {    //判断发送者是否是当前目标对象，或者是第一个发送者
+                            if (WebChat.targetId === null) {
+                                WebChat.targetId = senderUserId;
+                            }
+                            WebChat.RongConversationDom.find(".rongcloud-kefuName").text("客户：" + userName);    //修改会话区标题名称
+                            WebChat.addConversationSaying(message, "only");    //显示该消息
+                            WebChat.RongCloudMessagesInnerDom.parent().scrollTop(WebChat.RongCloudMessagesInnerDom.height());    //会话区滚动到最底部
+                        }
+                        else{                                                                       //发送者不是当前目标对象，也不是第一个发送者
+                            var tipDom = $("[data-target-id='" + senderUserId + "']").eq(0);        //获取列表中某一个用户的tip
+                            var badgeMark = tipDom.attr("data-badge");                              //是否显示了未读消息
+                            if (!badgeMark) {                                                       //没有
+                                tipDom.find("i.rongcloud-no-remind").before("<span class='rongcloud-badge'>1</span>");    //添加未读消息标志
+                                tipDom.attr("data-badge", "true");                    //修改为显示了未读消息
+                                WebChat.unreadMsgJson[senderUserId] = 1;                //添加一个含有你未读信息的客户
+                            }
+                            else {                                          //有
+                                WebChat.unreadMsgJson[senderUserId] += 1;        //修改未读信息数
+                                tipDom.find("span.rongcloud-badge").text(function (index, text) { //修改显示的消息数
+                                    return text*1 + 1;
+                                });
+                            }
+                        }
+                    }
+                });
+            },
+            /**
+            * [connectRongCloudSever 连接融云服务器]
+            * @method  connectRongCloudSever
+            * @author 潘剑
+            * @version [1.0]
+            * @date    2017-03-19T14:33:35+080
+            */
+            connectRongCloudSever: function() {
+                // 连接融云服务器。
+                this.RongIMClient.connect(this.Token, {
+                    onSuccess: function(userId) {
+                    },
+                    onTokenIncorrect: function() {
+                    },
+                    onError: function(errorCode) {
+                        console.log(errorCode);
+                        alert(JSON.stringify(errorCode));
+                    }
+                });
+            },
+            /**
+             * [LoadConversationMsg 加载会话]
+             * @method  LoadConversationMsg
+             * @author 潘剑
+             * @version [1.0]
+             * @date    2017-03-19T14:35:45+080
+             */
+            LoadConversationMsg: function() {
+                //获取会话列表
+                this.RongIMClient.getInstance().getConversationList({
+                    onSuccess: function(list) {
+                    },
+                    onError: function(error) {
+                        console.log(error);
+                    }
+                }, null);
+
+                RongIMClient.getInstance().getTotalUnreadCount({
+                    onSuccess: function(count) {
+                    },
+                    onError: function(error) {
+                        // error => 获取总未读数错误码。
+                    }
+                });
+            },
+            /**
+             * [showHistory 在会话窗口展示历史消息]
+             * @method  showHistory
+             * @param   {dom}               thisDom [当前的Dom对象]
+             * @author 潘剑
+             * @version [1.0]
+             * @date    2017-03-19T14:36:58+080
+             */
+            showHistory: function(thisDom) {
+                if (thisDom.attr("data-first-show")) {        //该客户下的第一次拉取
+                    thisDom.attr("data-first-show","");        //修改为否
+                    var htmlStr = "<div class='rongcloud-Messages-history'>" +
+                    "<b onclick='showHistory($(this))' data-first-show=''>查看历史消息</b>" +
+                    "</div>";
+                    this.RongCloudMessagesInnerDom.html(htmlStr);    //清空会话区消息
+                }
+                this.loadHistoryMsg("history");    //加载历史消息
+            },
+            /**
+             * [loadHistoryMsg 从云端加载历史消息]
+             * @method  loadHistoryMsg
+             * @param   {[string]}                effect [消息类型 "unread"(未读) / "history"(历史)]
+             * @param   {[int]}                   amount [需要加载的消息数量]
+             * @author 潘剑
+             * @version [1.0]
+             * @date    2017-03-19T14:41:21+080
+             */
+            loadHistoryMsg: function(effect, amount) {
+                var conversationType = 1; //私聊,其他会话选择相应的消息类型即可。
+                var timestrap = null; // 默认传 null，若从头开始获取历史消息，请赋值为 0 ,timestrap = 0;
+                var count;
+                if (effect == "unread") {    //未读消息
+                    if (amount > 20) {    //单次最多两条
+                        count = 20;
+                    }
+                    else if (amount <= 1) {    //单次最小2条
+                        count = 2;
+                    }
+                    else {
+                        count = amount;
+                    }
+                }
+                else if (effect == "history") {        //历史消息
+                    count = 20;        //默认 20条
+                }
+                if (this.targetId !== null && this.hasHistoryMark) {            // 存在targetId
+                    this.RongIMClient.getInstance().getRemoteHistoryMessages(conversationType, this.targetId, timestrap, count, {
+                        onSuccess: function(list, hasMsg) {
+                            if (effect == "unread") {    //未读
+                                if (amount == 1) {    //1条未读
+                                    WebChat.addConversationSaying(list[1], "only");    //会话区添加消息
+                                }
+                                else if (amount > 20) {    //超过20条未读
+                                    WebChat.addConversationSaying(list, "whole");    //会话区添加消息
+                                    if (hasMsg) {    // 还有消息
+                                        amount -= 20;    //重设消息数
+                                        WebChat.loadHistoryMsg(effect, amount);    //递归取消息
+                                    }
+                                }
+                                else {
+                                    WebChat.addConversationSaying(list, "whole");    //会话区添加消息
+                                }
+                            }
+                            else if (effect == "history") {    //历史消息
+                                WebChat.addConversationSaying(list, "whole");    //会话区添加消息
+                                WebChat.hasHistoryMark = hasMsg;    //是否还存在消息没有加载
+                            }
+                        },
+                        onError: function(error) {
+                            console.log("GetHistoryMessages,errorcode:" + error);
+                        }
+                    });
+                }
+            },
+            /**
+             * [loadUnreadMsg 获取未读消息数]
+             * @method  loadUnreadMsg
+             * @param   {Function}              callback [回调函数]
+             * @author 潘剑
+             * @version [1.0]
+             * @date    2017-03-19T14:46:13+080
+             */
+            loadUnreadMsg: function(callback) {
+                var conversationType = 1;    //私聊
+                this.RongIMClient.getInstance().getUnreadCount(conversationType, this.targetId, {    //加载未读消息数
+                    onSuccess: function(amount) {
+                        if (callback)callback(amount);
+                    },
+                    onError: function() {
+                        // error => 获取指定会话未读数错误码。
+                    }
+                });
+            }
+        };
+        WebChat.main();
+    </script>
+</body>
+
+</html>

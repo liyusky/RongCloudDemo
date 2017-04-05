@@ -1,0 +1,385 @@
+*{
+    box-sizing: border-box;
+}
+a {
+    text-decoration: none;
+}
+html{
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 0 auto;
+    font-size: 0.14rem;
+    color: #FDF4F5;
+    background: #FDF4F5;
+    user-select: none;
+    width: 100%;
+    height: 100%;
+}
+ul{
+    list-style: none;
+}
+ul li{
+    float: left;
+}
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.eliminate-header-effect{
+    margin-top: 1.2rem;
+}
+/* s New_ShanDianDai.html */
+.banner{
+    width: 100%;
+    height: 2.1rem;
+    background: #DE3646;
+
+    color: #FDF4F5;
+}
+.banner div{
+    box-sizing: border-box;
+}
+.banner .banner-main{
+    width: 80%;
+    height: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-right: 0.1rem;
+    padding-top: 0.2rem;
+}
+.banner .banner-main .main-col{
+    width: 100%;
+    height: 0.5rem;
+    line-height: 0.5rem;
+}
+.banner .banner-main .main-col .main-sign{
+    width: 40%;
+    height: 100%;
+    text-align: left;
+    color: #FDF4F5;
+    font-size: 0.16rem;
+    font-weight:  lighter;
+}
+.banner .banner-main .main-col .main-num{
+    width: 60%;
+    height: 100%;
+    color: #FDF4F5;
+    text-align: center;
+    font-size: 0.24rem;
+    line-height: 0.5rem;
+    font-weight: 600;
+    background: #DE3646;
+}
+.banner .banner-main .main-col .main-bank{
+    width: 60%;
+    height: 100%;
+    color: #FDF4F5;
+    text-align: center;
+    font-size: 0.14rem;
+    line-height: 0.5rem;
+    font-weight: 200;
+    background: #DE3646;
+}
+.banner .banner-main .main-col .num-select:focus option{
+    outline: none;
+    border: none;
+}
+.banner .banner-main .main-col .num-select:focus option:checked{
+    background: #DE3646;
+    color: #FDF4F5;
+}
+.banner .banner-main .main-col .num-select:focus option:select{
+    background: #DE3646;
+    color: #FDF4F5;
+}
+.banner .banner-minor{
+    width: 90%;
+    height: 0.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0.1rem;
+}
+.banner .banner-minor .minor-cage{
+    width: 33.3333333333%;
+    height: 0.5rem;
+    text-align: center;
+}
+.banner .banner-minor .minor-cage .minor-num{
+    width: 100%;
+    height: 0.3rem;
+    font-size: 0.25rem;
+    line-height: 0.3rem;
+    font-weight: 600;
+    letter-spacing: 0.02rem;
+}
+.banner .banner-minor .minor-cage .minor-description{
+    width: 100%;
+    height: 0.2rem;
+    line-height: 0.2rem;
+    font-size: 0.12rem;
+    font-weight: 300;
+}
+.left-border{
+    border-left: 0.01rem solid #fff;
+}
+.right-border{
+    border-right: 0.01rem solid #fff;
+}
+.wave-wrap {
+    width: 100%;
+    height: 0.4rem;
+    overflow: hidden;
+}
+.wave-wrap .wave{
+    width: 100%;
+    height: 100%;
+}
+
+/*.wave-wrap .wave {
+    position: absolute;
+    left: 0;
+    top: 0;
+}*/
+
+/*#blue-wave {
+    z-index: 1;
+}
+
+#write-wave {
+    z-index: 2;
+}*/
+
+.picker {
+    width: 100%;
+    height: 1.5rem;
+    color: #DE3646;
+    position: relative;
+    margin-top: 0.2rem;
+}
+
+.picker .picker-unit {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    box-orient: vertical;
+    align-items: center;
+}
+
+.picker .picker-unit .picker-count {
+    width: 50%;
+    margin-left: 15%;
+    height: 0.3rem;
+    vertical-align: middle;
+    -webkit-transform-style: preserve-3d;
+    -webkit-perspective: 8rem;
+    -webkit-perspective-origin: 50% 50%;
+    position: relative;
+    background: #FDF4F5;
+}
+
+.picker .picker-unit .picker-count .picker-tip {
+    width: 100%;
+    height: 0.3rem;
+    position: absolute;
+    font-size: 0.3rem;
+    letter-spacing: 0.05rem;
+    color: #DE3646;
+    font-weight: 500;
+    -webkit-transform-origin: 50% 50% 0rem;
+    text-align: center;
+    line-height: 0.3rem;
+    user-select: none;
+    -webkit-backface-visibility: hidden;
+}
+.picker .picker-unit .picker-count .picker-tip:hover{
+    background: #FDF4F5;
+}
+
+.picker .picker-unit .picker-sign {
+    width: 35%;
+    height: 100%;
+    line-height: 1.5rem;
+    text-align: center;
+    font-size: 0.2rem;
+}
+
+.picker .picker-mask {
+    width: 100%;
+    height: 0.6rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: #FDF4F5;
+    opacity: 0.7;
+}
+
+.picker .mask-top {
+    top: 0;
+}
+
+.picker .mask-bottom {
+    bottom: 0;
+}
+
+.footer{
+    width: 100%;
+    height: 0.5rem;
+    position: absolute;
+    bottom: 1rem;
+    left: 0;
+    right: 0;
+}
+
+.footer .btn {
+    display: block;
+    width: 90%;
+    padding-top: 0.06rem;
+    padding-bottom: 0.06rem;
+    font-size: 0.16rem;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    user-select: none;
+    border: 0.01rem solid transparent;
+    border-radius: 0.04rem;
+    background: #DE3646;
+    color: #FDF4F5;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer .tip {
+    font-size: 0.12rem;
+    color: #DE3646;
+    font-weight: 200;
+    text-align: center;
+    margin-top: 0.1rem;
+}
+/* e New_ShanDianDai.html */
+
+
+/* s personalData.html */
+.division-column{
+    width: 100%;
+    height: .6rem;
+    background: #F7F7F8;
+    position: relative;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+}
+.division-column p{
+    color: #333;
+    font-size: 0.2rem;
+    text-indent: .4rem;
+    line-height: .4rem;
+}
+.division-column .division-sign{
+    width: .1rem;
+    height: .3rem;
+    position: absolute;
+    left: .2rem;
+    top: .15rem;
+    background: #DE424F;
+}
+.necessity-warp{
+    width: 100%;
+    height: 4rem;
+    background: #FFF;
+}
+.necessity-warp .necessity{
+    width: 50%;
+    height: 50%;
+    border-color: #E6E6E6;
+    border-style: solid;
+    border-width: 1px 0 0 1px;
+    background: #fff;
+    text-align: center;
+}
+.necessity-warp :nth-child(2){
+        border-width: 1px 1px 0 1px;
+}
+.necessity-warp :nth-child(3){
+        border-width: 1px 0 1px 1px;
+}
+.necessity-warp :nth-child(4){
+        border-width: 1px 1px 1px 1px;
+}
+.necessity-warp .necessity:hover{
+    background: #E3E3E3;
+}
+.necessity-warp .necessity .icon-control{
+    color: #D3D3D3;
+    font-size: .7rem;
+    text-align: center;
+    line-height: 1.2rem;
+}
+.necessity-warp .necessity .necessity-title{
+    font-size: .22rem;
+    text-align: center;
+    line-height: .3rem;
+    margin-top: -0.1rem;
+    color: #666666;
+}
+.necessity-warp .necessity .necessity-addition{
+    color: #1A76E1;
+    font-size: .16rem;
+    text-align: center;
+    line-height: .22rem;
+    position: relative;
+}
+.necessity-warp .necessity .necessity-addition .icon-control{
+    color: #1A76E1;
+    font-size: .16rem;
+    line-height: .22rem;
+}
+.luxury-warp{
+    width: 100%;
+    height: 4.5rem;
+    background: #FFFFFF;
+}
+.luxury-warp .luxury{
+    width: 33.333333333333333333333333333%;
+    height: 33.333333333333333333333333333%;
+    border-color: #E6E6E6;
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    background: #fff;
+    text-align: center;
+}
+.luxury-warp :nth-child(3n+1){
+    border-width: 0 1px 1px 1px;
+}
+.luxury-warp :nth-child(1){
+    border-width: 1px 1px 1px 1px;
+}
+.luxury-warp :nth-child(2), .luxury-warp :nth-child(3){
+    border-width: 1px 1px 1px 0;
+}
+
+.luxury-warp .luxury:hover{
+    background: #E3E3E3;
+}
+.luxury-warp .luxury .icon-control{
+    color: #D3D3D3;
+    font-size: .5rem;
+    text-align: center;
+    line-height: .9rem;
+}
+.luxury-warp .luxury .luxury-title{
+    font-size: .2rem;
+    line-height: .3rem;
+    text-align: center;
+    color: #808080;
+}
+/* e personalData.html */

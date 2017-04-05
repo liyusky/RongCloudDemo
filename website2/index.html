@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>博略全景</title>
+    <link rel="stylesheet" href="./css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/animate.css"/>
+    <link rel="stylesheet" href="./dist/jquery.fatNav.min.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <!--[if lt IE 8]>
+    <h1 style="font-size: 16px;height: 40px;line-height: 40px;position: absolute;width: 100%;margin: 0;
+            color: #fff;background-color: #0793F5;text-align: center;top: 0;left: 0;z-index: 2000;
+            ">您的浏览器不被支持，请使用qq浏览器、谷歌浏览器或其他主流浏览器访问。</h1>
+    <![endif]-->
+  </head>
+
+  <body data-spy="scroll" data-target="#myScrollspy">
+
+      <style media="screen">
+          .bg{
+              position: fixed;
+              top: 0;
+              left: 0;
+              z-index: -999;
+              width: 100%;
+              height: 100%;
+              background-repeat: no-repeat;
+              background-size: cover;
+              background-image: url(./images/1.jpg);
+          }
+      </style>
+      <div class="bg"></div>
+  <!--loading page-->
+    <div class="loader">
+    <div class="loader-content">
+      <div class="container">
+         <div class="row">
+           <div class="col-xs-12 loader-con">
+               <div class="logo-img">
+               <img src="images/logo.png" width="300">
+               </div>
+
+              <div class="loder-text">
+              <img src="images/loading.gif">
+              <p>若长时间观看引发不适应，可通过眺望远方来缓解不适</p></div>
+           </div>
+         </div>
+      </div>
+
+    </div>
+    </div>
+    <!--content page-->
+    <script type="text/javascript">
+      window.onload = function(){
+        setTimeout(function(){
+        var loader = document.getElementsByClassName("loader")[0];
+        loader.className="loader fadeout" ;//使用渐隐的方法淡出loading page
+        setTimeout(function(){loader.style.display="none"},1000)
+        },1000)//强制显示loading page 1s
+    }
+    </script>
+
+  <!--右侧导航
+    <div class="Rnav">
+       <div class="f hidden-xs" id="myScrollspy">
+          <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="5000">
+            <li class="active"><a href="#text1"></a></li>
+            <li><a href="#text2"></a></li>
+            <li><a href="#text3"></a></li>
+            <li><a href="#text4"></a></li>
+            <li><a href="#text5"></a></li>
+            <li><a href="#text6"></a></li>
+            <li><a href="#text7"></a></li>
+          </ul>
+        </div>
+    </div>
+  右侧导航-->
+  <!--可隐藏导航-->
+     <div class="container">
+      <div class="fat-nav">
+        <div class="fat-nav__wrapper">
+             <div id="pano" style="width:100%;height:100%;" >
+               <iframe  id="Iframe"  class="" src="http://720yun.com/t/y545d4jy3euamx3q18" width="100%"  scrolling="no" frameborder="0"  marginheight="0" marginwidth="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"  allowtransparency="no"></iframe>
+             </div>
+             <div class="row">
+               <div class="col-xs-12 box">
+                 <div class="col-xs-6 logo">
+                      <img src="images/logo.png" class="img-responsive">
+                 </div>
+                 <div class="col-xs-6 rnav">
+
+                    <ul class="">
+                      <li><a href="#text2">案 例<span> Projects </span></a></li>
+                      <li><a href="#text3">项 目<span> About us</span></a></li>
+                      <li><a href="#text4">客 户<span> Our client</span></a></li>
+                      <li><a href="#text5">业 务<span> Our ability</span></a></li>
+                      <li><a href="#text6">设 备<span> Equipment</span></a></li>
+                      <li><a href="#text7">联 系<span> Contact</span></a></li>
+                    </ul>
+
+                 </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+  <!--可隐藏导航-->
+   <!--首页-->
+   <section class="text1" id="text1" >
+        <div class="container">
+            <div class="row text-center">
+               <div class="col-xs-12">
+                  <h4 class="text-center"><i class="fa fa-phone"> &nbsp;178-8884-5725</i></h4>
+
+               </div>
+               <div class="col-xs-12 text1-tab">
+                  <h1 class="">未来已来</h1>
+                  <p>The Furture Is Now</p>
+                  <a href="#text2">开启</a>
+               </div>
+            </div>
+        </div>
+    </section>
+    <!--首页-->
+    <!--案例-->
+    <section class="text2" id="text2">
+        <div class="container">
+            <div class="row wow">
+               <div class="col-xs-12 text-title  wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
+                   <h1>我们的案例<span class="title-col">Our projects</span></h1>
+               </div>
+               <div class="col-xs-12 text2-con text-pad " >
+                   <div class="col-xs-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
+                        <a href="http://www.utovr.com/video/271009052677.html">
+                          <img src="images/text2-v3.png" class="img-responsive">
+                          <p class="text-center">博略全景视频</p>
+                        </a>
+                   </div>
+                   <div class=" col-xs-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s"">
+                       <a href="http://www.utovr.com/video/271009052677.html">
+                          <img src="images/text2-v3.png" class="img-responsive">
+                          <p class="text-center">博略全景视频</p>
+                        </a>
+                   </div>
+                   <div class="col-xs-4 wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s"">
+                       <a href="http://www.utovr.com/video/271009052677.html">
+                          <img src="images/text2-v3.png" class="img-responsive">
+                          <p class="text-center">博略全景视频</p>
+                        </a>
+                   </div>
+
+
+               </div>
+            </div>
+        </div>
+    </section>
+    <!--案例-->
+    <!--关于我们-->
+    <section class="text3" id="text3">
+        <div class="container">
+            <div class="row">
+               <div class="col-xs-12 text-title wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
+                   <h1>关于我们<span class="title-col">About us</span></h1>
+               </div>
+               <div class="col-xs-12 text3-con text-pad ">
+                    <div class="col-xs-3  text3-img wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
+                       <img src="images/logo2.png" class="img-responsive">
+                    </div>
+                    <div class="col-xs-8  wow fadeInRight text-center" data-wow-duration="1s" data-wow-delay="1s">
+                        <h2><b>博略全景视界</b></h2>
+                        <P>博略全景视界致力于数字互动多媒体技术的开发与应用，提供整套VR技术解决方案，为观众呈现视觉、听觉、触觉全方位的逼真体验。</P>
+                    </div>
+               </div>
+            </div>
+        </div>
+    </section>
+    <!--关于我们-->
+    <!--客户-->
+    <section class="text4" id="text4">
+        <div class="container">
+            <div class="row">
+               <div class="col-xs-12 text-title wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
+                   <h1>我们的客户<span class="title-col">Our client</span></h1>
+               </div>
+               <div class="col-xs-12 text4-con text-pad wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
+                   <div class="col-xs-12 text4-img">
+                        <div class="col-sm-5ths">
+                           <img src="images/1.jpg" class="img-responsive">
+                        </div>
+                        <div class="col-sm-5ths">
+                           <img src="images/2.jpg" class="img-responsive">
+                        </div>
+                        <div class="col-sm-5ths">
+                           <img src="images/3.jpg" class="img-responsive">
+                        </div>
+                        <div class="col-sm-5ths">
+                           <img src="images/4.jpg" class="img-responsive">
+                        </div>
+                        <div class="col-sm-5ths">
+                           <img src="images/5.jpg" class="img-responsive">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 text4-img">
+                        <div class="col-sm-5ths">
+                           <img src="images/6.jpg" class="img-responsive">
+                        </div>
+                        <div class="col-sm-5ths">
+                           <img src="images/7.jpg" class="img-responsive">
+                        </div>
+                        <div class="col-sm-5ths">
+                           <img src="images/8.jpg" class="img-responsive">
+                        </div>
+                        <div class="col-sm-5ths">
+                           <img src="images/9.jpg" class="img-responsive">
+                        </div>
+                        <div class="col-sm-5ths">
+                           <img src="images/10.jpg" class="img-responsive">
+                        </div>
+                    </div>
+                    <div class="col-xs-12 text4-img">
+                        <div class="col-sm-5ths">
+                           <img src="images/11.jpg" class="img-responsive">
+                        </div>
+                        <div class="col-sm-5ths">
+                           <img src="images/12.jpg" class="img-responsive">
+                        </div>
+                        <div class="col-sm-5ths">
+                           <img src="images/13.jpg" class="img-responsive">
+                        </div>
+                        <div class="col-sm-5ths">
+                           <img src="images/14.jpg" class="img-responsive">
+                        </div>
+                        <div class="col-sm-5ths">
+                           <img src="images/15.jpg" class="img-responsive">
+                        </div>
+                    </div>
+
+               </div>
+            </div>
+        </div>
+    </section>
+    <!--客户-->
+    <!--业务-->
+    <section class="text5" id="text5">
+        <div class="container">
+            <div class="row">
+               <div class="col-xs-12 text-title wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
+                   <h1>我们能做什么<span class="title-col">Our ability</span></h1>
+               </div>
+               <div class="col-xs-12 text5-con text-pad">
+                   <div class="col-xs-3  text5-img wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                       <div class="col-xs-3">
+                          <img src="images/t5_1.png" class="img-responsive">
+                       </div>
+                       <div class="col-xs-9 text5-l">
+                          <h5><b>全景拍摄| VR SHOOTING</b></h5>
+                          <p>亿万像素全景图拍摄</p>
+                          <p>4K-12K全景视频输出</p>
+                          <p>水下720度全景拍摄</p>
+                          <P>高空航拍全景图/全景视频</P>
+                       </div>
+                   </div>
+                   <div class="col-xs-3 text5-img wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                       <div class="col-xs-3">
+                          <img src="images/t5_2.png" class="img-responsive">
+                       </div>
+                       <div class="col-xs-9 text5-l">
+                          <h5><b>场景化营销| VR MARKETIN</b></h5>
+                          <p>汽车、家电行业场景体验</p>
+                          <p>影视、娱乐场景体验</p>
+                          <p>地产、旅游行业场景体验</p>
+                          <P>其它类型沉浸式体验</P>
+                       </div>
+                   </div>
+                   <div class="col-xs-3 text5-img wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                       <div class="col-xs-3">
+                          <img src="images/t5_3.png" class="img-responsive">
+                       </div>
+                       <div class="col-xs-9 text5-l">
+                          <h5><b>VR+内容创意| VR PLANNING</b></h5>
+                          <p>酒店餐饮VR内容生产</p>
+                          <p>教育相关VR内容生产</p>
+                          <p>旅游相关VR内容生产</p>
+                          <P>商业定制VR内容制作</P>
+                       </div>
+                   </div>
+                   <div class="col-xs-3 text5-img wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                       <div class="col-xs-3">
+                          <img src="images/t5_4.png" class="img-responsive">
+                       </div>
+                       <div class="col-xs-9 text5-l">
+                          <h5><b>解决方案| VR SOLUTION</b></h5>
+                          <p>提供移动端、线下体验、</p>
+                          <p>巡展、教育培训、仿真模、</p>
+                          <p>拟、医疗服务等全方位的</p>
+                          <P>VR解决方案</P>
+                       </div>
+                   </div>
+               </div>
+            </div>
+        </div>
+    </section>
+    <!--业务-->
+    <!--设备-->
+    <section class="text6" id="text6">
+        <div class="container">
+            <div class="row">
+               <div class="col-xs-12 text-title wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
+                   <h1>设备照片<span class="title-col">Equipment</span></h1>
+               </div>
+               <div class="col-xs-12 text6-con text-pad ">
+                   <div class="col-xs-3 text6-img wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
+                       <img src="images/1.png" class="img-responsive">
+                   </div>
+                   <div class="col-xs-3 text6-img wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
+                       <img src="images/2.png" class="img-responsive">
+                   </div>
+                   <div class="col-xs-3 text6-img wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
+                       <img src="images/3.png" class="img-responsive">
+                   </div>
+                   <div class="col-xs-3 text6-img wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
+                       <img src="images/4.png" class="img-responsive">
+                   </div>
+               </div>
+            </div>
+        </div>
+    </section>
+    <!--设备-->
+    <!--联系我们-->
+    <section class="text7" id="text7">
+        <div class="container">
+            <div class="row">
+               <div class="col-xs-12 text-title wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
+                   <h1>联系我们<span class="title-col">Contact</span></h1>
+               </div>
+               <div class="col-xs-12 text7-con text-pad">
+
+                   <div class="col-xs-3  text7-img wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
+                      <img src="images/ma.png" class="img-responsive">
+                   </div>
+                   <div class="col-xs-9 text7-id wow fadeInRight" data-wow-duration="1s" data-wow-delay="1s">
+
+                      <P><i class="fa fa-play fa-fw"></i><b> Tel</b>：178-8884-5725 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;139-1173-0613</P>
+                      <p><i class="fa fa-play fa-fw"></i><b> E-mail</b>：hnblxxkj@163.com</p>
+                      <p><i class="fa fa-play fa-fw"></i><b> WeChat</b>：zhan990409720</p>
+
+                   </div>
+
+               </div>
+            </div>
+        </div>
+    </section>
+    <!--联系我们-->
+
+    <script src="js/jquery.min.js"></script>
+
+    <script type="text/javascript" src="dist/jquery.fatNav.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script src="js/jquery.singlePageNav.min.js"></script>
+    <!--这个插件是内容淡出并控制进入方向-->
+    <script src="js/wow.min.js"></script>
+    <script>
+
+    $(function(){
+        /*导航跳转效果插件*/
+        $('.nav').singlePageNav({
+            offset:0
+        });
+
+        new WOW().init();
+      })
+    </script>
+
+  </body>
+</html>

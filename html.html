@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="./jquery.min.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <script type="text/javascript">
+        $.getJSON("./b.json",function(data){
+            console.log(data);
+            var arr = data.contacts;
+            var len = arr.length;
+            var index = 0;
+            for (var i = 0; i < len; i++) {
+                var name = arr[i].fullName;
+                var phone;
+                try {
+                    var phoneJson = arr[i].phones[0];
+                    for (var key in phoneJson) {
+                        phone = phoneJson[key];
+                    }
+                    console.log(name + "|" + phone);
+                    index += 1;
+                } catch (e) {
+
+
+                } finally {
+                    console.log(index);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

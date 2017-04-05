@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="./css/RongIMWidget.css" />
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/jquery-rebox-0.1.0.css"/>
+    <script src="./javascript/angular.min.js" charset="utf-8"></script>
+    <script src="./javascript/require.js" charset="utf-8"></script>
+    <script src="./javascript/jquery.min.js" charset="utf-8"></script>
+    <script src="./javascript/bootstrap.min.js" charset="utf-8"></script>
+    <script src="./javascript/RongIMLib-dev.js" charset="utf-8"></script>
+    <script src="./javascript/RongIMLib-2.2.5.min.js" charset="utf-8"></script>
+    <script src="./javascript/RongEmoji-2.2.5.min.js" charset="utf-8"></script>
+    <script src="./javascript/RongIMVoice-2.2.5.min.js" charset="utf-8"></script>
+    <script src="./javascript/RongIMWidget.js" charset="utf-8"></script>
+    <script src="./javascript/jquery-rebox-0.1.0.js" charset="utf-8"></script>
+</head>
+
+<body>
+
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        Launch demo modal
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">注意，只有一次填写机会，请输入正确的工号和姓名</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="jobNum1" class="col-sm-2 control-label">工号</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="jobNum1" placeholder="第一次输入工号">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="jobNum2" class="col-sm-2 control-label">工号</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="jobNum2" placeholder="第二次输入工号">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="jobNum3" class="col-sm-2 control-label">工号</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="jobNum3" placeholder="第三次输入工号">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name1" class="col-sm-2 control-label">姓名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name1" placeholder="第一次入姓名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name2" class="col-sm-2 control-label">姓名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name2" placeholder="第二次输入姓名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name3" class="col-sm-2 control-label">姓名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name3" placeholder="第三次输入姓名">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" onclick="modalModule.sendPersonalSign()">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-controller="RongWebController" ng-app="RongWebModule">
+        <h2>当前用户：<span ng-bind="user"></span></h2><br/> 填写你想要对话的用户的 Id 点击发起私聊会话，在对话框输入内容点击发送对方就收到你的消息了。<br/><br/>
+        <label>用户：</label><input class="input" ng-model="targetId">
+        <button class="btn" ng-click="setconversation()">发起私聊会话</button><br/> <br/>
+        <rong-widget></rong-widget>
+    </div>
+
+    <script type="text/javascript">
+        var Token;
+        var AppKey;
+        var inputMsgDom;
+    </script>
+    <script type="text/javascript">
+        var modalModule = {
+            jobNumOne:        $("#jobNum1"),
+            jobNumTwo:        $("#jobNum2"),
+            jobNumThree:      $("#jobNum3"),
+            nameOne:          $("#name1"),
+            nameTwo:          $("#name2"),
+            nameThree:        $("#name3"),
+            sendPersonalSign: function() {
+                jobNumOneValue = this.jobNumOne.val();
+                jobNumTwoValue = this.jobNumTwo.val();
+                jobNumThreeValue = this.jobNumThree.val();
+                nameOneValue = this.nameOne.val();
+                nameTwoValue = this.nameTwo.val();
+                nameThreeValue = this.nameThree.val();
+                if (this.isEmpty() && this.equalsValue()) {
+                    $.ajax({
+                        url:        '../SERVER/control/getToken.php',
+                        type:       'post',
+                        dataType:   'json',
+                        data:       {
+                            userId: jobNumOneValue,
+                            name:   nameOneValue,
+                            role:   1
+                        },
+                        success:    function(data) {
+                            Token = data.Token;
+                            AppKey = data.AppKey;
+                            if (Token && AppKey) {
+                                $("#myModal").modal('hide');
+                                var $scope = angular.element($("[ng-controller='RongWebController']")).scope();
+                                $scope.initialization();
+                            }
+                        },
+                        error:      function() {
+                        }
+                    });
+                }
+            },
+            equalsValue:      function() {
+                var mark;
+                if (jobNumOneValue == jobNumTwoValue && jobNumOneValue == jobNumThreeValue && jobNumTwoValue == jobNumThreeValue) {
+                    if (nameOneValue == nameTwoValue && nameOneValue == nameThreeValue && nameTwoValue == nameThreeValue) {
+                        mark = true;
+                    } else {
+                        mark = false;
+                        alert("姓名输入不相同");
+                    }
+                } else {
+                    mark = false;
+                    alert("工号输入不相同");
+                }
+                return mark;
+            },
+            isEmpty:          function() {
+                var mark;
+                if (!jobNumOneValue || !jobNumTwoValue || !jobNumThreeValue || !nameOneValue || !nameTwoValue || !nameThreeValue) {
+                    mark = false;
+                    alert("请将表格填写完整");
+                } else {
+                    mark = true;
+                }
+                return mark;
+            }
+        }
+    </script>
+    <!-- <script src="./javascript/RCWebUILoad.js" charset="utf-8"></script> -->
+    <script src="./javascript/index.js" charset="utf-8"></script>
+
+
+
+</body>
+
+</html>

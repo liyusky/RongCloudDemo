@@ -1,0 +1,696 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+webchat {
+    min-height: 590px;
+    margin: 10px;
+}
+
+ul li {
+    list-style: none;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.fixed {
+    position: fixed;
+}
+
+.omit {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.line-break{
+    word-wrap: break-word;
+}
+
+.no-select{
+    user-select: none;
+}
+
+.font-xs {
+    font-size: 10px;
+}
+
+.font-sm {
+    font-size: 15px;
+}
+
+.arrow-left {
+    position: relative;
+}
+
+.arrow-right {
+    position: relative;
+}
+
+.arrow-left::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 12.5px;
+    left: -5px;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 5px solid #fff;
+}
+
+.arrow-right::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 12.5px;
+    right: -5px;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid #98E165;
+}
+
+#webchat-nav {
+    width: 50px;
+    min-height: 592px;
+    background: #3E3E40;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+#webchat-nav .webchat-nav-list {
+    width: 100%;
+}
+
+#webchat-nav .webchat-nav-list .webchat-nav-tag {
+    width: 100%;
+    height: 50px;
+}
+
+#webchat-nav .webchat-tag-img {
+    width: 30px;
+    height: 30px;
+    margin: 10px 11px 10px 9px;
+}
+
+#webchat-nav .webchat-nav-retract {
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+#webchat-list {
+    width: 272px;
+    min-height: 590px;
+    background: #EAEAEA;
+    border-top: 1px solid #D9D9D9;
+    border-bottom: 1px solid #D9D9D9;
+    border-right: 1px solid #D9D9D9;
+}
+
+#webchat-list .webchat-list-action {
+    width: 272px;
+    height: 50px;
+    padding-top: 12px;
+    padding-left: 10px;
+}
+
+#webchat-list .webchat-list-action .webchat-input-box {
+    width: 210px;
+    height: 25px;
+    border: 1px solid #D9D9D9;
+}
+
+#webchat-list .webchat-list-action .webchat-input-box .list-input {
+    width: 100%;
+    height: 23px;
+    margin: 0;
+    outline: none;
+    border: none;
+    text-indent: 2px;
+}
+
+#webchat-list .webchat-list-action .list-action-nav {
+    width: 50px;
+    height: 25px;
+}
+
+#webchat-list .webchat-list-action .list-action-nav .list-action-btn {
+    display: block;
+    width: 25px;
+    height: 25px;
+    margin: 0 auto;
+    border: 1px solid #fff;
+}
+
+#webchat-list .webchat-list-wrap {
+    width: 100%;
+    height: 540px;
+}
+
+#webchat-list .webchat-list-wrap #webchat-list-content {
+    width: 100%;
+    min-height: 540px;
+}
+
+#webchat-list .webchat-list-wrap #webchat-list-content .webchat-tip {
+    width: 100%;
+}
+
+#webchat-list .webchat-list-wrap #webchat-list-content .customer-list{
+    height: 40px;
+}
+
+#webchat-list .webchat-list-wrap #webchat-list-content .customer-list .tip-user-status{
+    width: 30px;
+    height: 40px;
+    padding: 10px 0 10px 10px;
+}
+
+#webchat-list .webchat-list-wrap #webchat-list-content .customer-list .tip-user-status .webchat-hint-lamp{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: red;
+    text-align: center;
+    line-height: 16px;
+    border-radius: 50%;
+    color: #fff;
+}
+#webchat-list .webchat-list-wrap #webchat-list-content .customer-list .tip-user-identity{
+    width: 170px;
+    height: 40px;
+    line-height: 40px;
+}
+
+#webchat-list .webchat-list-wrap #webchat-list-content .customer-list .tip-user-identity .webchat-user-name{
+    display: inline-block;
+    width: 60px;
+    height: 40px;
+    padding: 0 5px;
+}
+
+#webchat-list .webchat-list-wrap #webchat-list-content .customer-list .webchat-user-phone{
+    display: inline-block;
+    width: 110px;
+    height: 40px;
+}
+
+#webchat-list .webchat-list-wrap #webchat-list-content .customer-list .webchat-tip-operation{
+    width: 70px;
+    height: 40px;
+    padding: 10px 5px;
+}
+
+#webchat-list .webchat-list-wrap #webchat-list-content .customer-list .webchat-tip-operation .customer-to-black{
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+}
+
+#webchat-list .webchat-list-wrap #webchat-list-content .waiter-list{
+    height: 66px;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+#webchat-list .webchat-list-wrap #webchat-list-content .waiter-list .webchat-hint-lamp{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    line-height: 66px;
+    border-radius: 50%;
+    background: #498B09;
+    padding-right: 10px;
+}
+
+#webchat-list .webchat-list-wrap #webchat-list-content .waiter-list .webchat-user-name{
+    display: inline-block;
+    width: 50px;
+    height: 56px;
+    background: #000;
+}
+
+#webchat-list .webchat-list-wrap #webchat-list-content .waiter-list .webchat-user-phone{
+    width: 100px;
+    height: 56px;
+    background: blue;
+}
+
+#webchat-list .webchat-list-wrap #webchat-list-content .waiter-list .webchat-avatar {
+    width: 42px;
+    height: 42px;
+    border: 1px solid #ccc;
+}
+
+#webchat-list .webchat-list-wrap #webchat-list-content .waiter-list .webchat-avatar .avatar-img {
+    width: 100%;
+    height: 100%;
+}
+
+#webchat-list .webchat-list-wrap #webchat-list-content .waiter-list .webchat-avatar .avatar-status-sign {
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 20;
+}
+
+#webchat-list .webchat-list-wrap #webchat-list-content .waiter-list .webchat-avatar .webchat-tip-unread {
+    background: red;
+    right: -6px;
+    top: -6px;
+}
+
+#webchat-list .webchat-list-wrap #webchat-list-content .waiter-list .webchat-avatar .webchat-tip-remove {
+    display: none;
+    background: grey;
+    text-align: center;
+    font-size: 10px;
+    line-height: 9px;
+    cursor: pointer;
+    color: #fff;
+    left: -6px;
+    top: -6px;
+}
+
+#webchat-list .webchat-list-wrap #webchat-list-content .waiter-list:hover .webchat-tip-remove {
+    display: block;
+}
+
+#webchat-list .webchat-list-wrap #webchat-list-content .waiter-list .webchat-target {
+    width: 148px;
+    height: 42px;
+    padding-left: 8px;
+}
+
+#webchat-list .webchat-list-wrap #webchat-list-content .waiter-list .tip-information {
+    line-height: 21px;
+    color: #333;
+}
+
+#webchat-list .webchat-list-wrap #webchat-list-content .waiter-list .webchat-target .target-box {
+    width: 100%;
+    height: 21px;
+}
+
+#webchat-list .webchat-list-wrap #webchat-list-content .waiter-list .webchat-supplementation {
+    width: 50px;
+    height: 42px;
+    padding-left: 12px;
+}
+
+#webchat-list .webchat-list-wrap #webchat-list-content .waiter-list .webchat-supplementation .supplementation-box {
+    width: 100%;
+    height: 21px;
+}
+
+#webchat-list .webchat-list-wrap #webchat-list-content .waiter-list .webchat-supplementation .supplementation-box .supplementation-information {
+    text-align: center;
+    font-size: 10px;
+}
+
+#webchat-conversation {
+    width: 550px;
+    min-height: 592px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+#webchat-conversation .webchat-conversation-header {
+    width: 100%;
+    height: 50px;
+    background: #F5F5F5;
+    padding-top: 12px;
+    border-top: 1px solid #D9D9D9;
+    border-right: 1px solid #D9D9D9;
+    border-top-right-radius: 5px;
+}
+
+#webchat-conversation .webchat-conversation-header #webchat-target-name {
+    height: 25px;
+    line-height: 25px;
+    color: #333;
+    text-align: center;
+}
+
+#webchat-conversation .webchat-conversation-header .webchat-conversation-tools {
+    height: 37px;
+    position: absolute;
+    z-index: 20;
+}
+
+#webchat-conversation .webchat-conversation-header .tools-left {
+    left: 0;
+    top: 0;
+}
+
+#webchat-conversation .webchat-conversation-header .tools-right {
+    right: 0;
+    top: 0;
+    border-top-right-radius: 5px;
+}
+
+#webchat-conversation .webchat-conversation-header .webchat-conversation-tools .tools-btn {
+    width: 37px;
+    height: 100%;
+    display: inline-block;
+    text-align: center;
+    color: #5E5E5E;
+    padding-top: 12px;
+    line-height: 25px;
+    background: #F5F5F5;
+    text-decoration: none;
+}
+
+#webchat-conversation .webchat-conversation-header .webchat-conversation-tools .tools-btn:hover {
+    background: #E5E5E5;
+}
+
+#webchat-conversation #webchat-conversation-window {
+    width: 100%;
+    height: 420px;
+    background: #F5F5F5;
+    border-bottom: 1px solid #D9D9D9;
+    border-right: 1px solid #D9D9D9;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+#webchat-conversation #webchat-conversation-window::-webkit-scrollbar {
+    width: 0px;
+}
+
+#webchat-conversation #webchat-conversation-window #webchat-conversation-content {
+    width: 100%;
+}
+
+#webchat-conversation #webchat-conversation-window #webchat-conversation-content .conversation-time {
+    width: 100%;
+    height: 33px;
+    line-height: 33px;
+    font-size: 11px;
+    color: #D2B9AD;
+    text-align: center;
+}
+
+#webchat-conversation #webchat-conversation-window #webchat-conversation-content .conversation-message {
+    width: 550px;
+    min-height: 35px;
+    margin-bottom: 15px;
+    height: auto;
+}
+
+#webchat-conversation #webchat-conversation-window #webchat-conversation-content .message-left {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+}
+
+#webchat-conversation #webchat-conversation-window #webchat-conversation-content .message-right {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+}
+
+#webchat-conversation #webchat-conversation-window #webchat-conversation-content .conversation-message .conversation-author-avatar {
+    width: 35px;
+    height: 35px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#webchat-conversation #webchat-conversation-window #webchat-conversation-content .conversation-message .conversation-saying {
+    display: inline-block;
+    padding: 10px;
+    max-width: 360px;
+    line-height: 15px;
+    font-size: 12px;
+    word-wrap: break-word;
+    border-radius: 5px;
+}
+
+#webchat-conversation #webchat-conversation-window #webchat-conversation-content .conversation-message .conversation-image-box {
+    max-width: 130px;
+}
+
+#webchat-conversation #webchat-conversation-window #webchat-conversation-content .conversation-message .conversation-image-box .conversation-image {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.saying-background-left {
+    background: #fff;
+}
+
+.saying-background-right {
+    background: #98E165;
+}
+
+#webchat-conversation #webchat-conversation-footer {
+    width: 550px;
+    height: 122px;
+    background: #F9F9F9;
+    border-bottom: 1px solid #D9D9D9;
+    border-right: 1px solid #D9D9D9;
+    border-bottom-right-radius: 5px;
+}
+
+#webchat-conversation #webchat-conversation-footer #webchat-input {
+    height: 80px;
+    width: 100%;
+    user-modify: read-write;
+    -webkit-user-modify: read-write;
+    background: #F9F9F9;
+    margin-top: 5px;
+    padding: 0px 20px;
+    letter-spacing: 1px;
+    font-size: 14px;
+    line-height: 21px;
+    overflow: hidden;
+    outline: none;
+    border: none;
+    resize: none;
+    word-wrap: break-word;
+}
+
+#webchat-conversation #webchat-conversation-footer #webchat-input .input-img {
+    max-width: 130px;
+}
+
+#webchat-conversation #webchat-conversation-footer .webchat-image-nav {
+    width: 459px;
+    height: 36px;
+    padding: 5px;
+    overflow-y: hidden;
+    overflow-x: scroll;
+}
+
+#webchat-conversation #webchat-conversation-footer .webchat-image-nav::-webkit-scrollbar-track {
+    background-color: #fff;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    height: 5px;
+    border-radius: 100px;
+}
+
+#webchat-conversation #webchat-conversation-footer .webchat-image-nav::-webkit-scrollbar {
+    height: 5px;
+    background-color: #D6D6D7;
+}
+
+#webchat-conversation #webchat-conversation-footer .webchat-image-nav::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #A5A5A5;
+    border-radius: 100px;
+}
+
+#webchat-conversation #webchat-conversation-footer .webchat-image-nav #webchat-image-list {
+    width: 0;
+    height: 25px;
+}
+#webchat-conversation #webchat-conversation-footer .webchat-image-nav #webchat-image-list .webchat-image-wrap{
+    width: 45px;
+    height: 25px;
+    padding: 0 5px;
+}
+#webchat-conversation #webchat-conversation-footer .webchat-image-nav #webchat-image-list .webchat-image-wrap .webchat-image-input{
+    width: 35px;
+    height: 25px;
+}
+#webchat-conversation #webchat-conversation-footer .webchat-image-nav #webchat-image-list .webchat-image-wrap .image-badge{
+    display: none;
+    width: 14px;
+    height: 14px;
+    top: -5px;
+    right: 0;
+    border-radius: 50%;
+    background: red;
+    color: white;
+    font-size: 10px;
+    line-height: 10px;
+    text-align: center;
+}
+#webchat-conversation #webchat-conversation-footer .webchat-image-nav #webchat-image-list .webchat-image-wrap:hover .image-badge{
+    display: block;
+}
+#webchat-conversation #webchat-conversation-footer .webchat-send-btn {
+    width: 70px;
+    height: 25px;
+    border: 1px solid #E3E3E3;
+    margin: 5px 10px;
+    background: #F5F5F5;
+    color: #606060;
+}
+
+#webchat-conversation #webchat-conversation-footer .webchat-send-btn:hover {
+    background: #3DCE3D;
+    color: #fff;
+    border-color: #3DCE3D;
+}
+
+#webchat-teleprompter {
+    width: 251px;
+    height: 592px;
+    border-style: solid;
+    border-color: #333;
+    border-width: 1px 1px 1px 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background: #999;
+}
+#webchat-teleprompter::-webkit-scrollbar {
+    width: 0px;
+}
+
+#webchat-teleprompter .webchat-teleprompter-item {
+    width: 100%;
+    min-height: 35px;
+}
+
+#webchat-teleprompter .webchat-teleprompter-item .webchat-teleprompter-header {
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    color: #000;
+    padding: 0 10px;
+}
+
+#webchat-teleprompter .webchat-teleprompter-item .webchat-teleprompter-header .teleprompter-expansion-sign {
+    font-size: 20px;
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+#webchat-teleprompter .webchat-teleprompter-item .webchat-teleprompter-header .webchat-teleprompter-title {
+    font-size: 20px;
+    color: #333;
+}
+
+#webchat-teleprompter .webchat-teleprompter-item .webchat-teleprompter-content {
+    width: 100%;
+    background: blue;
+}
+
+#webchat-teleprompter .webchat-teleprompter-item .webchat-teleprompter-content .teleprompter-hint {
+    width: 100%;
+    line-height: 30px;
+    padding: 0 10px;
+}
+#webchat-teleprompter .webchat-teleprompter-item .webchat-teleprompter-content .hint-default-height{
+    height: 30px;
+}
+
+#webchat-teleprompter .webchat-teleprompter-item .webchat-teleprompter-content .teleprompter-hint .teleprompter-hint-operation {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+#webchat-teleprompter .webchat-teleprompter-item .webchat-teleprompter-content .teleprompter-hint .teleprompter-hint-message {
+    font-size: 16px;
+    color: #333;
+}
+
+#webchat-minimize {
+    display: none;
+    width: 200px;
+    height: 40px;
+    padding: 5px;
+    border-radius: 5px;
+    background: #3E3E40;
+    position: fixed;
+    z-index: 20;
+    user-select: none;
+    cursor: pointer;
+}
+
+#webchat-minimize .minimize-sign {
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
+}
+
+#webchat-minimize .minimize-count {
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
+    font-size: 16px;
+    margin: 0 5px;
+    text-align: center;
+}
+
+#webchat-minimize .webchat-unread-prompt {
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+
+#webchat-modal {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -99;
+    background: rgba(30, 30, 30, .4);
+}
+
+#webchat-modal .modal-img-box {
+    width: 70%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+#webchat-modal .modal-img-box #webchat-exhibit {
+    width: 100%;
+}
+
+#webchat-back-canvas{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -99;
+}

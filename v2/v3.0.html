@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>聊天</title>
+    <link rel="stylesheet" href="./css/webchat.css">
+    <script src="./javascript/require.js" charset="utf-8"></script>
+    <script src="./javascript/jquery.min.js" charset="utf-8"></script>
+    <script src="./javascript/RongIMLib-2.2.5.min.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <div id="webchat" class="fixed">
+        <nav class="fl relative" id="webchat-nav">
+            <ul class="webchat-nav-list">
+                <li class="webchat-nav-tag" title="头像">
+                    <img src="./images/33.jpg" class="webchat-tag-img">
+                </li>
+                <li class="webchat-nav-tag" data-target-type="customer" onclick="javascript: WebChat.showList('customer');" title="客户">
+                    <img src="./images/2.png" class="webchat-tag-img">
+                </li>
+                <li class="webchat-nav-tag" data-target-type="waiter" onclick="javascript: WebChat.showList('waiter');" title="客服">
+                    <img src="./images/3.png" class="webchat-tag-img">
+                </li>
+                <li class="webchat-nav-tag" data-target-type="black" onclick="javascript: WebChat.showList('black');" title="群组">
+                    <img src="" class="webchat-tag-img">
+                </li>
+                <li class="webchat-nav-tag" data-target-type="black" onclick="javascript: WebChat.showList('black');" title="黑名单">
+                    <img src="./images/5.png" class="webchat-tag-img">
+                </li>
+            </ul>
+            <div class="webchat-nav-retract" title="收起">
+                <img src="./images/6.png" class="webchat-tag-img" onclick="javascript: WebChat.minimize();">
+            </div>
+        </nav>
+        <div class="fl" id="webchat-list">
+            <div class="webchat-list-action">
+                <div class="webchat-input-box fl">
+                    <input type="text" class="list-input fl">
+                    <i title="搜索">search</i>
+                </div>
+                <div class="list-action-nav fl">
+                    <button type="button" class="list-action-btn" title="转接"></button>
+                </div>
+            </div>
+            <div class="webchat-list-wrap">
+                <ul id="webchat-list-content"></ul>
+            </div>
+        </div>
+        <div class="fl" id="webchat-conversation">
+            <div class="webchat-conversation-header relative">
+                <p id="webchat-target-name">liyusky</p>
+                <div class="webchat-conversation-tools tools-right">
+                    <a href="javascript: void(0);" class="tools-btn fl" onclick="javascript: WebChat.minimize();">-</a>
+                    <a href="javascript: void(0);" class="tools-btn fl" style="border-top-right-radius: 5px;" onclick="javascript: WebChat.closeWebChat();">x</a>
+                </div>
+                <div class="webchat-conversation-tools tools-left">
+                    <a href="javascript: void(0);" class="tools-btn" onclick="javascript: WebChat.hideWindow();">&lt;</a>
+                </div>
+            </div>
+            <div id="webchat-conversation-window">
+                <ul id="webchat-conversation-content"></ul>
+            </div>
+            <div id="webchat-conversation-footer">
+                <textarea class="fl" id="webchat-input"></textarea>
+                <div class="webchat-image-nav fl">
+                    <ul id="webchat-image-list"></ul>
+                </div>
+                <button type="button" class="webchat-send-btn fr" onclick="javascript: WebChat.send();">发送</button>
+            </div>
+        </div>
+        <div class="fl" id="webchat-teleprompter">
+            <div class="webchat-teleprompter-item">
+                <div class="webchat-teleprompter-header">
+                    <img src="" class="teleprompter-expansion-sign fl">
+                    <p class="webchat-teleprompter-title omit">xdfasfadfdsfsdfasfasdfdaxxxx</p>
+                </div>
+                <ul class="webchat-teleprompter-content">
+                    <li class="teleprompter-hint hint-default-height">
+                        <img src="" class="teleprompter-hint-operation fl">
+                        <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">
+                        <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));" onclick="javascript: WebChat.showWholeHint($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="webchat-minimize">
+            <img src="./images/8.png" class="minimize-sign webchat-open-sign fl" onclick="javascript: WebChat.openWebChat();" title="展开">
+            <img src="" class="minimize-sign fl" title="发来消息的人数">
+            <span class="minimize-count fl">5</span>
+            <img src="" class="minimize-sign fl" title="未读消息数">
+            <span class="minimize-count fl">100</span>
+        </div>
+        <div id="webchat-modal" class="fixed">
+            <div class="modal-img-box">
+                <img src="" id="webchat-exhibit">
+            </div>
+        </div>
+        <canvas id="webchat-back-canvas"></canvas>
+        <img src="" id="webchat-back-photo">
+    </div>
+
+
+    <script type="text/javascript">
+        var WebChat = {
+            Token:             null,
+            AppKey:            null,
+            targetId:          null,
+            hasHistoryMark:    null,
+            targetIdJson:      null,
+            unreadMsgJson:     null,
+            imgSendSrc:        null,
+            sendArgs:          null,
+            imageIndex:        null,
+            currentImageIndex: null,
+            currentListType:   null,
+            chatList:          null,
+
+
+            BankList:          null,
+
+            RongIMClient:      null,
+
+            webchatDom:        null,
+            navDom:            null,
+            listDom:           null,
+            listContDom:       null,
+            convrDom:          null,
+            miniBtnDom:        null,
+            convrContDom:      null,
+            convrFootDom:      null,
+            inputDom:          null,
+            convrNameDom:      null,
+            openSignDom:       null,
+            imgListDom:        null,
+            canvasDom:         null,
+            modalDom:          null,
+            exhibitDom:        null,
+            backImageDom:      null,
+            main:                           function() {
+                this.detectRuntime();
+                this.initParamet();
+                this.getToken();
+                this.initDom();
+                this.loadRongCloud();
+                this.initEvent();
+            },
+
+            /* s 初始化 */
+                getToken:                   function() {
+                    // $.ajax({
+                    //     url: '/path/to/file',
+                    //     type: 'POST',
+                    //     async: false,
+                    //     dataType: 'JSON',
+                    //     data: {userId: userId},
+                    //     success: function(data) {
+                    //         this.AppKey = data.AppKey;
+                    //         this.Token = data.Token;
+                    //     }
+                    // });
+                    this.targetId = null;
+                    this.AppKey = "ik1qhw09i234p";
+                    this.Token = "VP0ZdYropmGlbsLs+5NlyXquDCdi0JfiOlIY+u/RT1ov/JV3R9myhP2bLOW96DXsbPEAgGQkW74j5rl6YL+a0w==";
+                },
+                initParamet:                function() {
+                    this.hasHistoryMark = true;
+                    this.targetIdJson = {};
+                    this.unreadMsgJson = {};
+                    this.BankList = localStorage.BankList ? JSON.parse(localStorage.BankList) : {};
+                    this.imgSendSrc = [];
+                    this.sendArgs = {
+                        conversationtype: 1,
+                        targetId: this.targetId,
+                        msg: null
+                    };
+                    this.imageIndex = -1;
+                    this.chatList = {
+                        customer: {},
+                        waiter: {},
+                        black: {}
+                    };
+                    this.currentListType = "customer";
+                },
+                initDom:                    function() {
+                    this.webchatDom   = $("#webchat");
+                    this.navDom       = $("#webchat-nav"); //导航区
+                    this.listDom      = $("#webchat-list"); //列表内容区
+                    this.listContDom  = $("#webchat-list-content"); //列表内容区
+                    this.convrDom     = $("#webchat-conversation"); //会话区
+                    this.miniBtnDom   = $("#webchat-minimize"); //最小化按钮
+                    this.convrWinDom  = $("#webchat-conversation-window"); //会话窗口
+                    this.convrContDom = $("#webchat-conversation-content"); //会话内容部分
+                    this.inputDom     = $("#webchat-input"); //输入框
+                    this.convrNameDom = $("#webchat-target-name"); //客户名
+                    this.openSignDom  = $(".webchat-open-sign");
+                    this.convrFootDom = $("#webchat-conversation-footer");
+                    this.imgListDom   = $("#webchat-image-list"); //图片区
+                    this.canvasDom    = $("#webchat-back-canvas");
+                    this.modalDom     = $("#webchat-modal");
+                    this.exhibitDom   = $("#webchat-exhibit");
+                    this.backImageDom = $("#webchat-back-photo");
+                },
+                initEvent:                  function() {
+                    this.miniBtnDom.on("mousedown", this.movement);
+                    this.inputDom.on("keydown", this.inputOperate);
+                    this.modalDom.on("dblclick", this.hiddenModal);
+                    $(document).on("keydown", this.keepSide);
+                    this.convrFootDom[0].addEventListener("dragover", this.banCover);
+                    this.convrFootDom[0].addEventListener("drop", this.dropImg);
+                    document.addEventListener("dragover", this.banCover);
+                    document.addEventListener("drop", this.banCover);
+                },
+                detectRuntime:              function() {
+                    if (typeof(Storage) == "undefined") {
+                        alert("您的浏览器未搭建本模块核心环境，请更换浏览器");
+                        return false;
+                    }
+                },
+            /* e 初始化 */
+
+            /* s 业务 */
+                /**
+                 * [将客户转接给其他的人]
+                 * @param   {dom}               thisDom [当前点击的dom]
+                 * @return  {[type]}                        [description]
+                 * @author 潘剑
+                 * @version [1.0]
+                 * @date    2017-04-01T11:00:26+080
+                 */
+                transferCustomer:           function(thisDom) {
+                    sendParam = {
+                        type: "text",
+                        redirectId: "redirectId"
+                    };
+                    this.setMsgType("redirection");
+                    this.setSendArgs(sendParam);
+                    this.sendMessage(); //发送文本消息
+                },
+                showWholeHint:              function(thisDom, event) {
+                    var e    = event || window.event;
+                    var itemDom = thisDom.parent();
+                    e.stopPropagation();
+                    e.preventDefault();
+                    var mark = itemDom.hasClass("hint-default-height");
+                    if (mark) {
+                        itemDom.removeClass("hint-default-height");
+                        thisDom.removeClass("omit").removeClass("no-select").css("word-wrap", "break-word");
+                    }
+                    else {
+                        itemDom.addClass("hint-default-height");
+                        thisDom.css("word-wrap", "normal").addClass("no-select").addClass("omit");
+                    }
+                },
+                modifyHint:                 function(thisDom, event) {
+                    var e = event || window.event;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var hintDom = thisDom.next();
+                    var mark = Boolean(hintDom.attr("contenteditable"));
+                    if (!mark) {
+                        var itemDom = thisDom.parent();
+                        var flag    = itemDom.hasClass("hint-default-height");
+                        if (flag) {
+                            itemDom.removeClass("hint-default-height");
+                            hintDom.removeClass("omit").removeClass("no-select").css("word-wrap", "break-word");
+                        }
+                        hintDom.attr("contenteditable", true).css("outline", "none");
+                    }
+                },
+            /* e 业务 */
+
+            /* s 客户选择 */
+                showList:                   function(type) {
+                    this.currentListType = type;
+                    this.addListTip(type);
+                },
+                getConversationList:        function() {
+                    this.RongIMClient.getInstance().getConversationList({
+                        onSuccess: function(list) {
+                            var len = list.length;
+                            var deadLine = (new Date()).getTime() - 604800000;  //一星期前
+                            for (var i = 0; i < len; i++) {
+                                var role = JSON.parse(list[i].latestMessage.content.extra).role;
+                                var targetId = list[i].targetId;
+                                var receivedTime = list[i].targetId;
+                                if (role !== "customer" || (receivedTime >= deadLine && role === "customer")) {
+                                    WebChat.chatList[role][targetId] = list[i];
+                                }
+                            }
+                            localStorage.chatList = JSON.stringify(WebChat.chatList);
+                            setTimeout(this.getConversationList, 3600000);      //每隔一小时刷新一次
+                        },
+                        onError: function(error) {
+                            // do something...
+                            console.log(error);
+                        }
+                    }, null);
+                },
+            /* e 客户选择 */
+
+            /* s 融云模块 */
+                loadRongCloud:              function() {
+                    require.config({ //导入文件
+                        paths: {
+                            protobuf: './javascript/protobuf-2.1.5.min',
+                            RongIMLib: './javascript/RongIMLib-2.2.5.min'
+                        }
+                    });
+                    require(['protobuf', 'RongIMLib'], function(protobuf, RongIMLib) { //加载导入的文件
+                        WebChat.RongIMClient = RongIMLib.RongIMClient;
+                        WebChat.initRongCloud();
+                        WebChat.setRongCloudListen();
+                        WebChat.connectRongCloudSever();
+                        // WebChat.getConversationList();
+                    });
+                },
+                initRongCloud:              function() {
+                    //初始化
+                    this.RongIMClient.init(this.AppKey);
+                },
+                setRongCloudListen:         function() {
+                    // 连接状态监听器
+                    this.RongIMClient.setConnectionStatusListener({
+                        onChanged: function(status) {
+                            switch (status) {
+                                case 0: //CONNECTED 链接成功
+                                    break;
+                                case 1: //CONNECTING 正在链接
+                                    break;
+                                case 2: //DISCONNECTED 断开连接
+                                    // WebChat.Warning("连接断开,请刷新重连");
+                                    break;
+                                case 3: //NETWORK_UNAVAILABLE 网络不可用
+                                    // WebChat.Warning("网络不可用");
+                                    break;
+                                case 6: //KICKED_OFFLINE_BY_OTHER_CLIENT 其他设备登录
+                                    // WebChat.Warning("其他设备登录");
+                                    break;
+                            }
+                        }
+                    });
+                    // 消息监听器
+                    this.RongIMClient.setOnReceiveMessageListener({
+                        // 接收到的消息
+                        onReceived: function(message) {
+                            console.log(message);
+                            var targetId = message.senderUserId;                //对方Id
+                            var extra = JSON.parse(message.content.extra);
+                            var role = extra.role;  //对方身份
+                            if (WebChat.targetId === null) {                    //是第一个发送者
+                                WebChat.targetId = targetId;                    //设置为当前聊天对象
+                            }
+                            switch (WebChat.currentListType) {
+                                case "customer":
+                                    switch (role) {
+                                        case "customer":
+                                            if (!WebChat.chatList[role][targetId]) {
+                                                WebChat.chatList[role][targetId] = extra;
+                                                WebChat.addListTip(message, "customer");    //添加该用户的tip
+                                            }
+                                            if (targetId === WebChat.targetId) {
+                                                WebChat.chatList[role][targetId].unreadMessageCount = 0;    //该对象未读消息数清空
+                                                WebChat.addSaying(message, "only");             //显示该消息
+                                                if (WebChat.convrContDom.height() > WebChat.convrWinDom.height()) {
+                                                    WebChat.convrWinDom.scrollTop(WebChat.convrContDom.height()); //永远显示最底部
+                                                }
+                                            }
+                                            else {
+                                                WebChat.chatList[role][targetId].unreadMessageCount += 1; //修改未读信息数
+                                                var tipDom = $("[data-target-id='" + targetId + "']");    //获取列表中对应用户的tip
+                                                var badgeMark = tipDom.attr("data-badge");  //是否有未读消息标志
+                                                if (badgeMark) {                            //有
+                                                    var badgeType;
+                                                    if (role === "waiter") {
+                                                        badgeType = "rongcloud-badge";
+                                                    }
+                                                    else if (role === "customer") {
+                                                        badgeType = "webchat-hint-lamp";
+                                                    }
+                                                    tipDom.find("span." + badgeType).text(function(index, text) { //修改显示的消息数
+                                                        return text * 1 + 1;
+                                                    });
+                                                }
+                                                else {                                      //无
+                                                    if (role === "waiter") {
+                                                        tipDom.find("i.rongcloud-no-remind").before("<span class='rongcloud-badge'>1</span>"); //添加未读消息标志
+                                                    }
+                                                    else if (role === "customer") {
+                                                        tipDom.find("span.webchat-hint-lamp").text(1);
+                                                    }
+                                                    tipDom.attr("data-badge", "true");      //修改为显示了未读消息
+                                                    WebChat.chatList[role][targetId].unreadMessageCount = 1; //添加一个含有你未读信息的客户
+                                                }
+                                            }
+                                            break;
+                                        case "waiter":
+                                            WebChat.chatList[role][targetId].unreadMessageCount += 1;
+                                            break;
+                                    }
+                                    break;
+                                case "waiter":
+                                    switch (role) {
+                                        case "customer":
+                                            if (!WebChat.chatList[role][targetId]) {
+                                                WebChat.chatList[role][targetId] = extra;
+                                            }
+                                            WebChat.chatList[role][targetId].unreadMessageCount += 1;
+                                            break;
+                                        case "waiter":
+                                            if (targetId === WebChat.targetId) {
+                                                WebChat.chatList[role][targetId].unreadMessageCount = 0;    //该对象未读消息数清空
+                                                WebChat.addSaying(message, "only");             //显示该消息
+                                                if (WebChat.convrContDom.height() > WebChat.convrWinDom.height()) {
+                                                    WebChat.convrWinDom.scrollTop(WebChat.convrContDom.height()); //永远显示最底部
+                                                }
+                                            }
+                                            else {
+                                                WebChat.chatList[role][targetId].unreadMessageCount += 1;
+                                            }
+                                            break;
+                                    }
+                                    break;
+                                case "black":
+                                    if (role === "customer" && !WebChat.chatList[role][targetId]) {
+                                        WebChat.chatList[role][targetId] = extra;
+                                    }
+                                    WebChat.chatList[role][targetId].unreadMessageCount += 1;
+                                    break;
+                            }
+                        }
+                    });
+                },
+                connectRongCloudSever:      function() {
+                    // 连接融云服务器。
+                    this.RongIMClient.connect(this.Token, {
+                        onSuccess: function(userId) {},
+                        onTokenIncorrect: function() {},
+                        onError: function(errorCode) {
+                            console.log(errorCode);
+                            alert(JSON.stringify(errorCode));
+                        }
+                    });
+                },
+            /* e 融云模块 */
+
+            /* s 窗口操作 */
+                showWindow:                 function(thisDom) {
+                    this.unreadMsgJson[this.targetId] = 0; //清空当前客户的未读消息数
+                    thisTargetId   = thisDom.attr("data-target-id"); //获得点击的客户id
+                    thisTargetName = thisDom.attr("data-target-name"); //获得点击的客户name
+                    if (thisTargetId != this.targetId) { //若与当前聊天对象不符
+                        this.hasHistoryMark = true; //设置可以获取历史记录
+                        this.targetId = thisTargetId; //修改当前聊天对象
+                        this.convrContDom.html(""); //清空会话区所有消息
+                        if (thisDom.attr("data-badge")) { //判断该客户是否存在未读消息
+                            thisDom.find(".webchat-tip-unread").remove(); //移除未读消息标志
+                            thisDom.attr("data-badge", ""); //是否存在未读消息设置为否
+                            this.loadUnreadMsg(function(amount) { //加载未读消息数
+                                WebChat.loadHistoryMsg("unread", amount); //在历史消息中获取对应数量的消息
+                            });
+                        }
+                        // this.RongconvrDom.attr("data-current-target-id", targetId);
+                        this.convrNameDom.text(thisTargetName); //改变客户名
+                        this.convrDom.show(); //会话区show
+                    }
+                },
+                openWebChat:                function() {
+                    this.miniBtnDom.hide();
+                    this.navDom.show();
+                    this.listDom.show();
+                    this.convrDom.show();
+                },
+                hideWindow:                 function() {
+                    this.convrDom.hide();
+                },
+                minimize:                   function() {
+                    this.navDom.hide();
+                    this.listDom.hide();
+                    this.convrDom.hide();
+                    this.miniBtnDom.show();
+                },
+                closeWebChat:               function() {
+                    this.navDom.hide();
+                    this.listDom.hide();
+                    this.convrDom.hide();
+                    this.miniBtnDom.show();
+                    this.convrContDom.html("");
+                    this.inputDom.val("");
+                },
+            /* e 窗口操作 */
+
+            /* s 消息*/
+                send:                       function() {
+                    var textValue = this.inputDom.val();                        //获取输入的内容
+                    var imageValue = this.imgListDom.find("li");
+                    var sendParam = null;
+                    if (!this.targetId) {
+                        return false;
+                    }
+                    if (textValue) {
+                        sendParam = {
+                            type: "text",
+                            saying: textValue,
+                            extra: {
+                                role: "waiter",
+                                targetRole: WebChat.currentListType,
+                                name: "一二三",
+                                mobile: "12345678900",
+                                unreadMessageCount: 0
+                            }
+                        };
+                        this.setSendArgs(sendParam);
+                        this.sendMessage(); //发送文本消息
+                    }
+                    if (imageValue.length) {
+                        imageValue.each(function(index, dom) {
+                            $(dom).find('img').attr("src", function(index, imgSrc) {
+                                WebChat.setThumbnail(imgSrc, function(url) {
+                                    sendParam = {
+                                        type: "image",
+                                        imgSrc: url,
+                                        imgUri: "",
+                                        extra: {
+                                            role:       "waiter",
+                                            targetRole: WebChat.currentListType,
+                                            name:       "一二三",
+                                            mobile:     "12345678900",
+                                            unreadMessageCount: 0
+                                        }
+                                    };
+                                    WebChat.setSendArgs(sendParam);
+                                    WebChat.sendMessage(); //发送图片消息
+                                });
+                            });
+                        });
+                    }
+                    this.inputDom.val(""); //清空输入框
+                    this.imageIndex = -1;
+                    this.imgSendSrc = [];
+                },
+                quickSend:                  function(thisDom,event) {
+                    if (this.targetId !== null) {
+                        var e = event || window.event;
+                        e.stopPropagation();
+                        e.preventDefault();
+                        var textValue = thisDom.text();
+                        var sendParam = {
+                            type: "text",
+                            saying: textValue,
+                            extra: {
+                                role: "waiter",
+                                targetRole: WebChat.currentListType,
+                                name: "一二三",
+                                mobile: "12345678900",
+                                unreadMessageCount: 0
+                            }
+                        };
+                        this.setSendArgs(sendParam);
+                        this.sendMessage(); //发送文本消息
+                    }
+                },
+                setMsgType:                 function(type) {
+                    if (type === "redirection") {
+                        var messageName = "redirection";                        // 消息名称。
+                        var objectName = "UD:Redirection";                      // 消息内置名称，请按照此格式命名。
+                        var mesasgeTag = new RongIMLib.MessageTag(false,false); // 消息是否保存是否计数，true true 保存且计数，false false 不保存不计数。
+                        var propertys = ["redirectId"];                         // 消息类中的属性名。
+                        this.RongIMClient.registerMessageType(messageName,objectName,mesasgeTag,propertys);
+                    }
+                },
+                setSendArgs:                function(messageContent) {
+                    switch (messageContent.type) {
+                        case "text":
+                            this.sendArgs.msg = new RongIMLib.TextMessage({
+                                content: messageContent.saying,
+                                extra:   messageContent.extra
+                            }); // 设置发送到信息
+                            break;
+                        case "image":
+                            this.sendArgs.msg = new RongIMLib.ImageMessage({
+                                content:  messageContent.imgSrc,
+                                imageUri: messageContent.imgUri,
+                                extra:    messageContent.extra
+                            });
+                            break;
+                        case "redirection":
+                            this.sendArgs.msg = new this.RongIMClient.RegisterMessage.PersonMessage({
+                                redirectId: messageContent.redirectId
+                            });
+                            break;
+                    }
+                },
+                sendMessage:                function() {
+                    var args = this.sendArgs;
+                    this.RongIMClient.getInstance().sendMessage(args.conversationtype, this.targetId, args.msg, { //发送消息
+                        onSuccess: function(message) {
+                            var targetRole = WebChat.currentListType;
+                            if (!WebChat.chatList[targetRole][WebChat.targetId]) { //列表区没有该用户的tip
+                                WebChat.addListTip(message, targetRole); //添加该客户的tip
+                                WebChat.chatList[targetRole][WebChat.targetId] = message.content.extra; //设置存在该tip
+                            }
+                            WebChat.addSaying(message, "only"); //在会话区添加消息
+                        },
+                        onError: function(errorCode, message) {
+                            alert(JSON.stringify(errorCode));
+                        }
+                    });
+                },
+            /* e 消息 */
+
+            /* s 客户标签 */
+                addListTip:                 function() {
+                    var htmlStr = "";
+                    var message;
+                    var type;
+                    var count = arguments.length;
+                    if (count === 1) {
+                        type = arguments[0];
+                        var list = this.chatList[type];
+                        for (var targetId in list) {
+                            message = list[targetId];
+                            htmlStr += this.setListTipHtml(message, type, targetId);
+                        }
+                    }
+                    else if (count === 2) {
+                        message = arguments[0];
+                        type = arguments[1];
+                        if ($.isArray(message)) {
+                            var len = message.length;
+                            for (var i = 0; i < len; i++) {
+                                htmlStr += this.setListTipHtml(message[i], type);
+                            }
+                        }
+                        else {
+                            htmlStr = this.setListTipHtml(message, type);
+                        }
+                    }
+                    this.listContDom.append(htmlStr);            //列表区客户列表添加tip
+                },
+                removeTip:                  function(thisDom) {
+                    var ev = arguments.callee.caller.arguments[1] || window.event || event;
+                    ev.stopPropagation();
+                    var tipDom = thisDom.parents(".webchat-tip").eq(0); //找到当前元素对应的客户tip
+                    var userId = tipDom.attr("data-target-id"); //获得点击的客户id
+                    tipDom.remove(); //删除该客户的tip
+                    this.targetIdJson[userId] = false; //设置该客户在列表区未展示
+                    if (userId == this.targetId) {
+                        this.convrContDom.html(""); //清空会话区所有消息
+                    }
+                    var data = {
+                        userId: userId,
+                        userName: tipDom.attr("data-target-name"),
+                    };
+                    return data;
+                },
+            /* e 客户标签 */
+
+            /* s 从服务器获取消息 （未读 / 历史）*/
+                loadUnreadMsg:              function(callback) {
+                    var conversationType = 1; //私聊
+                    this.RongIMClient.getInstance().getUnreadCount(conversationType, this.targetId, { //加载未读消息数
+                        onSuccess: function(amount) {
+                            if (callback) callback(amount);
+                        },
+                        onError: function(error) {
+                            // error => 获取指定会话未读数错误码。
+                            console.log(error);
+                            alert(JSON.stringify(error));
+                        }
+                    });
+                },
+                loadHistoryMsg:             function(type, amount) {
+                    var conversationType = 1; //私聊,其他会话选择相应的消息类型即可。
+                    var timestrap = null; // 默认传 null，若从头开始获取历史消息，请赋值为 0 ,timestrap = 0;
+                    var count;
+                    if (type == "unread") { //未读消息
+                        if (amount > 20) { //单次最多两条
+                            count = 20;
+                        } else if (amount <= 1) { //单次最小2条
+                            count = 2;
+                        } else {
+                            count = amount;
+                        }
+                    } else if (type == "history") { //历史消息
+                        count = 20; //默认 20条
+                    }
+                    if (this.targetId !== null) { // 存在targetId
+                        this.RongIMClient.getInstance().getRemoteHistoryMessages(conversationType, this.targetId, timestrap, count, {
+                            onSuccess: function(list, hasMsg) {
+                                if (type == "unread") { //未读
+                                    if (amount == 1) { //1条未读
+                                        WebChat.addSaying(list[1], "only"); //会话区添加消息
+                                    } else if (amount > 20) { //超过20条未读
+                                        WebChat.addSaying(list, "whole"); //会话区添加消息
+                                        if (hasMsg) { // 还有消息
+                                            amount -= 20; //重设消息数
+                                            WebChat.loadHistoryMsg(effect, amount); //递归取消息
+                                        }
+                                    } else {
+                                        WebChat.addSaying(list, "whole"); //会话区添加消息
+                                    }
+                                } else if (type == "history" && WebChat.hasHistoryMark) { //历史消息
+                                    WebChat.addSaying(list, "whole"); //会话区添加消息
+                                    WebChat.hasHistoryMark = hasMsg; //是否还存在消息没有加载
+                                }
+                            },
+                            onError: function(error) {
+                                console.log("GetHistoryMessages,errorcode:" + error);
+                            }
+                        });
+                    }
+                },
+            /* e 从服务器加载消息 （未读 / 历史）*/
+
+            /* s 工具方法 */
+                formatDate:                 function(timestamp, type) {
+                    var time = new Date(timestamp);
+                    var y = time.getFullYear();
+                    var m = time.getMonth() + 1;
+                    var d = time.getDate();
+                    var h = time.getHours();
+                    var mm = time.getMinutes();
+
+                    function add0(m) {
+                        return m < 10 ? '0' + m : m;
+                    }
+                    // var intactTime = y + '-' + add0(m) + '-' + add0(d) + ' ' + add0(h) + ':' + add0(mm);
+                    var resultTime;
+                    if (type == "tip") {
+                        resultTime = add0(h) + ':' + add0(mm);
+                    } else if (type == "remind") {
+                        resultTime = add0(m) + '-' + add0(d) + ' ' + add0(h) + ':' + add0(mm);
+                    }
+                    return resultTime;
+                },
+                addSaying:                  function(message, type) {
+                    var htmlStr = "";
+                    //设置添加的htmlString
+                    if ($.isArray(message)) { //判断是不是多个消息组成的数组
+                        var len = message.length;
+                        for (var i = 0; i < len; i++) {
+                            htmlStr += this.setSayingHtml(message[i]); //设置对应的html
+                        }
+                    } else { //单读发送或读取的消息
+                        htmlStr = this.setSayingHtml(message); //设置对应的html
+                    }
+
+                    //在对应位置插入htmlString
+                    if (!!this.convrContDom.html()) {
+                        if (type == "only") { //单条消息
+                            this.convrContDom.children().last().after(htmlStr); //在最后面添加
+                        } else if (type == "whole") { //多条消息
+                            this.convrContDom.children().first().after(htmlStr); //最前面添加
+                        }
+                    } else {
+                        this.convrContDom.html(htmlStr);
+                    }
+                    if (this.convrContDom.height() > this.convrWinDom.height()) {
+                        this.convrWinDom.scrollTop(this.convrContDom.height()); //永远显示最底部
+                    }
+                },
+                setSayingHtml:              function(message) {
+                    var saying = ""; //消息内容
+                    var htmlStr = ""; //模板
+                    var mark = message.senderUserId == this.targetId;
+                    switch (message.objectName) {
+                        case "RC:TxtMsg":
+                            if (mark) { //other
+                                saying = "<span class='conversation-saying arrow-left saying-background-left'>" + message.content.content + "</span>";
+                            } else { //me
+                                saying = "<span class='conversation-saying arrow-right saying-background-right'>" + message.content.content + "</span>";
+                            }
+                            break;
+                        case "RC:ImgMsg":
+                            if (mark) { //other
+                                saying = "<div class='conversation-image-box fl'>" +
+                                    "<img src='" + message.content.content + "' class='conversation-image'>" +
+                                    "</div>";
+                            } else { //me
+                                saying = "<div class='conversation-image-box fr'>" +
+                                    "<img src='" + message.content.content + "' class='conversation-image'>" +
+                                    "</div>";
+                            }
+                            break;
+                    }
+                    if (mark) { // 发送者id == 接受者ID  即此条消息是对方发送
+                        htmlStr = "<li class='conversation-message message-left'>" +
+                            "<img src='' class='conversation-author-avatar fl'>" +
+                            saying +
+                            "</li>";
+                    } else { //我方发送
+                        htmlStr = "<li class='conversation-message message-right'>" +
+                            "<img src='' class='conversation-author-avatar fr'>" +
+                            saying +
+                            "</li>";
+                    }
+                    return htmlStr;
+                },
+                setListTipHtml:             function() {
+                    var targetId, userName, phone, lastTime, extra;
+                    var htmlStr = "";
+                    var message = arguments[0];
+                    var type    = arguments[1];
+                    if (message.latestMessage) {
+                        targetId = message.targetId;
+                        if (typeof message.latestMessage.content.extra === "string") {
+                            extra = JSON.parse(message.latestMessage.content.extra);
+                        }
+                        else {
+                            extra = message.latestMessage.content.extra;
+
+                        }
+                        targetName         = extra.name;
+                        targetMobile       = extra.mobile;
+                        unreadMessageCount = message.unreadMessageCount;
+                        lastTime           = this.formatDate(message.sentTime, "tip");
+                    }
+                    else if (message.content) {
+                        targetId = message.senderUserId;
+                        if (typeof message.content.extra === "string") {
+                            extra = JSON.parse(message.content.extra);
+                        }
+                        else {
+                            extra = message.content.extra;
+                        }
+                        targetName = extra.name;
+                        targetMobile = extra.mobile;
+                        unreadMessageCount = 0;
+                    }
+                    else if (arguments.length === 3) {
+                        targetId = arguments[2];
+                        targetName = message.name;
+                        targetMobile = message.mobile;
+                        unreadMessageCount = message.unreadMessageCount;
+                    }
+                    if (unreadMessageCount === 0) {
+                        unreadMessageCount = "";
+                    }
+                    if (type == "customer") {
+                        htmlStr = "<li class='webchat-tip customer-list' data-target-id='" + targetId + "' data-target-name='" + targetName + "' data-target-mobile='" + targetMobile + "' data-badge='1' onclick='javascript: WebChat.showWindow($(this));'>" +
+                            "<div class='tip-user-status fl'>" +
+                            "<span class='webchat-hint-lamp'>" + unreadMessageCount + "</span>" +
+                            "</div>" +
+                            "<div class='tip-user-identity fl'>" +
+                            "<span class='webchat-user-name fl'>" + targetName + "</span>" +
+                            "<span class='webchat-user-phone fl'>" + targetMobile + "</span>" +
+                            "</div>" +
+                            "<div class='webchat-tip-operation fl'>" +
+                            "<img src='./images/1.png' alt='' class='customer-to-black fl' onclick='javascript: WebChat.transferCustomer($(this));'>" +
+                            "<img src='./images/11.png' alt='' class='customer-to-black fl' onclick='javascript: WebChat.addToBlackList($(this));'>" +
+                            "</div>" +
+                            "</li>";
+                    }
+                    else if (type == "waiter") {
+                        htmlStr = "<li class='webchat-tip fl' data-target-id='" + targetId + "' data-target-name='" + name + "' data-badge='' onclick='javascript: WebChat.showWindow($(this));'>" +
+                            "<div class='webchat-avatar fl relative'>" +
+                            "<img src='' class='avatar-img'>" +
+                            "<i class='avatar-status-sign webchat-tip-unread'></i>" +
+                            "<span class='avatar-status-sign webchat-tip-remove' onclick='javascript: WebChat.removeTip($(this));'>x</span>" +
+                            "</div>" +
+                            "<div class='webchat-target fl'>" +
+                            "<div class='target-box'>" +
+                            "<p class='tip-information font-sm omit'>" + userName + "</p>" +
+                            "</div>" +
+                            "<div class='target-box'>" +
+                            "<p class='tip-information font-sm omit'>" + lastSaying + "</p>" +
+                            "</div>" +
+                            "</div>" +
+                            "<div class='webchat-supplementation fl'>" +
+                            "<div class='supplementation-box'>" +
+                            "<p class='tip-information supplementation-information'>" + lastTime + "</p>" +
+                            "</div>" +
+                            "<div class='supplementation-box'>" +
+                            "<p class='tip-information supplementation-information'></p>" +
+                            "</div>" +
+                            "</div>" +
+                            "</li>";
+                    }
+                    else if (type == "black") {
+                        htmlStr = "<li class='webchat-tip customer-list' data-target-id='" + targetId + "' data-target-name='" + targetName + "' data-target-mobile='" + targetMobile + "' data-badge='1' onclick='javascript: WebChat.showWindow($(this));'>" +
+                            "<div class='tip-user-status fl'>" +
+                            "<span class='webchat-hint-lamp'></span>" +
+                            "</div>" +
+                            "<div class='tip-user-identity fl'>" +
+                            "<span class='webchat-user-name fl'>" + targetName + "</span>" +
+                            "<span class='webchat-user-phone fl'>" + targetMobile + "</span>" +
+                            "</div>" +
+                            "<div class='webchat-tip-operation fl'>" +
+                            "<img src='./images/11.png' alt='' class='customer-to-black fl' onclick='javascript: WebChat.removeFromBlackList($(this));'>" +
+                            "</div>" +
+                            "</li>";
+                    }
+                    return htmlStr;
+                },
+                addDropImage:               function(file) {
+                    var reader = new FileReader();
+                    if (file.type.match(/image*/)) {
+                        reader.readAsDataURL(file);
+                        reader.onload = function(event) {
+                            var htmlStr = "<li data-index='" + (++WebChat.imageIndex) + "' class='webchat-image-wrap fl relative'>" +
+                                "<img src='" + this.result + "' class='webchat-image-input fl' ondblclick='javascript: WebChat.showImage($(this));'>" +
+                                "<span class='absolute image-badge' onclick='javascript: WebChat.abandonImg($(this));'>x</span>" +
+                                "</li>";
+                            WebChat.imgListDom.append(htmlStr);
+                            WebChat.imgListDom.width(function(index, widthSize) {
+                                return (widthSize + 45) + "px";
+                            });
+                            if (WebChat.imgListDom.width() > WebChat.imgListDom.parent().width()) {
+                                WebChat.imgListDom.parent().scrollLeft(WebChat.imgListDom.width()); //永远显示最底部
+                            }
+                            WebChat.imgSendSrc.push(this.result);
+                        };
+                    } else {
+                        console.log("此" + files[i].name + "不是图片文件！");
+                    }
+                },
+                setThumbnail:               function(imgSrc, callback) {
+                    this.backImageDom.attr("src", imgSrc).load(function() {
+                        var width = $(this).width();
+                        var height = $(this).height();
+                        WebChat.canvasDom.attr({
+                            "width": width,
+                            "height": height
+                        });
+                        var ctx = WebChat.canvasDom[0].getContext("2d");
+                        ctx.clearRect(0, 0, width, height);
+                        ctx.drawImage($(this)[0], 0, 0, width, height);
+                        var scale = Math.sqrt(102400 / imgSrc.length);
+                        var url = WebChat.canvasDom[0].toDataURL('image/jpeg', scale);
+                        if (callback) callback(url);
+                    });
+                },
+            /* e 工具方法 */
+
+            /* s 黑名单 */
+                getBlackList:               function() {
+                    this.RongIMClient.getInstance().getBlacklist({
+                        onSuccess: function(blackList) {
+                            WebChat.getConversationList(function(tipList) {
+                                for (var lastMessage of tipList) {
+                                    var userId = lastMessage.senderUserId;
+                                    if (blackList.indexOf(userId) !== -1) {
+                                        WebChat.addListTip(lastMessage);
+                                    }
+                                }
+                            });
+                            // list => 黑名单列表
+                        },
+                        onError: function(error) {
+                            // 获取黑名单失败
+                        }
+                    });
+                },
+                addToBlackList:             function(thisDom) {
+                    var tipDom = thisDom.parents(".webchat-tip");
+                    var userId = tipDom.attr("data-target-id");
+                    var userName = tipDom.attr("data-target-name");
+                    var userMobile = tipDom.attr("data-target-mobile");
+                    this.RongIMClient.getInstance().addToBlacklist(userId, {
+                        onSuccess: function() {
+                            WebChat.removeTip(thisDom);
+                            WebChat.BankList[userId] = {
+                                name: userName,
+                                mobile: userMobile
+                            };
+                            localStorage.BlackList = JSON.stringify(WebChat.BankList);
+                        },
+                        onError: function(error) {
+                            // 加入黑名单失败。
+                            console.log(error);
+                            alert("加入黑名单失败");
+                        }
+                    });
+                },
+                removeFromBlackList:        function(thisDom) {
+                    var tipDom = thisDom.parents(".webchat-tip");
+                    var userId = tipDom.attr("data-target-id");
+                    var userName = tipDom.attr("data-target-name");
+                    this.RongIMClient.getInstance().removeFromBlacklist(userId, {
+                        onSuccess: function() {
+                            WebChat.removeTip(thisDom);
+                            delete WebChat.BankList[userId];
+                            localStorage.BlackList = JSON.stringify(WebChat.BankList);
+                        },
+                        onError: function(error) {}
+                    });
+                },
+            /* e 黑名单 */
+
+            /* s 聊天室 */
+                joinChatRoom:               function() {
+                    var chatRoomId = "xxxx"; // 聊天室 Id。
+                    var count = 10; // 拉取最近聊天最多 50 条。
+                    this.RongIMClient.getInstance().joinChatRoom(chatRoomId, count, {
+                        onSuccess: function() {
+                            // 加入聊天室成功。
+                        },
+                        onError: function(error) {
+                            // 加入聊天室失败
+                        }
+                    });
+                },
+                quitChatRoom:               function() {
+                    var chatRoomId = "xxxx"; // 聊天室 Id。
+                    RongIMClient.getInstance().quitChatRoom(chatRoomId, {
+                        onSuccess: function() {
+                            // 退出聊天室成功。
+                        },
+                        onError: function(error) {
+                            // 退出聊天室失败。
+                        }
+                    });
+                },
+                getChatRoomInfo:            function() {
+                    var chatRoomId = "xxxx"; // 聊天室 Id。
+                    var count = 10; // 获取聊天室人数 （范围 0-20 ）
+                    var order = RongIMLib.GetChatRoomType.REVERSE; // 排序方式。
+                    RongIMClient.getInstance().getChatRoomInfo(chatRoomId, count, order, {
+                        onSuccess: function(chatRoom) {
+                            // chatRoom => 聊天室信息。
+                            // chatRoom.userInfos => 返回聊天室成员。
+                            // chatRoom.userTotalNums => 当前聊天室总人数。
+                        },
+                        onError: function(error) {
+                            // 获取聊天室信息失败。
+                        }
+                    });
+                },
+                getChatRoomHistoryMessages: function() {
+                    var chatRoomId = 'xxxx';
+                    var count = 10; // 拉取的条数 count <= 200
+                    var order = 1; // 1正序；0倒序
+                    RongIMClient.getInstance().getChatRoomHistoryMessages(chatRoomId, count, order, {
+                        onSuccess: function(list, hasMore) {
+                            // list => 消息数组
+                            // hasMore => 是否有更多的历史消息
+                        },
+                        onError: function(error) {
+
+                        }
+                    });
+                },
+            /* e 聊天室 */
+
+            /* s 效果 */
+                showImage:                  function(thisDom, event) {
+                    var e = event || window.event; //获取 e
+                    var src = thisDom.attr("src"); //获取 src
+                    var exhibitBoxDom = this.exhibitDom.parent(); //获取
+                    e.stopPropagation(); //停止扩散
+                    this.modalDom.css("z-index", '99'); //模态框浮现
+                    this.exhibitDom.attr("src", src); //输入地址
+                    exhibitBoxDom.css({
+                        "margin-left": exhibitBoxDom.width() * -0.5 + "px",
+                        "margin-top": exhibitBoxDom.height() * -0.5 + "px"
+                    }); //绝对居中
+                },
+                hiddenModal:                function(event) {
+                    var e = event || window.event; //获取 e
+                    e.stopPropagation(); //停止扩散
+                    WebChat.modalDom.css("z-index", '-99'); //模态框隐藏
+                },
+                movement:                   function(event) {
+                    var e = event || window.event;
+                    e.stopPropagation();
+                    var mark = true;
+                    var thisDom = $(this);
+                    var offset = thisDom.offset();
+                    var initX = e.pageX;
+                    var initY = e.pageY;
+                    $(document).on("mousemove", moving);
+                    $(document).one("mouseup", function(event) {
+                        var e = event || window.event;
+                        e.stopPropagation();
+                        $(document).unbind("mousemove", moving);
+                        mark = false;
+                    });
+
+                    function moving(event) {
+                        if (mark) {
+                            var e = event || window.event;
+                            e.stopPropagation();
+                            var finalX = e.pageX;
+                            var finalY = e.pageY;
+                            var left = offset.left + finalX - initX;
+                            var top = offset.top + finalY - initY;
+                            thisDom.css({
+                                left: left + "px",
+                                top: top + "px"
+                            });
+                        }
+                    }
+                },
+                banCover:                   function(event) {
+                    var e = event || window.event;
+                    e.preventDefault();
+                },
+                dropImg:                    function(event) {
+                    var e = event || window.event;
+                    e.stopPropagation();
+                    e.preventDefault();
+                    var files = e.dataTransfer.files;
+                    var len = files.length;
+                    for (var i = 0; i < len; i++) {
+                        WebChat.addDropImage(files[i]);
+                    }
+                },
+                abandonImg:                 function(thisDom) {
+                    thisDom.parent().remove();
+                    this.imgListDom.width(function(index, widthSize) {
+                        return (widthSize - 45) + "px";
+                    });
+                },
+            /* e 效果 */
+
+            /* s 键盘操作 */
+                inputOperate:               function(event) {
+                    var e = event || window.event;
+                    e.stopPropagation();
+                    if (e.keyCode == 13) {
+                        e.preventDefault();
+                        if (e.ctrlKey) {
+                            $(this).val(function(index, text) {
+                                return text + "\n";
+                            });
+                        } else {
+                            WebChat.send();
+                        }
+                    }
+                },
+                keepSide:                   function(event) {
+                    var e = event || window.event;
+                    e.stopPropagation();
+                    if (e.ctrlKey) {
+                        e.preventDefault();
+                        if (e.keyCode == 37) { //left
+                            WebChat.webchatDom.html("");
+                            WebChat.webchatDom.append(WebChat.navDom).append(WebChat.listDom).append(WebChat.convrDom).append(WebChat.miniBtnDom);
+                            WebChat.webchatDom.css({
+                                left: 0,
+                                right: "none"
+                            });
+                            WebChat.openSignDom.remove();
+                            WebChat.miniBtnDom.children().first().before(WebChat.openSignDom);
+                            WebChat.miniBtnDom.css({
+                                left: 0,
+                                right: "none"
+                            });
+                        } else if (e.keyCode == 39) { //right
+                            WebChat.webchatDom.html("");
+                            WebChat.webchatDom.append(WebChat.convrDom).append(WebChat.listDom).append(WebChat.navDom).append(WebChat.miniBtnDom);
+                            WebChat.webchatDom.css({
+                                left: "none",
+                                right: 0
+                            });
+                            WebChat.openSignDom.remove();
+                            WebChat.miniBtnDom.children().last().after(WebChat.openSignDom);
+                            WebChat.miniBtnDom.css({
+                                left: "none",
+                                right: 0
+                            });
+                        } else if (e.keyCode == 38) { //up
+                            WebChat.webchatDom.css({
+                                top: 0,
+                                bottom: "none"
+                            });
+                            WebChat.miniBtnDom.css({
+                                top: 0,
+                                bottom: "none"
+                            });
+                        } else if (e.keyCode == 40) { //Down
+                            WebChat.webchatDom.css({
+                                top: "none",
+                                bottom: 0
+                            });
+                            WebChat.miniBtnDom.css({
+                                top: "none",
+                                bottom: 0
+                            });
+                        }
+                    }
+                }
+            /* e 键盘操作 */
+        };
+        WebChat.main();
+    </script>
+</body>
+
+</html>

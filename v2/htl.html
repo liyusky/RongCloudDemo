@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>HTML5文件拖拽预览Demo</title>
+    <style type="text/css">
+        h1 {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        div#show {
+            border: 1px solid #ccc;
+            width: 400px;
+            height: 300px;
+            display: -moz-box;
+            display: -webkit-box;
+            -moz-box-align: center;
+            -webkit-box-align: center;
+            -moz-box-pack: center;
+            -webkit-box-pack: center;
+            resize: both;
+            overflow: auto;
+        }
+
+        div[id^=show]:hover {
+            border: 1px solid #333;
+        }
+
+        div#main {
+            width: 100%;
+        }
+
+        div#successLabel {
+            color: Red;
+        }
+
+        div#content {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>HTML5文件拖拽预览Demo</h1>
+    <div id="show"> 文件预览区，仅限图片和txt文件 </div>
+    <script type="text/javascript">
+        function init() {
+            var dest = document.getElementById("show");
+            dest.addEventListener("dragover", function(ev) {
+                ev.stopPropagation();
+                ev.preventDefault();
+            }, false);
+            dest.addEventListener("dragend", function(ev) {
+                ev.stopPropagation();
+                ev.preventDefault();
+            }, false);
+            dest.addEventListener("drop", function(ev) {
+                ev.stopPropagation();
+                ev.preventDefault();
+
+                var file = ev.dataTransfer.files[0];
+                var reader = new FileReader();
+                if (file.type.substr(0, 5) == "image") {
+                    reader.onload = function(event) {
+                        dest.style.background = 'url(' + event.target.result + ') no-repeat center';
+                        dest.innerHTML = "";
+                    };
+                    reader.readAsDataURL(file);
+                } else if (file.type.substr(0, 4) == "text") {
+                    reader.readAsText(file);
+                    reader.onload = function(f) {
+                        dest.innerHTML = "<pre>" + this.result + "</pre>";
+                        dest.style.background = "white";
+                    };
+                } else {
+                    dest.innerHTML = "暂不支持此类文件的预览";
+                    dest.style.background = "white";
+                }
+            }, false);
+            function getObjectURL(file) {
+                var url = null ;
+                if (window.createObjectURL !== "undefined") { // basic
+                    url = window.createObjectURL(file) ;
+                } else if (window.URL !== "undefined") { // mozilla(firefox)
+                    url = window.URL.createObjectURL(file) ;
+                } else if (window.webkitURL !== "undefined") { // webkit or chrome
+                    url = window.webkitURL.createObjectURL(file) ;
+                }
+                console.log(url);
+            }
+        }
+        document.ondragover = function(e){e.preventDefault();};
+        document.ondrop = function(e){e.preventDefault();}
+        window.onload=init;
+    </script>
+</body>
+
+</html>

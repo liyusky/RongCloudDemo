@@ -1,0 +1,589 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+	<meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title></title>
+    <link rel="stylesheet" href="./css/aui.css" />
+	<!-- <link rel="stylesheet" href="./css/css.css"> -->
+	<link rel="stylesheet" href="./css/loanTypeChoose.css">
+    <link rel="stylesheet" href="./font/iconfont.css">
+    <script src="../script/rem.js"></script>
+	<script type="text/javascript" src="../script/api.js"></script>
+    <style media="screen">
+    </style>
+</head>
+
+<body>
+    <style media="screen">
+
+    </style>
+    <header class="aui-bar aui-bar-nav" style="padding-top:1.25rem;background: #DE3646;">
+        <a class="aui-pull-left" onclick="api.closeFrame({});">
+            <span class="aui-iconfont aui-icon-left"></span>
+        </a>
+        <div class="aui-title">fixStatusBar效果</div>
+    </header>
+
+    <style media="screen">
+
+        .message-count{
+            font-size: 1.5rem;
+            line-height: 2rem;
+            color: #fff;
+        }
+    </style>
+
+    <!-- s message -->
+    <section class="aui-grid" style="background: #DE3646;">
+        <div class="aui-row">
+            <div class="aui-col-xs-6">
+                <span class="message-count" id="audit-fee">50</span>
+                <div class="aui-grid-label">快速信审费(元)</div>
+            </div>
+            <div class="aui-col-xs-6">
+                <span class="message-count" id="manage-fee">40</span>
+                <div class="aui-grid-label">账户管理费(元)</div>
+            </div>
+            <div class="aui-col-xs-6">
+                <span class="message-count" id="dividend">8</span>
+                <div class="aui-grid-label">利息(元)</div>
+            </div>
+            <div class="aui-col-xs-6">
+                <span class="message-count" id="limit-time">7</span>
+                <div class="aui-grid-label">借款期限(天)</div>
+            </div>
+        </div>
+        <div class="aui-row">
+            <p class="aui-text-center" style="font-size:.8rem;color:#fff;"><i class="iconfont icon-card"></i><span style="padding:0 .5rem;" id="bank">请选择银行卡</span><i class="iconfont icon-XiaLa" style="font-size: .2rem;"></i></p>
+        </div>
+        <div class="aui-row aui-margin-t-15" style="height: 0.75rem!important;">
+            <div class="aui-col-xs-2"></div>
+            <hr class="aui-col-xs-8" style="border-top:1px solid #fff;">
+            <div class="aui-col-xs-2"></div>
+        </div>
+        <div class="aui-row aui-margin-b-10">
+            <p class="aui-text-center" style="font-size:.8rem;color:#fff;"><span>到期应还：</span><span id="whole-fee">598</span></p>
+        </div>
+    </section>
+
+    <!-- e message -->
+
+	<!-- s wave -->
+	<div class="wave-wrap" style="background: #DE3646;">
+		<img src="./images/wave.gif" class="wave" alt="" />
+	</div>
+	<!-- e wave -->
+
+	<!-- s picker -->
+	<div class="picker" id="picker" style="height: 7.5rem;margin-top: 1rem;">
+		<div class="picker-unit fl" id="picker-price">
+			<div class="picker-count fl" id="price-wrap" style="height: 1.5rem;-webkit-perspective: 40rem;"></div>
+			<div class="picker-sign fr" style="line-height: 7.5rem;font-size: 1rem;">
+				<span>元</span>
+			</div>
+		</div>
+		<div class="picker-unit fl">
+			<div class="picker-count fl" id="time-wrap">
+				<div class="picker-tip" id="picker-time">
+				</div>
+			</div>
+			<div class="picker-sign fr" style="line-height: 7.5rem;font-size: 1rem;">
+				<span>天</span>
+			</div>
+		</div>
+		<div class="picker-mask mask-top" style="height: 3rem;"></div>
+		<div class="picker-mask mask-bottom" style="height: 3rem;"></div>
+	</div>
+	<!-- e picker -->
+
+    <!-- s btn -->
+        <div class="aui-content-padded">
+            <p class="aui-text-center"><label style="color:#DE3646;"><input type="checkbox" name="readerCheck" checked="checked" >我同意<a href="" style="color:#DE3646;text-decoration:underline;">《借款服务与隐私协议》</a></label></p>
+            <p><div class="aui-btn aui-btn-block" style="background: #DE3646;" onclick="JK()">我要借款</div></p>
+        </div>
+    <!-- e btn -->
+
+
+    <script type="text/javascript">
+
+            var user = $api.getStorage("user");
+            var UIMultiSelector;
+            var ll = 0;
+            var contacts;
+            var finalStr = "";
+            var jsonStr = "";
+            var paramJson = {
+                capital:     [500],
+                currentRate: 1,
+                overdueRate: 1,
+                auditRate:   0.1,
+                manageRate:  0.9,
+                auditFee:    null,
+                manageFee:   null,
+                dividend:    null,
+                limitTime:   7,
+                bank:        {},
+            };
+            var domJson = null;
+            var flag = 0;
+
+        /**
+         * [paramJson description]
+         * @capital {本金数组} arr
+         * @currentRate {借款利率} int
+         * @overdueRate {逾期利率} int
+         * @dividend {利息} int
+         * @time {归还时间} int
+         * @bank {银行及卡号} json {"xxxxxxxxx":"建设银行", "xxxxxxxxxxx": "中国银行"}
+         */
+
+
+        apiready = function() {
+            domJson = {
+                wholeFeeDom:     document.getElementById('whole-fee'),
+                manageFeeDom:   document.getElementById('manage-fee'),
+                auditFeeDom:    document.getElementById('audit-fee'),
+                limitTimeDom:   document.getElementById('limit-time'),
+                dividendDom:    document.getElementById('dividend'),
+                pickerTimeDom:  document.getElementById('picker-time'),
+                pickerPriceDom: document.getElementById('picker-price'),
+                pickerDom:      document.getElementById('picker'),
+                bankDom:        document.getElementById('bank'),
+            };
+
+            contacts = api.require('contacts');
+
+            GetUserTXL();
+            UIMultiSelector = api.require('UIMultiSelector');
+            //如果未登录，则重新登录
+            if (!CheckLogin()) {
+                AlertMsg("请先登录");
+                openW("login");
+            }
+            else {
+                api.addEventListener({
+                    name : 'UpdateKaList'
+                }, function(ret, err) {
+                    LoadYHK();
+                });
+                LoadYHK();
+                api.ajax({
+                    url : postUrl.GetFWPZ,
+                    method : 'POST',
+                    data : {
+                        values : {
+                            sName : '自动放款利率'
+                        }
+                    }
+                }, function(ret, err2) {
+                    if (ret) {
+                        ll = parseFloat(ret.d) / 100;
+                        paramJson.auditRate = parseFloat(ret.aaa);
+                        paramJson.manageRate = parseFloat(ret.bbb);
+                        paramJson.currentRate = parseFloat(ret.d);
+                        paramJson.overdueRate = parseFloat(ret.d);
+                        GetHYED();	//获取会员额度
+                    } else {
+                        AlertMsg(ErrorMsg.SystemError);
+                    }
+                });
+            }
+        };
+
+
+        /**
+        * [setPicker 渲染滚动选择器]
+        * @author 潘剑
+        * @version [1.0]
+        * @date    2017-03-03T16:02:31+080
+        */
+        function setPicker() {
+            var price = new picker(domJson.pickerDom, paramJson.capital);
+            price.setTag();
+            price.setEvent();
+        }
+
+        /**
+        * [picker 滚动选择器构造器]
+        * @param   {[dom]}                Dom [picker容器]
+        * @param   {[arr]}                Arr [含有所有本金数额的数组]
+        * @author 潘剑
+        * @version [1.0]
+        * @date    2017-03-03T16:03:34+080
+        */
+        function picker(Dom, Arr) {
+            this.Arr = Arr;
+            this.Dom = Dom;
+            this.Len = Arr.length;
+            this.Step = 70;
+            this.Deg = 0;
+            this.WrapDom = this.Dom.getElementsByClassName('picker-count')[0];
+            this.Phase = 0; 						//初相
+            this.Mark;
+            this.Sign;
+            this.Index;
+            this.Start = 0;
+            this.End = -1 * this.Step * (this.Len - 1);
+            this.setTag = function() {
+                var str = "";
+                for (var i = 0; i < this.Len; i++) {
+                    str += "<div class='picker-tip' style='height: 1.5rem;font-size: 1.5rem;letter-spacing: 0.25rem;line-height: 1.5rem;-webkit-transform: rotateX(" + i * this.Step + "deg) translateZ(2.5rem);'>" + this.Arr[i] + "</div>";
+                }
+                this.WrapDom.innerHTML = str;
+            },
+            this.setEvent = function() {
+                var thisDom = this;
+                thisDom.Dom.addEventListener(
+                    "touchstart",
+                    function(e) {
+                        e.preventDefault();
+                        thisDom.Mark = true;
+                        var touch = e.targetTouches[0];
+                        //获取当前 y 轴位置
+                        var initY = touch.pageY;
+                        //移动
+                        document.addEventListener("touchmove", setDeg, false);
+                        //松开
+                        document.addEventListener("touchend", mouseupFun, false);
+                        //取消默认行为
+                        function setDeg(e) {
+                            e.preventDefault();
+                            var touch = e.targetTouches[0];
+                            if (thisDom.Mark) {
+                                var finalY = touch.pageY;
+                                //获取位移
+                                var dy = finalY - initY;
+                                //长度转化为弧度-
+                                thisDom.Deg = thisDom.Phase - (180 * dy / (Math.PI * 50)) * 0.9;
+                                if (thisDom.Deg < thisDom.End) {
+                                    thisDom.Deg = thisDom.End;
+                                }
+                                if (thisDom.Deg > thisDom.Start) {
+                                    thisDom.Deg = thisDom.Start;
+                                }
+                                thisDom.WrapDom.setAttribute("style", "-webkit-transform:rotateX(" + thisDom.Deg + "deg);");
+                            }
+                        }
+
+                        function mouseupFun() {
+                            e.preventDefault();
+                            thisDom.Mark = false;
+                            thisDom.Sign = Math.round(thisDom.Deg / thisDom.Step);
+                            thisDom.Phase = thisDom.Sign * thisDom.Step;
+                            thisDom.WrapDom.setAttribute("style", "-webkit-transform:rotateX(" + thisDom.Phase + "deg);");
+                            document.removeEventListener("touchmove", setDeg, false);
+                            document.removeEventListener("touchend", mouseupFun, false);
+                            if (thisDom.Sign < 0) {
+                                thisDom.Index = Math.abs(thisDom.Sign);
+                            }
+                            else if (thisDom.Sign > 0) {
+                                thisDom.Index = thisDom.Len - thisDom.Sign;
+                            }
+                            else {
+                                thisDom.Index = 0;
+                            }
+                            paramJson.dividend = thisDom.Arr[thisDom.Index] * paramJson.currentRate * paramJson.limitTime / 100;
+                            paramJson.auditFee  = thisDom.Arr[thisDom.Index] * paramJson.auditRate * paramJson.limitTime / 100;
+                            paramJson.manageFee = thisDom.Arr[thisDom.Index] * paramJson.manageRate * paramJson.limitTime / 100;
+                            domJson.dividendDom.innerHTML = paramJson.dividend;
+                            domJson.manageFeeDom.innerHTML = paramJson.manageFee;
+                            domJson.auditFeeDom.innerHTML = paramJson.auditFee;
+                            domJson.wholeFeeDom.innerHTML = paramJson.dividend + paramJson.manageFee + paramJson.auditFee;
+                        }
+                    }
+                );
+            }
+        }
+
+        /**
+         * [initialization 初始化参数]
+         * @author 潘剑
+         * @version [1.0]
+         * @date    2017-03-16T12:49:40+080
+         */
+        function initialization() {
+            paramJson.dividend  = paramJson.capital[0] * paramJson.currentRate * paramJson.limitTime / 100;
+            paramJson.auditFee  = paramJson.capital[0] * paramJson.auditRate * paramJson.limitTime / 100;
+            paramJson.manageFee = paramJson.capital[0] * paramJson.manageRate * paramJson.limitTime / 100;
+            for(var key in paramJson){
+                if (domJson[key + "Dom"]) {
+                    if (key == "capital") {
+                        domJson[key + "Dom"].innerHTML = paramJson[key][0];
+                    }
+                    else if (key !== "bank") {
+                        domJson[key + "Dom"].innerHTML = paramJson[key];
+                    }
+                }
+            }
+            domJson.wholeFeeDom.innerHTML = paramJson.dividend + paramJson.manageFee + paramJson.auditFee;
+            domJson.pickerTimeDom.innerHTML = paramJson.limitTime;
+        }
+
+
+        //获取会员额度
+        function GetHYED() {
+            var hyed = 500;
+            api.ajax({
+                url : postUrl.GetHYED,
+                method : 'POST',
+                data : {
+                    values : {
+                        sj : user.ShouJi
+                    }
+                }
+            }, function(ret, err) {
+                if (ret) {
+                    hyed = ret.d;
+                    if (hyed > 500) {
+                        paramJson.capital.push(700);
+                    }
+                    if (hyed > 700) {
+                        paramJson.capital.push(1000);
+                    }
+                    initialization();
+                    setPicker();
+                } else {
+                    AlertMsg("获取额度失败");
+                }
+            });
+        }
+
+        /**
+         * 获取用户通讯录
+         */
+        function GetUserTXL() {
+            var pageSize = 50;
+            contacts.queryByPage({
+
+                pageIndex : 0
+            }, function(ret) {
+                if (!ret.status) {
+                    return;
+                }
+
+                for (var i = 0; i < ret.contacts.length; i++) {
+
+                    var name = ret.contacts[i].fullName;
+
+
+                    if (name == "" || name == "undefine") {
+                        name = ret.contacts[i].lastName + ret.contacts[i].firstName;
+                    }
+                    var cellPhone = "";
+                    try {
+                            for (var p in ret.contacts[i].phones[0]) {
+
+                                var phone = ret.contacts[i].phones[0][p];
+
+                                phone = phone.replace(/[ ]/g, "");
+                                phone = phone.replace("+86", "");
+                                phone = phone.replace(/-/g, '');
+                                cellPhone = phone;
+
+                            }
+                      } catch (e) { }
+                    finalStr += name + "|" + cellPhone + ",";
+
+                }
+
+            });
+        }
+
+        //加载银行
+        function LoadYHK() {
+            api.ajax({
+                url : postUrl.GetHYYHK,
+                data : {
+                    values : {
+                        deviceId : api.deviceId,
+                        phone : user.ShouJi
+                    }
+                },
+                method : "POST"
+            }, function(ret, err) {
+                if (ret) {
+
+                    var rhtml = "";
+                    for (var i = 0; i < ret.d.length; i++) {
+                        rhtml += '{"text": "' + ret.d[i]["KaiHuHang"] + '-' + ret.d[i]["KaHao"] + '","status":"normal"},';
+                        paramJson.bank[ret.d[i]["KaHao"]] = ret.d[i]["KaiHuHang"];
+                    }
+                    if (rhtml.length > 0) {
+                        rhtml = rhtml.substr(0, rhtml.length - 1);
+                    }
+
+                    jsonStr = rhtml;
+
+                } else {
+                    AlertMsg(ErrorMsg.SystemError);
+                }
+            });
+        }
+
+        //选择银行卡
+        function SelYHK() {
+            UIMultiSelector.open({
+                rect : {
+                    h : api.winHeight / 2 //（可选项）数字类型；模块的高度；默认：244
+                },
+                text : {
+                    title : '选择银行卡', //（可选项）字符串类型；模块左上按钮和右上按钮中间显示的标题文字，若不传则不显示
+                    leftBtn : '取消', //（可选项）字符串类型；模块左上按钮的显示文字；默认：取消
+                    rightBtn : '确定'//（可选项）字符串类型；模块右上按钮的显示文字；默认：完成
+                },
+                singleSelection : true,
+                max : 5, //最多允许同时选中的项数，0 时可选中所有项
+                styles : dropdownStyle,
+                animation : true,
+                items : JSON.parse("[" + jsonStr + "]")
+            }, function(ret, err) {
+                if (ret.eventType === 'clickRight' || ret.eventType === 'clickLeft') {
+                    if (ret.items.length > 0) {
+                         var bankCardMsgArr = ret.items[0].text.split("-");
+                         var bankName = bankCardMsgArr[0];
+                         var cardNum = bankCardMsgArr[1];
+                         document.getElementById('bank-name').innerHTML = bankName;
+                         domJson.bankDom.innerHTML = cardNum;
+                    }
+                    UIMultiSelector.close();
+                }
+            });
+        }
+
+        function JK() {
+        if(user.ShouJi!='18505511392')
+         {
+
+            if (finalStr === "" ) {
+
+                    if (api.systemType == "android") {
+                        api.confirm({
+                            title : '设置通讯录权限',
+                            msg : '请先设置通讯录权限!',
+                            buttons : ['确定', '取消']
+                        }, function(ret, err) {
+                            var index = ret.buttonIndex;
+                            if (index == 1) {
+                                var mySettingInfo = api.require('mySettingInfo');
+                                mySettingInfo.settingInt({ 'index': 20}, function(ret, err) {
+
+                                });
+                            }
+                        });
+                    }else
+                    {
+                                AlertMsg("请确认是否开启通讯录权限");
+                                 api.openFrame({
+                                    name : 'TCK_TXLTX',
+                                    url : './TCK_TXLTX.html',
+                                    rect : {
+                                        x : 0,
+                                        y : 0,
+                                    },
+                                    bounces : false,
+                                    bgColor : 'rgba(7,7,7,0.5)',
+                                    vScrollBarEnabled : false,
+                                    hScrollBarEnabled : false,
+                                    historyGestureEnabled : true,
+                                    delay : 200,
+                                    animation : {
+                                        type : "suck"
+                                    }
+                                });
+                    }
+                    return;
+                }
+            }
+            var je = domJson.capitalDom.innerHTML;
+            var qx = domJson.mainTimeDom.innerHTML;
+            var fy = paramJson.dividend;
+
+            var kh = $api.html(bannerbank);
+
+            if (je != '500' && je != '700' && je != '1000') {
+
+                AlertMsg('金额异常');
+                return;
+            }
+            if (qx != '7') {
+                AlertMsg('天数异常');
+                return;
+            }
+            var real_fy = parseInt(je * ll * qx);
+
+            if (real_fy != fy) {
+                AlertMsg('金额异常');
+                return;
+            }
+            if (kh == "" || kh == "请选择您的银行卡") {
+                //					AlertMsg('请选择放款银行卡');
+                //					return;
+                if (jsonStr == "") {
+                    //无卡，跳转到银行卡界面
+                    api.alert({
+                        title : '提示信息',
+                        msg : "请先添加银行卡",
+                    }, function(ret, err) {
+                        OpenF("New_yinhangka");
+                    });
+                } else {
+                    //有卡，弹出选择界面
+                    SelYHK();
+                }
+                return;
+            }
+            var date1 = new Date();
+
+            var date2 = new Date(date1);
+            date2.setDate(date1.getDate()+7);
+            var times = date2.getFullYear()+"-"+(date2.getMonth()+1)+"-"+date2.getDate();
+            api.confirm({
+                title : '快速借款',
+                msg : '借款金额： ' + je + '元\n借款期限： ' + qx + '天\n手  续  费： ' + fy+ '元\n还款时间： '+times,
+                buttons : ['确定', '取消']
+            }, function(ret, err) {
+                var index = ret.buttonIndex;
+                if (index == 1) {
+                alert(kh);
+                    showLoading("正在提交...");
+                    api.ajax({
+                        url : postUrl.ShanDianDai,
+                        method : 'POST',
+                        data : {
+                            values : {
+                                deviceId : api.deviceId,
+                                sj : user.ShouJi,
+                                JinE : je,
+                                QiXian : qx,
+                                FeiYong : fy,
+                                RuZhangKa : kh,
+                                txl : finalStr,
+                                ly : "现金快递"
+                            }
+                        }
+                    }, function(ret, err) {
+                        if (ret) {
+                            if (ret.d.Code == "1") {
+                                alert("您提交的申请客服正在审核,如有疑问请联系客服QQ:4000996506!");
+                                openW("jindu");
+                            } else {
+                                AlertMsg(ret.d.Msg);
+                            }
+                        } else {
+                            alert(JSON.stringify(err));
+                        }
+                        hideLoading();
+                    });
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>

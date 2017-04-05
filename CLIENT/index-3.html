@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>聊天</title>
+    <link rel="stylesheet" href="./css/RongIMWidget.css">
+    <script src="./javascript/require.js" charset="utf-8"></script>
+    <script src="./javascript/jquery.min.js" charset="utf-8"></script>
+    <script src="./javascript/RongIMLib-2.2.5.min.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        Launch demo modal
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">注意，只有一次填写机会，请输入正确的工号和姓名</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="jobNum1" class="col-sm-2 control-label">工号</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="jobNum1" placeholder="第一次输入工号">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="jobNum2" class="col-sm-2 control-label">工号</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="jobNum2" placeholder="第二次输入工号">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="jobNum3" class="col-sm-2 control-label">工号</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="jobNum3" placeholder="第三次输入工号">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name1" class="col-sm-2 control-label">姓名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name1" placeholder="第一次入姓名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name2" class="col-sm-2 control-label">姓名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name2" placeholder="第二次输入姓名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name3" class="col-sm-2 control-label">姓名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name3" placeholder="第三次输入姓名">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" onclick="modalModule.sendPersonalSign()">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="rong-widget-box" class="rongcloud-container">
+        <div class="">
+            <div id="rong-conversation" class="rongcloud-kefuChatBox rongcloud-both rongcloud-am-fade-and-slide-top" style="height: 600px; width: 500px; position: absolute; right: 201px; bottom: 3px;">
+                <div class="rongcloud-kefuChat">
+                    <div id="header" class="rongcloud-rong-header rongcloud-blueBg rongcloud-online">
+                        <div class="rongcloud-infoBar rongcloud-pull-left">
+                            <div class="rongcloud-infoBarTit">
+                                <span class="rongcloud-kefuName">用户：q</span></div>
+                        </div>
+                        <div class="rongcloud-toolBar rongcloud-headBtn rongcloud-pull-right">
+                            <a href="javascript:;" class="rongcloud-kefuChatBoxHide rongcloud-sprite" style="margin-right:6px" onclick="minimize()" title="隐藏"></a>
+                            <a href="javascript:;" class="rongcloud-kefuChatBoxClose rongcloud-sprite" onclick="closeConversation()" title="结束对话"></a>
+                        </div>
+                    </div>
+                    <div class="rongcloud-outlineBox" id="conversation-outLineBox" style="display:none;">
+                        <div class="rongcloud-sprite"></div>
+                        <span></span>
+                    </div>
+                    <div id="Messages">
+                        <div class="rongcloud-emptyBox">暂时没有新消息</div>
+                        <div class="rongcloud-MessagesInner">
+                            <div ng-repeat="item in messageList" ng-switch="item.panelType" class="ng-scope">
+                                <div class="rongcloud-Messages-history ng-scope" ng-switch-when="105">
+                                    <b onclick="getHistory()">查看历史消息</b>
+                                </div>
+                            </div>
+                            <!-- end ngRepeat: item in messageList -->
+                            <div ng-repeat="item in messageList" ng-switch="item.panelType" class="ng-scope">
+                                <!-- ngSwitchWhen: 104 -->
+                                <!-- ngSwitchWhen: 105 -->
+                                <!-- ngSwitchWhen: 106 -->
+                                <!-- ngSwitchWhen: 2 -->
+                                <!-- ngSwitchWhen: 1 -->
+                                <div class="rongcloud-Message ng-scope" ng-switch-when="1">
+                                    <div class="rongcloud-Messages-unreadLine"></div>
+                                    <div>
+                                        <div class="rongcloud-Message-header"><img class="rongcloud-img rongcloud-u-isActionable rongcloud-Message-avatar rongcloud-avatar" ng-src="" err-src="http://7xo1cb.com1.z0.glb.clouddn.com/rongcloudkefu2.png" errsrcserasdfasdfasdfa="" alt="" src="http://7xo1cb.com1.z0.glb.clouddn.com/rongcloudkefu2.png">
+                                            <div class="rongcloud-Message-author rongcloud-clearfix"><a class="rongcloud-author rongcloud-u-isActionable ng-binding">我</a></div>
+                                        </div>
+                                    </div>
+                                    <div class="rongcloud-Message-body" ng-switch="item.messageType">
+                                        <!-- ngSwitchWhen: TextMessage -->
+                                        <textmessage ng-switch-when="TextMessage" msg="item.content" class="ng-scope ng-isolate-scope">
+                                            <div class="">
+                                                <div class="rongcloud-Message-text"><pre class="rongcloud-Message-entry ng-binding" ng-bind-html="msg.content|trustHtml">w</pre></div>
+                                            </div>
+                                        </textmessage>
+                                        <!-- ngSwitchWhen: ImageMessage -->
+                                        <!-- ngSwitchWhen: VoiceMessage -->
+                                        <!-- ngSwitchWhen: LocationMessage -->
+                                        <!-- ngSwitchWhen: RichContentMessage -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end ngRepeat: item in messageList -->
+                            <div class="ng-scope">
+                                <div class="rongcloud-Message" style="padding-left: 0;padding-right: 3pc;">
+                                    <div class="rongcloud-Messages-unreadLine"></div>
+                                    <div>
+                                        <div class="rongcloud-Message-header" style="text-align:right;">
+                                            <div class="rongcloud-Message-author rongcloud-clearfix">
+                                                <a>用户：aa</a>
+                                            </div>
+                                            <img style="margin-left: 0;margin-right: -3pc;" class="rongcloud-img rongcloud-u-isActionable rongcloud-Message-avatar rongcloud-avatar  rongcloud-pull-right" src="http://7xo1cb.com1.z0.glb.clouddn.com/rongcloudkefu2.png">
+                                        </div>
+                                    </div>
+                                    <div class="rongcloud-Message-body" style="text-align:right;">
+                                        <div class="rongcloud-Message-text">
+                                            <pre class="rongcloud-Message-entry">ewqwerqwe</pre>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- end ngSwitchWhen: -->
+                            </div>
+                            <div class="ng-scope">
+                                <div class="rongcloud-Message ng-scope" style="padding-left: 0;padding-right: 3pc;">
+                                    <div class="rongcloud-Messages-unreadLine"></div>
+                                    <div>
+                                        <div class="rongcloud-Message-header" style="text-align:right;">
+                                            <a style="color:#8e969f;text-align:right;">我dfsafdsf</a>
+                                            <img style="margin-left: 1pc;" class="rongcloud-img rongcloud-u-isActionable rongcloud-Message-avatar rongcloud-avatar" src="http://7xo1cb.com1.z0.glb.clouddn.com/rongcloudkefu2.png">
+                                        </div>
+                                    </div>
+                                    <div class="rongcloud-Message-body" style="text-align:right;">
+                                        <div>
+                                            <div class="rongcloud-Message-text">
+                                                <pre class="rongcloud-Message-entry ng-binding">w</pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="footer" class="rongcloud-rong-footer" style="display: block">
+                        <div class="rongcloud-footer-con">
+                            <div class="rongcloud-text-layout">
+                                <div id="funcPanel" class="rongcloud-funcPanel rongcloud-robotMode">
+                                    <div class="rongcloud-mode1" ng-show="_inputPanelState==0">
+                                        <div class="rongcloud-MessageForm-tool" id="expressionWrap"><i class="rongcloud-sprite rongcloud-iconfont-smile" ng-click="showemoji=!showemoji"></i>
+                                            <!-- <div class="rongcloud-expressionWrap ng-hide" ng-show="showemoji"><i class="rongcloud-arrow"></i>
+                                                ngRepeat: item in emojiList
+                                            </div> -->
+                                        </div>
+                                        <div class="rongcloud-MessageForm-tool"><i class="rongcloud-sprite rongcloud-iconfont-upload" id="upload-file" style="position: relative; z-index: 1"></i></div>
+                                    </div>
+                                    <div id="html5_1bar2eknu2607uv73m9pu1g49b_container" class="moxie-shim moxie-shim-html5" style="position: absolute; top: 0px; left: 28px; width: 24px; height: 20px; overflow: hidden; z-index: 0;"><input id="html5_1bar2eknu2607uv73m9pu1g49b" type="file" style="font-size: 999px; opacity: 0; position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" accept="image/jpeg,image/gif,image/png,image/bmp"></div>
+                                </div>
+                                <textarea id="inputMsg" class="rongcloud-text rongcloud-grey" style="background-color: rgba(0, 0, 0, 0); color: rgb(169, 169, 169);width: 100%;" contenteditable="contenteditable" placeholder="请输入文字..." ondrop="return false"></textarea>
+                            </div>
+                            <div class="rongcloud-powBox">
+                                <button type="button" style="background-color: #0099ff" class="rongcloud-rong-btn rongcloud-rong-send-btn" id="rong-sendBtn" onclick="send()">发送</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="rong-conversation-list" class="rongcloud-kefuListBox rongcloud-both" style="height: 600px; position: absolute; display: inline-block; right: 3px; bottom: 3px;">
+                <div class="rongcloud-kefuList">
+                    <div class="rongcloud-rong-header rongcloud-blueBg">
+                        <div class="rongcloud-toolBar rongcloud-headBtn">
+                            <div class="rongcloud-sprite rongcloud-people"></div>
+                            <span class="rongcloud-recent">最近联系人</span>
+                            <div class="rongcloud-sprite rongcloud-arrow-down" style="cursor: pointer" onclick="minbtn()"></div>
+                        </div>
+                    </div>
+                    <div class="rongcloud-content">
+                        <div class="rongcloud-netStatus" style="display:none;">
+                            <div class="rongcloud-sprite"></div>
+                            <span></span>
+                        </div>
+                        <div class="father-sign" data-targetId="" onclick="showConversation($(this))">
+                            <div class="rongcloud-chatList">
+                                <div class="rongcloud-chat_item">
+                                    <div class="rongcloud-ext">
+                                        <p class="rongcloud-attr clearfix">
+                                            <span class="rongcloud-badge">0</span>
+                                            <i class="rongcloud-sprite rongcloud-no-remind" onclick="remove($(this))"></i>
+                                        </p>
+                                    </div>
+                                    <div class="rongcloud-photo">
+                                        <img class="rongcloud-img" src="http://7xo1cb.com1.z0.glb.clouddn.com/rongcloudkefu2.png">
+                                        <i class="rongcloud-Presence rongcloud-Presence--stacked rongcloud-Presence--mainBox"></i>
+                                    </div>
+                                    <div class="rongcloud-info">
+                                        <h3 class="rongcloud-nickname">
+                                            <span class="rongcloud-nickname_text" title="">用户：q</span>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="rong-widget-minbtn" class="rongcloud-kefuBtnBox rongcloud-blueBg ng-hide" onclick="showbtn()" style="position: absolute; display: none; right: 3px; bottom: 3px;">
+            <a class="rongcloud-kefuBtn" href="javascript: void(0);">
+                <div class="rongcloud-sprite rongcloud-people"></div>
+                <span class="rongcloud-recent ng-binding" ng-show="!data.totalUnreadCount||data.totalUnreadCount==0">最近联系人</span>
+                <span class="rongcloud-recent ng-hide" ng-show="data.totalUnreadCount>0">
+                    <span ng-show="twinkle" class="ng-hide">(有未读消息)</span>
+                </span>
+            </a>
+        </div>
+        <div id="rong-widget-minbtn-kefu" class="rongcloud-kefuBtnBox rongcloud-blueBg ng-hide" ng-show="!main.display&amp;&amp;config.displayMinButton" ng-click="showbtn()">
+            <a class="rongcloud-kefuBtn" href="javascript: void(0);">
+                <div class="rongcloud-sprite rongcloud-people rongcloud-sprite-kefu"></div>
+                <span class="rongcloud-recent ng-binding">联系客服</span>
+            </a>
+        </div>
+        <audio id="rongcloud-playsound" style="width: 0px;height: 0px;display: none" src="" controls=""></audio>
+    </div>
+
+    <!-- s 设置全局变量 -->
+    <script type="text/javascript">
+        var targetId                  = null;
+        var AppKey                    = null;
+        var Token                     = null;
+        var RongIMClient              = null;
+        var RongCloudMessagesInnerDom = $(".rongcloud-MessagesInner").eq(0);    //会话展现wrap对象
+        var RongConversationListDom   = $("#rong-conversation-list"); //列表区Dom
+        var RongConversationDom       = $("#rong-conversation"); //会话区Dom
+        var RongWidgetMinBtnDom       = $("#rong-widget-minbtn"); //最小化按钮Dom
+        var ConversationOutLineBoxDom = $(".rongcloud-outlineBox").eq(0); //会话区掉线通知
+        var ListOutLineBoxDom         = $(".rongcloud-netStatus").eq(0); //掉线区掉线通知
+        var inputMsgDom = $("#inputMsg");
+    </script>
+    <!-- e 设置全局变量 -->
+
+    <!-- s 最小化与最大化 -->
+    <script type="text/javascript">
+        function minbtn() {
+            RongConversationDom.hide(); //会话区关闭
+            RongConversationListDom.hide(); //列表区关闭
+            RongWidgetMinBtnDom.show(); //最小化标签展现
+        }
+
+        function showbtn() {
+            RongConversationDom.show(); //会话区show
+            RongConversationListDom.show(); //列表区show
+            RongWidgetMinBtnDom.hide(); //最小化标签hide
+        }
+
+        function closeConversation() {
+            RongConversationDom.hide();            //会话区hide
+            RongCloudMessagesInnerDom.html("");    //清空会话展现区
+        }
+
+        function minimize() {
+            RongConversationDom.hide(); //会话区hide
+        }
+    </script>
+    <!-- e 最小化与最大化 -->
+
+    <!-- s 掉线通知 -->
+    <script type="text/javascript">
+        function outLineWarning(warningMsg) {
+            ConversationOutLineBoxDom.find("span").eq(0).html(warningMsg);
+            ListOutLineBoxDom.find("span").eq(0).html(warningMsg);
+            ConversationOutLineBoxDom.show();
+            ListOutLineBoxDom.show();
+        }
+    </script>
+    <!-- e 掉线通知 -->
+
+    <!-- s 清除列表 -->
+    <script type="text/javascript">
+        function remove(thisDom) {
+            var wrapDom = thisDom.parents(".father-sign").eq(0);
+            wrapDom.remove();
+            RongCloudMessagesInnerDom.html("");
+        }
+    </script>
+    <!-- e 清除列表 -->
+
+    <!-- s 展现会话 -->
+    <script type="text/javascript">
+        function showConversation(thisDom) {
+            targetId = thisDom.attr("data-targetId");
+            RongConversationDom.show();
+        }
+    </script>
+    <!-- e 展现会话 -->
+
+    <!-- s 发送消息 -->
+    <script type="text/javascript">
+        function send() {
+            var saying = inputMsgDom.val();
+            if (saying) {
+                addMsgHTML(saying);
+                RongCloudMessagesInnerDom.parent().scrollTop(RongCloudMessagesInnerDom.height());
+                inputMsgDom.val("");
+                sendTextMsg(saying);
+            }
+        }
+    </script>
+    <!-- e 发送消息 -->
+
+
+    <script type="text/javascript">
+        function addMsgHTML(saying) {
+            var src = "";
+            var name = "";
+            var str = "<div>" +
+                "<div class='rongcloud-Message'>" +
+                "<div class='rongcloud-Messages-unreadLine'></div>" +
+                "<div>" +
+                "<div class='rongcloud-Message-header'>" +
+                "<img class='rongcloud-img rongcloud-u-isActionable rongcloud-Message-avatar rongcloud-avatar' src='" + src + "'>" +
+                "<div class='rongcloud-Message-author rongcloud-clearfix'>" +
+                "<a class='rongcloud-author rongcloud-u-isActionable'>用户：" + name + "</a>" +
+                "</div>" +
+                "</div>" +
+                "</div>" +
+                "<div class='rongcloud-Message-body'>" +
+                "<div>" +
+                "<div class='rongcloud-Message-text'>" +
+                "<pre class='rongcloud-Message-entry'>" + saying + "</pre>" +
+                "</div>" +
+                "</div>" +
+                "</div>" +
+                "</div>";
+            RongCloudMessagesInnerDom.children().last().after(str);
+        }
+    </script>
+
+    <!-- s 填写客服id与name -->
+    <script type="text/javascript">
+        var modalModule = {
+            jobNumOne: $("#jobNum1"),
+            jobNumTwo: $("#jobNum2"),
+            jobNumThree: $("#jobNum3"),
+            nameOne: $("#name1"),
+            nameTwo: $("#name2"),
+            nameThree: $("#name3"),
+            sendPersonalSign: function() {
+                jobNumOneValue = this.jobNumOne.val();
+                jobNumTwoValue = this.jobNumTwo.val();
+                jobNumThreeValue = this.jobNumThree.val();
+                nameOneValue = this.nameOne.val();
+                nameTwoValue = this.nameTwo.val();
+                nameThreeValue = this.nameThree.val();
+                if (this.isEmpty() && this.equalsValue()) {
+                    $.ajax({
+                        url: '../SERVER/control/getToken.php',
+                        type: 'post',
+                        dataType: 'json',
+                        data: {
+                            userId: jobNumOneValue,
+                            name: nameOneValue,
+                            role: 1
+                        },
+                        success: function(data) {
+                            Token = data.Token;
+                            AppKey = data.AppKey;
+                            if (Token && AppKey) {
+                                $("#myModal").modal('hide');
+                                initRongCloud();
+                                setRongCloudListen();
+                                connectRongCloudSever();
+                            }
+                        },
+                        error: function() {}
+                    });
+                }
+            },
+            equalsValue: function() {
+                var mark;
+                if (jobNumOneValue == jobNumTwoValue && jobNumOneValue == jobNumThreeValue && jobNumTwoValue == jobNumThreeValue) {
+                    if (nameOneValue == nameTwoValue && nameOneValue == nameThreeValue && nameTwoValue == nameThreeValue) {
+                        mark = true;
+                    } else {
+                        mark = false;
+                        alert("姓名输入不相同");
+                    }
+                } else {
+                    mark = false;
+                    alert("工号输入不相同");
+                }
+                return mark;
+            },
+            isEmpty: function() {
+                var mark;
+                if (!jobNumOneValue || !jobNumTwoValue || !jobNumThreeValue || !nameOneValue || !nameTwoValue || !nameThreeValue) {
+                    mark = false;
+                    alert("请将表格填写完整");
+                } else {
+                    mark = true;
+                }
+                return mark;
+            }
+        }
+    </script>
+    <!-- e 填写客服id与name -->
+
+    <!-- s 加载融云模块 -->
+    <script type="text/javascript">
+        require.config({
+            paths: {
+                protobuf: './javascript/protobuf-2.1.5.min',
+                RongIMLib: './javascript/RongIMLib-2.2.5.min'
+            }
+        });
+        require(['protobuf', 'RongIMLib'], function(protobuf, RongIMLib) {
+            RongIMClient = RongIMLib.RongIMClient;
+            // //getHistoryMessages
+            // RongIMClient.getInstance().getHistoryMessages(RongIMLib.ConversationType.PRIVATE, 'targetId', null, 20, {
+            //     onSuccess: function(list, hasMsg) {
+            //         // hasMsg为boolean值，如果为true则表示还有剩余历史消息可拉取，为false的话表示没有剩余历史消息可供拉取。
+            //         // list 为拉取到的历史消息列表
+            //     },
+            //     onError: function(error) {
+            //         // APP未开启消息漫游或处理异常
+            //         // throw new ERROR ......
+            //     }
+            // });
+            //
+            // //此接口必须在init()方法之后调用。
+            // RongIMClient.getInstance().hasRemoteUnreadMessages('mKmyKqTSf7aNDinwAFMnz7NXKILeV3X0+CCRBOxmtOApmvQjMathViWrePIfq0GuTu9jELQqsckv4AhfjCAKgQ==', {
+            //     onSuccess: function(hasMessage) {
+            //         if (hasMessage) {
+            //             // 有未读的消息
+            //         } else {
+            //             // 没有未读的消息
+            //         }
+            //     },
+            //     onError: function(err) {
+            //         // 错误处理...
+            //     }
+            // });
+        });
+
+        //初始化融云
+        function initRongCloud() {
+            //初始化
+            RongIMClient.init(AppKey);
+        }
+
+        //设置监听
+        function setRongCloudListen() {
+            // 连接状态监听器
+            RongIMClient.setConnectionStatusListener({
+                onChanged: function(status) {
+                    switch (status) {
+                        //链接成功
+                        case RongIMLib.ConnectionStatus.CONNECTED:
+                            console.log('链接成功');
+                            break;
+                            //正在链接
+                        case RongIMLib.ConnectionStatus.CONNECTING:
+                            console.log('正在链接');
+                            break;
+                            //重新链接
+                        case RongIMLib.ConnectionStatus.DISCONNECTED:
+                            outLineWarning("连接断开,请刷新重连");
+                            break;
+                            //其他设备登录
+                        case RongIMLib.ConnectionStatus.KICKED_OFFLINE_BY_OTHER_CLIENT:
+                            outLineWarning("其他设备登录");
+                            break;
+                            //网络不可用
+                        case RongIMLib.ConnectionStatus.NETWORK_UNAVAILABLE:
+                            outLineWarning("网络不可用");
+                            break;
+                    }
+                }
+            });
+            // 消息监听器
+            RongIMClient.setOnReceiveMessageListener({
+                // 接收到的消息
+                onReceived: function(message) {
+                    // 判断消息类型
+                    switch (message.messageType) {
+                        case RongIMClient.MessageType.TextMessage:
+                            console.log(message);
+                            targetId = message.targetId;
+                            break;
+                        case RongIMClient.MessageType.VoiceMessage:
+                            // 对声音进行预加载
+                            // message.content.content 格式为 AMR 格式的 base64 码
+                            RongIMLib.RongIMVoice.preLoaded(message.content.content);
+                            break;
+                        case RongIMClient.MessageType.ImageMessage:
+                            // do something...
+                            break;
+                        case RongIMClient.MessageType.DiscussionNotificationMessage:
+                            // do something...
+                            break;
+                        case RongIMClient.MessageType.LocationMessage:
+                            // do something...
+                            break;
+                        case RongIMClient.MessageType.RichContentMessage:
+                            // do something...
+                            break;
+                        case RongIMClient.MessageType.DiscussionNotificationMessage:
+                            // do something...
+                            break;
+                        case RongIMClient.MessageType.InformationNotificationMessage:
+                            // do something...
+                            break;
+                        case RongIMClient.MessageType.ContactNotificationMessage:
+                            // do something...
+                            break;
+                        case RongIMClient.MessageType.ProfileNotificationMessage:
+                            // do something...
+                            break;
+                        case RongIMClient.MessageType.CommandNotificationMessage:
+                            // do something...
+                            break;
+                        case RongIMClient.MessageType.CommandMessage:
+                            // do something...
+                            break;
+                        case RongIMClient.MessageType.UnknownMessage:
+                            // do something...
+                            break;
+                        default:
+                            // 自定义消息
+                            // do something...
+                    }
+                }
+            });
+        }
+
+        //连接融云服务器
+        function connectRongCloudSever() {
+            // 连接融云服务器。
+            RongIMClient.connect(Token, {
+                onSuccess: function(userId) {
+                    console.log("Login successfully." + userId);
+                },
+                onTokenIncorrect: function() {
+                    console.log('token无效');
+                },
+                onError: function(errorCode) {
+                    var info = '';
+                    switch (errorCode) {
+                        case RongIMLib.ErrorCode.TIMEOUT:
+                            info = '超时';
+                            break;
+                        case RongIMLib.ErrorCode.UNKNOWN_ERROR:
+                            info = '未知错误';
+                            break;
+                        case RongIMLib.ErrorCode.UNACCEPTABLE_PaROTOCOL_VERSION:
+                            info = '不可接受的协议版本';
+                            break;
+                        case RongIMLib.ErrorCode.IDENTIFIER_REJECTED:
+                            info = 'appkey不正确';
+                            break;
+                        case RongIMLib.ErrorCode.SERVER_UNAVAILABLE:
+                            info = '服务器不可用';
+                            break;
+                    }
+                    console.log(errorCode);
+                }
+            });
+        }
+
+        //加载会话
+        function LoadConversationMsg() {
+            //获取会话列表
+            RongIMClient.getInstance().getConversationList({
+                onSuccess: function(list) {
+                    console.log(list);
+                },
+                onError: function(error) {
+                    // do something...
+                }
+            }, null);
+
+            RongIMClient.getInstance().getTotalUnreadCount({
+              onSuccess:function(count){
+                  // count => 所有会话总未读数。
+              },
+              onError:function(error){
+                  // error => 获取总未读数错误码。
+              }
+            });
+        }
+
+        //获取历史记录
+        function getHistory() {
+            var conversationType = RongIMLib.ConversationType.PRIVATE; //私聊,其他会话选择相应的消息类型即可。
+            var timestrap = null; // 默认传 null，若从头开始获取历史消息，请赋值为 0 ,timestrap = 0;
+            var count = 20; // 每次获取的历史消息条数，范围 0-20 条，可以多次获取。
+            var targetId =
+            RongIMLib.RongIMClient.getInstance().getHistoryMessages(conversationType, targetId, timestrap, count, {
+              onSuccess: function(list, hasMsg) {
+                   // list => Message 数组。
+                // hasMsg => 是否还有历史消息可以获取。
+              },
+              onError: function(error) {
+                console.log("GetHistoryMessages,errorcode:" + error);
+              }
+            });
+        }
+
+        //加载未读消息
+        function loadUnreadMsg() {
+            var conversationType = RongIMLib.ConversationType.PRIVATE;
+            RongIMLib.RongIMClient.getInstance().getUnreadCount(conversationType,targetId,{
+                onSuccess:function(count){
+                    // count => 指定会话的总未读数。
+                },
+                onError:function(){
+                    // error => 获取指定会话未读数错误码。
+                }
+            });
+        }
+
+        //发送文本消息
+        function sendTextMsg(saying) {
+            var msg              = new RongIMLib.TextMessage({
+                content: saying,
+                extra: ""
+            });
+            var conversationtype = RongIMLib.ConversationType.PRIVATE; // 私聊,其他会话选择相应的消息类型即可。
+            RongIMClient.getInstance().sendMessage(conversationtype, targetId, msg, {
+                onSuccess: function(message) {
+                    //message 为发送的消息对象并且包含服务器返回的消息唯一Id和发送消息时间戳
+                    console.log("Send successfully");
+                },
+                onError: function(errorCode, message) {
+                    var info = '';
+                    switch (errorCode) {
+                        case RongIMLib.ErrorCode.TIMEOUT:
+                            info = '超时';
+                            break;
+                        case RongIMLib.ErrorCode.UNKNOWN_ERROR:
+                            info = '未知错误';
+                            break;
+                        case RongIMLib.ErrorCode.REJECTED_BY_BLACKLIST:
+                            info = '在黑名单中，无法向对方发送消息';
+                            break;
+                        case RongIMLib.ErrorCode.NOT_IN_DISCUSSION:
+                            info = '不在讨论组中';
+                            break;
+                        case RongIMLib.ErrorCode.NOT_IN_GROUP:
+                            info = '不在群组中';
+                            break;
+                        case RongIMLib.ErrorCode.NOT_IN_CHATROOM:
+                            info = '不在聊天室中';
+                            break;
+                        default:
+                            info = x;
+                            break;
+                    }
+                    console.log('发送失败:' + info);
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
