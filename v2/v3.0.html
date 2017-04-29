@@ -78,6 +78,10 @@
     <!-- e 会话内容 -->
     <!-- s 提词器 -->
     <div class="fl" id="webchat-teleprompter">
+      <div class="webchat-teleprompter-header">
+        <span>快捷发送</span>
+        <span style="text-align: right;float: right; padding-right: 15px;" onclick="javascript: WebChat.addTeleprompter();">+</span>
+      </div>
       <div class="webchat-teleprompter-content" data-count="3" id="webchat-teleprompter-content">
         <div class="webchat-teleprompter-item">
           <div class="teleprompter-item-header" data-link-content="teleprompter-default">
@@ -234,20 +238,6 @@
           </ul>
         </div>
       </div>
-      <ul class="webchat-teleprompter-operation">
-        <li class="teleprompter-operation-item fl" onclick="javascript: WebChat.addTeleprompter();">
-          <div class="teleprompter-operation-sign fl"></div>
-          <div class="teleprompter-operation-text fl">添加</div>
-        </li>
-        <li class="teleprompter-operation-item fl">
-          <div class="teleprompter-operation-sign fl"></div>
-          <div class="teleprompter-operation-text fl">删除</div>
-        </li>
-        <li class="teleprompter-operation-item fl">
-          <div class="teleprompter-operation-sign fl"></div>
-          <div class="teleprompter-operation-text fl">修改</div>
-        </li>
-      </ul>
     </div>
     <!-- e 提词器 -->
     <!-- s 缩略栏 -->
@@ -269,6 +259,7 @@
     <!-- s 杂项 -->
     <canvas id="webchat-back-canvas"></canvas>
     <img src="" id="webchat-back-photo">
+    <input type="file" id="webchat-image-file" multiple="true" onchange="javascript: WebChat.getImage();">
     <!-- e 杂项 -->
   </div>
 
@@ -281,12 +272,13 @@
       hasHistoryMark: null,
       targetIdJson: null,
       unreadMsgJson: null,
-      imgSendSrc: null,
+      imageFile: null,
       sendArgs: null,
       imageIndex: null,
       currentImageIndex: null,
       currentListType: null,
       chatList: null,
+      index: null,
 
 
       BankList: null,
@@ -310,6 +302,7 @@
       exhibitDom:             null,
       backImageDom:           null,
       teleprompterContentDom: null,
+      imageFileDom: null,
       main: function() {
         this.detectRuntime();
         this.initParamet();
@@ -341,7 +334,7 @@
         this.targetIdJson = {};
         this.unreadMsgJson = {};
         this.BankList = localStorage.BankList ? JSON.parse(localStorage.BankList) : {};
-        this.imgSendSrc = [];
+        this.imageFile = [];
         this.sendArgs = {
           conversationtype: 1,
           targetId: this.targetId,
@@ -354,6 +347,7 @@
           black: {}
         };
         this.currentListType = "customer";
+        this.index = 0;
       },
       initDom: function() {
         this.webchatDom             = $("#webchat");
@@ -374,6 +368,7 @@
         this.exhibitDom             = $("#webchat-exhibit");
         this.backImageDom           = $("#webchat-back-photo");
         this.teleprompterContentDom = $("#webchat-teleprompter-content");
+        this.imageFileDom           = $("#webchat-image-file");
       },
       initEvent: function() {
         this.miniBtnDom.on("mousedown", this.movement);
@@ -613,7 +608,13 @@
           onReceived: function(message) {
             console.log(message);
             var targetId = message.senderUserId; //对方Id
-            var extra = JSON.parse(message.content.extra);
+            var extra = null;
+            if (typeof message.content.extra === "string") {
+              extra = JSON.parse(message.content.extra);
+            }
+            else {
+              extra = message.content.extra;
+            }
             var role = extra.role; //对方身份
             if (WebChat.targetId === null) { //是第一个发送者
               WebChat.targetId = targetId; //设置为当前聊天对象
@@ -753,9 +754,10 @@
       /* e 窗口操作 */
 
       /* s 消息*/
-      send: function() {
+      send: function() {              //发送消息
         var textValue = this.inputDom.val(); //获取输入的内容
-        var imageValue = this.imgListDom.find("li");
+        var imageFile = this.imageFile;
+        console.log(imageFile);
         var sendParam = null;
         if (!this.targetId) {
           return false;
@@ -775,31 +777,36 @@
           this.setSendArgs(sendParam);
           this.sendMessage(); //发送文本消息
         }
-        if (imageValue.length) {
-          imageValue.each(function(index, dom) {
-            $(dom).find('img').attr("src", function(index, imgSrc) {
-              WebChat.setThumbnail(imgSrc, function(url) {
-                sendParam = {
-                  type: "image",
-                  imgSrc: url,
-                  imgUri: "",
-                  extra: {
-                    role: "waiter",
-                    targetRole: WebChat.currentListType,
-                    name: "一二三",
-                    mobile: "12345678900",
-                    unreadMessageCount: 0
-                  }
-                };
-                WebChat.setSendArgs(sendParam);
-                WebChat.sendMessage(); //发送图片消息
-              });
-            });
-          });
+        if (this.imageFile.length > 0) {
+          WebChat.setThumbnail(this.imageFile[this.index], this.singleImageSend);
         }
         this.inputDom.val(""); //清空输入框
         this.imageIndex = -1;
-        this.imgSendSrc = [];
+      },
+      singleImageSend: function(url, len) {
+        sendParam = {
+          type: "image",
+          imgSrc: url,
+          imgUri: "",
+          extra: {
+            role: "waiter",
+            targetRole: WebChat.currentListType,
+            name: "一二三",
+            mobile: "12345678900",
+            unreadMessageCount: 0
+          }
+        };
+        WebChat.setSendArgs(sendParam);
+        WebChat.sendMessage(function () {
+          this.index++;
+          if (this.index < len) {
+            this.setThumbnail(this.imageFile[this.index], this.singleImageSend);
+          }
+          else {
+            this.imageFile = [];
+            this.inedx = 0;
+          }
+        }); //发送图片消息
       },
       quickSend: function(thisDom, event) {
         if (this.targetId !== null) {
@@ -853,7 +860,7 @@
             break;
         }
       },
-      sendMessage: function() {
+      sendMessage: function(callback) {
         var args = this.sendArgs;
         this.RongIMClient.getInstance().sendMessage(args.conversationtype, this.targetId, args.msg, { //发送消息
           onSuccess: function(message) {
@@ -863,6 +870,7 @@
               WebChat.chatList[targetRole][WebChat.targetId] = message.content.extra; //设置存在该tip
             }
             WebChat.addSaying(message, "only"); //在会话区添加消息
+            if (callback) callback();
           },
           onError: function(errorCode, message) {
             alert(JSON.stringify(errorCode));
@@ -1148,29 +1156,33 @@
         return htmlStr;
       },
       addDropImage: function(file) {
-        var reader = new FileReader();
         if (file.type.match(/image*/)) {
-          reader.readAsDataURL(file);
-          reader.onload = function(event) {
-            var htmlStr = "<li data-index='" + (++WebChat.imageIndex) + "' class='webchat-image-wrap fl relative'>" +
-              "<img src='" + this.result + "' class='webchat-image-input fl' ondblclick='javascript: WebChat.showImage($(this));'>" +
-              "<span class='absolute image-badge' onclick='javascript: WebChat.abandonImg($(this));'>x</span>" +
-              "</li>";
-            WebChat.imgListDom.append(htmlStr);
-            WebChat.imgListDom.width(function(index, widthSize) {
-              return (widthSize + 45) + "px";
-            });
-            if (WebChat.imgListDom.width() > WebChat.imgListDom.parent().width()) {
-              WebChat.imgListDom.parent().scrollLeft(WebChat.imgListDom.width()); //永远显示最底部
-            }
-            WebChat.imgSendSrc.push(this.result);
-          };
-        } else {
+          var src = URL.createObjectURL(file);
+          var htmlStr = "<li data-index='" + (++WebChat.imageIndex) + "' class='webchat-image-wrap fl relative'>" +
+            "<img src='" + src + "' class='webchat-image-input fl' ondblclick='javascript: WebChat.showImage($(this));'>" +
+            "<span class='absolute image-badge' onclick='javascript: WebChat.abandonImg($(this));'>x</span>" +
+            "</li>";
+          this.imgListDom.append(htmlStr);
+          this.imgListDom.width(function(index, widthSize) {
+            return (widthSize + 45) + "px";
+          });
+          if (this.imgListDom.width() > this.imgListDom.parent().width()) {
+            this.imgListDom.parent().scrollLeft(this.imgListDom.width()); //永远显示最底部
+          }
+
+          var fileJson = {};
+          fileJson.name = file.name;
+          fileJson.size = file.size;
+          fileJson.type = file.type;
+          fileJson.src = src;
+          this.imageFile.push(fileJson);
+        }
+        else {
           console.log("此" + files[i].name + "不是图片文件！");
         }
       },
-      setThumbnail: function(imgSrc, callback) {
-        this.backImageDom.attr("src", imgSrc).load(function() {
+      setThumbnail: function(file, callback) {
+        this.backImageDom.attr("src", file.src).load(function() {
           var width = $(this).width();
           var height = $(this).height();
           WebChat.canvasDom.attr({
@@ -1180,9 +1192,16 @@
           var ctx = WebChat.canvasDom[0].getContext("2d");
           ctx.clearRect(0, 0, width, height);
           ctx.drawImage($(this)[0], 0, 0, width, height);
-          var scale = Math.sqrt(102400 / imgSrc.length);
-          var url = WebChat.canvasDom[0].toDataURL('image/jpeg', scale);
-          if (callback) callback(url);
+          // var scale = Math.sqrt(102400 / src.length);
+          var url;
+          if (file.size > 92160) {
+            var scale = 92160 / file.size;
+            url = WebChat.canvasDom[0].toDataURL('image/jpeg', scale);
+          }
+          else {
+            url = fill.src;
+          }
+          if (callback) callback(url, this.imageFile.length);
         });
       },
       /* e 工具方法 */
@@ -1361,6 +1380,8 @@
         }
       },
       abandonImg: function(thisDom) {
+        var index = thisDom.parent().attr("data-index");
+        this.imageFile[index] = null;
         thisDom.parent().remove();
         this.imgListDom.width(function(index, widthSize) {
           return (widthSize - 45) + "px";

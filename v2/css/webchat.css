@@ -576,9 +576,17 @@ ul li {
     background: #EAEAEA;
 }
 
+#webchat-teleprompter .webchat-teleprompter-header{
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+  color: #333;
+  text-align: center;
+}
+
 #webchat-teleprompter .webchat-teleprompter-content{
     width: 100%;
-    height: 560px;
+    height: 545px;
     overflow-x: hidden;
     overflow-y: scroll;
 }
@@ -636,28 +644,6 @@ ul li {
     font-size: 16px;
     color: #333;
     outline: none;
-}
-
-#webchat-teleprompter .webchat-teleprompter-operation{
-  width: 250px;
-  height: 30px;
-}
-
-#webchat-teleprompter .webchat-teleprompter-operation .teleprompter-operation-item{
-  width: 75px;
-  height: 30px;
-}
-
-#webchat-teleprompter .webchat-teleprompter-operation .teleprompter-operation-item .teleprompter-operation-sign{
-  width: 20px;
-  height: 20px;
-  margin: 5px;
-}
-
-#webchat-teleprompter .webchat-teleprompter-operation .teleprompter-operation-item .teleprompter-operation-text{
-  line-height: 30px;
-  font-size: 14px;
-  color: #707070;
 }
 
 #webchat-minimize {
