@@ -285,8 +285,33 @@
 
   <script type="text/javascript">
     var WebChat = {
-      Token: null,
-      AppKey: null,
+      RongCloud: {
+        IMClient: null,
+        Token: null,
+        AppKey: null,
+      },
+      target: {
+        id: null,
+        idJson: null,
+      },
+      image: {
+        file: null,
+      }
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+    var WebChat1 = {
       targetId: null,
       hasHistoryMark: null,
       targetIdJson: null,

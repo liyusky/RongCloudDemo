@@ -8,6 +8,7 @@
   <script src="./javascript/require.js" charset="utf-8"></script>
   <script src="./javascript/jquery.min.js" charset="utf-8"></script>
   <script src="./javascript/RongIMLib-2.2.5.min.js" charset="utf-8"></script>
+  <script src="http://cdn.ronghub.com/RongCallLib-2.3.0.min.js"></script>
 </head>
 
 <body>
@@ -281,6 +282,15 @@
     <input type="file" id="webchat-image-file" multiple="true" onchange="javascript: WebChat.getImage();">
     <!-- e 杂项 -->
   </div>
+  <div id="aaaaaaaaaa" style="width: 1000px;height: 800px;position: absolute;z-index: 99;"></div>
+
+  <button type="button" onclick="WebChat.videoLive()" style="position: absolute;z-index: 100;left: 50px; top:40px;background: red;">
+    发起通话
+  </button>
+
+  <button type="button" onclick="WebChat.hungupCall()" style="position: absolute;z-index: 100; left: 50px; top:100px;background: red">
+    结束
+  </button>
 
 
   <script type="text/javascript">
@@ -348,9 +358,9 @@
         //         this.Token = data.Token;
         //     }
         // });
-        this.targetId = null;
-        this.AppKey = "ik1qhw09i234p";
-        this.Token = "VP0ZdYropmGlbsLs+5NlyXquDCdi0JfiOlIY+u/RT1ov/JV3R9myhP2bLOW96DXsbPEAgGQkW74j5rl6YL+a0w==";
+        this.targetId = "liyusky1";
+        this.AppKey = "qd46yzrfq0bzf";
+        this.Token = "vId2fz2hnYZagHaEXukAFbv8GObKQ3NfFNgsAZZPN48M7RfJJ4WjZOTJDXmi8VVOBTFRb8VxZcqrW8d44jVKh+9Ir37PqccR";
       },
       initParamet: function() {
         this.hasHistoryMark = true;
@@ -601,6 +611,7 @@
       /* e 客户选择 */
 
       /* s 融云模块 */
+      RongIMLib: null,
       loadRongCloud: function() {
         require.config({ //导入文件
           paths: {
@@ -609,6 +620,7 @@
           }
         });
         require(['protobuf', 'RongIMLib'], function(protobuf, RongIMLib) { //加载导入的文件
+          WebChat.RongIMLib = RongIMLib;
           WebChat.RongIMClient = RongIMLib.RongIMClient;
           WebChat.initRongCloud();
           WebChat.setRongCloudListen();
@@ -619,6 +631,14 @@
       initRongCloud: function() {
         //初始化
         this.RongIMClient.init(this.AppKey);
+        var options = {
+          container : {
+            local: document.getElementById('aaaaaaaaaa') //local 为 DOM 节点
+          }
+        };
+        // 初始化 WebCallLib
+        var a = this.RongIMLib.RongCallLib.init(options);
+        console.log(a);
       },
       setRongCloudListen: function() {
         // 连接状态监听器
@@ -645,18 +665,23 @@
         this.RongIMClient.setOnReceiveMessageListener({
           // 接收到的消息
           onReceived: function(message) {
-            console.log(message);
             var targetId = message.senderUserId; //对方Id
             var extra = null;
             if (typeof message.content.extra === "string") {
               extra = JSON.parse(message.content.extra);
-            } else {
+            }
+            else {
               extra = message.content.extra;
             }
             var role = extra.role; //对方身份
             if (WebChat.targetId === null) { //是第一个发送者
               WebChat.targetId = targetId; //设置为当前聊天对象
             }
+            // ?????????????????????????????????????????????
+            if (message.messageType == WebChat.RongIMClient.MessageType.InviteMessage) {
+              this.joinVideo();
+            }
+            // ?????????????????????????????????????????????????
             switch (WebChat.currentListType) {
               case "customer":
                 switch (role) {
@@ -735,7 +760,9 @@
       connectRongCloudSever: function() {
         // 连接融云服务器。
         this.RongIMClient.connect(this.Token, {
-          onSuccess: function(userId) {},
+          onSuccess: function(userId) {
+
+          },
           onTokenIncorrect: function() {},
           onError: function(errorCode) {
             console.log(errorCode);
@@ -1492,8 +1519,50 @@
             });
           }
         }
-      }
+      },
       /* e 键盘操作 */
+
+
+      /* s 视屏*/
+      WebIM: null,
+      videoLive: function () {
+        WebChat.WebIM = WebChat.RongIMClient.getInstance();
+        var mediaType = WebChat.RongIMLib.VoIPMediaType.MEDIA_VEDIO; //视频通话
+        //var mediaType = RongIMLib.VoIPMediaType.MEDIA_AUDIO; //音频通话
+        var converType = 1;
+        var targetId = "liyusky1";
+        var invertUserIds = ["liyusky1"];
+        var extra = "";
+        console.log(WebChat.RongIMLib);
+        console.log(obj);
+
+        WebChat.WebIM.startCall(1, "liyusky1", ["liyusky1"], 2, "", {
+          onSuccess:function(){
+            console.log(1);
+             // => startCall successfully
+          },
+          onError:function(err){
+            console.log(err);
+             // => startCall error
+          }
+        });
+      },
+      joinVideo: function () {
+        WebChat.WebIM.joinCall(WebChat.RongIMLib.VoIPMediaType.MEDIA_VEDIO,{
+          onSuccess:function(){
+            console.log(22222);
+            console.log("joinCall Successfully");
+          },
+          onError:function(err){
+            console.log("joinCall err",err);
+          }
+        });
+      },
+      hungupCall: function () {
+        console.log(3333333);
+        WebChat.WebIM.hungupCall(1,"liyusky1",WebChat.RongIMLib.VoIPMediaType.MEDIA_VEDIO);
+      }
+      /* e 视屏*/
     };
     WebChat.main();
   </script>
