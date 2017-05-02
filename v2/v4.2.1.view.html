@@ -16,6 +16,7 @@
   <script src="./javascript/require.js" charset="utf-8"></script>
   <script src="./javascript/jquery.min.js" charset="utf-8"></script>
   <script src="./javascript/RongIMLib-2.2.5.min.js" charset="utf-8"></script>
+  <script src="./javascript/RongCallLib-2.3.0.min.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -498,7 +499,6 @@
             },
             sendArgs: {      //发送的数据
               conversationtype: 1,
-              targetId: this.Attrs.target.id,
               msg: null
             },
             chatType: {      //交谈对象类型
@@ -857,7 +857,7 @@
         sendMessage: function(callback) {
           var Attrs = this.Attrs;
           var args = Attrs.sendArgs;
-          this.RongCloud.IMClient.getInstance().sendMessage(args.conversationtype, this.targetId, args.msg, { //发送消息
+          this.RongCloud.IMClient.getInstance().sendMessage(args.conversationtype, Attrs.target.id, args.msg, { //发送消息
             onSuccess: function(message) {
               var targetRole = Attrs.current.listType;
               if (!Attrs.chatType[targetRole][Attrs.current.target.id]) { //列表区没有该用户的tip
@@ -1075,7 +1075,7 @@
             this.setMsgType("redirection");
             this.setSendArgs(sendParam);
             this.sendMessage(function() { //发送文本消息
-              his.Doms.temporary.redirectTipDom.parents(".webchat-tip").remove();
+              this.Doms.temporary.redirectTipDom.parents(".webchat-tip").remove();
             });
           }
         },
@@ -1166,6 +1166,9 @@
           }, null);
         },
       /* e 列表选择 */
+
+      /* s 视屏 */
+      /* e 视屏 */
 
       /* s 键盘操作 */
         inputOperate: function(event) {
@@ -1683,7 +1686,9 @@
         },
       /* e 效果 */
     };
+    WebChat.main();
   </script>
 </body>
 
 </html>
+-
