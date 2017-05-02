@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>聊天</title>
+  <link rel="stylesheet" href="./css/resetting.css">
+  <link rel="stylesheet" href="./css/sundry.css">
+  <link rel="stylesheet" href="./css/conversation.css">
+  <link rel="stylesheet" href="./css/list.css">
+  <link rel="stylesheet" href="./css/minimize.css">
+  <link rel="stylesheet" href="./css/nav.css">
+  <link rel="stylesheet" href="./css/teleprompter.css">
+  <link rel="stylesheet" href="./css/redirect.css">
+  <link rel="stylesheet" href="./css/live.css">
+  <script src="./javascript/require.js" charset="utf-8"></script>
+  <script src="./javascript/jquery.min.js" charset="utf-8"></script>
+  <script src="./javascript/RongIMLib-2.2.5.min.js" charset="utf-8"></script>
+</head>
+
+<body>
+  <div id="webchat" class="webchat fixed">
+    <!-- s 导航栏 -->
+    <nav class="webchat-nav fl relative" id="webchat-nav">
+      <ul class="webchat-nav-list">
+        <li class="webchat-nav-tag" title="头像">
+          <img src="./images/33.jpg" class="webchat-tag-img">
+        </li>
+        <li class="webchat-nav-tag" data-target-type="customer" onclick="javascript: WebChat.showList('customer');" title="客户">
+          <img src="./images/2.png" class="webchat-tag-img">
+        </li>
+        <li class="webchat-nav-tag" data-target-type="waiter" onclick="javascript: WebChat.showList('waiter');" title="客服">
+          <img src="./images/3.png" class="webchat-tag-img">
+        </li>
+        <li class="webchat-nav-tag" data-target-type="black" onclick="javascript: WebChat.showList('black');" title="群组">
+          <img src="" class="webchat-tag-img">
+        </li>
+        <li class="webchat-nav-tag" data-target-type="black" onclick="javascript: WebChat.showList('black');" title="黑名单">
+          <img src="./images/5.png" class="webchat-tag-img">
+        </li>
+      </ul>
+      <div class="webchat-nav-retract" title="收起">
+        <img src="./images/6.png" class="webchat-tag-img" onclick="javascript: WebChat.minimize();">
+      </div>
+    </nav>
+    <!-- e 导航栏 -->
+
+    <!-- s 会话列表 -->
+    <section class="webchat-list fl" id="webchat-list">
+      <div class="webchat-list-action">
+        <div class="webchat-input-box fl">
+          <input type="text" class="list-input fl">
+          <i title="搜索">search</i>
+        </div>
+        <div class="list-action-nav fl">
+          <button type="button" class="list-action-btn" title="转接"></button>
+        </div>
+      </div>
+      <div class="webchat-list-wrap">
+        <ul class="webchat-list-content" id="webchat-list-content"></ul>
+      </div>
+    </section>
+    <!-- e 会话列表 -->
+
+    <!-- s 会话内容 -->
+    <section class="webchat-conversation fl" id="webchat-conversation">
+      <div class="webchat-conversation-header relative">
+        <p class="webchat-customer-name" id="webchat-customer-name">liyusky</p>
+        <div class="webchat-conversation-tools tools-right">
+          <a href="javascript: void(0);" class="tools-btn fl" onclick="javascript: WebChat.minimize();">-</a>
+          <a href="javascript: void(0);" class="tools-btn fl" style="border-top-right-radius: 5px;" onclick="javascript: WebChat.closeWebChat();">x</a>
+        </div>
+        <div class="webchat-conversation-tools tools-left">
+          <a href="javascript: void(0);" class="tools-btn" onclick="javascript: WebChat.hideWindow();">&lt;</a>
+        </div>
+      </div>
+      <div class="webchat-conversation-window" id="webchat-conversation-window">
+        <ul class="webchat-conversation-content" id="webchat-conversation-content"></ul>
+      </div>
+      <div class="webchat-conversation-write" id="webchat-conversation-write">
+        <textarea class="webchat-input fl" id="webchat-input"></textarea>
+        <div class="webchat-image-nav fl">
+          <ul class="webchat-image-list" id="webchat-image-list"></ul>
+        </div>
+        <button type="button" class="webchat-send-btn fr" onclick="javascript: WebChat.send();">发送</button>
+      </div>
+    </section>
+    <!-- e 会话内容 -->
+
+    <!-- s 提词器 -->
+    <section class="webchat-teleprompter fl" id="webchat-teleprompter">
+      <div class="webchat-teleprompter-header">
+        <span>快捷发送</span>
+        <span style="text-align: right;float: right; padding-right: 15px;" onclick="javascript: WebChat.addTeleprompter();">+</span>
+      </div>
+      <div class="webchat-teleprompter-content" data-count="3" id="webchat-teleprompter-content">
+        <div class="webchat-teleprompter-item">
+          <div class="teleprompter-item-header" data-link-content="teleprompter-default">
+            <img src="" class="teleprompter-expansion-sign fl" onclick="javascript: WebChat.showLinkContent($(this));" data-show="1">
+            <p class="webchat-teleprompter-title omit fl" ondblclick="javascript: WebChat.modifyTitle($(this));">默认提词器</p>
+            <img src="" class="teleprompter-expansion-sign fr" onclick="javascript: WebChat.addLinkHint($(this));">
+            <img src="" class="teleprompter-expansion-sign fr" onclick="javascript: WebChat.removeLinkContent($(this));">
+          </div>
+          <ul class="teleprompter-item-content" id="teleprompter-default">
+            <li class="teleprompter-hint hint-default-height">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">
+              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">第一条</p>
+            </li>
+            <li class="teleprompter-hint hint-default-height">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">
+              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">第二条</p>
+            </li>
+            <li class="teleprompter-hint hint-default-height">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">
+              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">第三条</p>
+            </li>
+            <li class="teleprompter-hint hint-default-height">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">
+              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">第四条</p>
+            </li>
+            <li class="teleprompter-hint hint-default-height">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">
+              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">第五条</p>
+            </li>
+            <li class="teleprompter-hint hint-default-height">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">
+              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">第六条</p>
+            </li>
+            <li class="teleprompter-hint hint-default-height">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">
+              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">第七条</p>
+            </li>
+          </ul>
+        </div>
+        <div class="webchat-teleprompter-item">
+          <div class="teleprompter-item-header" data-link-content="teleprompter-1">
+            <img src="" class="teleprompter-expansion-sign fl">
+            <p class="webchat-teleprompter-title omit fl">xdfasfad</p>
+            <img src="" class="teleprompter-expansion-sign fr">
+          </div>
+          <ul class="teleprompter-item-content" id="teleprompter-1">
+            <li class="teleprompter-hint hint-default-height">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">
+              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx</p>
+            </li>
+            <li class="teleprompter-hint hint-default-height">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">
+              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx</p>
+            </li>
+            <li class="teleprompter-hint hint-default-height">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">
+              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx</p>
+            </li>
+            <li class="teleprompter-hint hint-default-height">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">
+              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx</p>
+            </li>
+            <li class="teleprompter-hint hint-default-height">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">
+              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx</p>
+            </li>
+            <li class="teleprompter-hint hint-default-height">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">
+              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx</p>
+            </li>
+            <li class="teleprompter-hint hint-default-height">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">
+              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx</p>
+            </li>
+          </ul>
+        </div>
+        <div class="webchat-teleprompter-item">
+          <div class="teleprompter-item-header" data-link-content="teleprompter-2">
+            <img src="" class="teleprompter-expansion-sign fl">
+            <p class="webchat-teleprompter-title omit fl">xdfasfad</p>
+            <img src="" class="teleprompter-expansion-sign fr">
+          </div>
+          <ul class="teleprompter-item-content" id="teleprompter-2">
+            <li class="teleprompter-hint hint-default-height">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">
+              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx</p>
+            </li>
+            <li class="teleprompter-hint hint-default-height">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">
+              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx</p>
+            </li>
+            <li class="teleprompter-hint hint-default-height">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">
+              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx</p>
+            </li>
+            <li class="teleprompter-hint hint-default-height">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">
+              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx</p>
+            </li>
+            <li class="teleprompter-hint hint-default-height">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">
+              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx</p>
+            </li>
+            <li class="teleprompter-hint hint-default-height">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">
+              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx</p>
+            </li>
+            <li class="teleprompter-hint hint-default-height">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">
+              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">
+              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- e 提词器 -->
+
+    <!-- s 缩略栏 -->
+    <section class="webchat-minimize" id="webchat-minimize">
+      <img src="./images/8.png" id="webchat-open-sign" class="minimize-sign webchat-open-sign fl" onclick="javascript: WebChat.openWebChat();" title="展开">
+      <img src="" class="minimize-sign fl" title="发来消息的人数">
+      <span class="minimize-count fl">5</span>
+      <img src="" class="minimize-sign fl" title="未读消息数">
+      <span class="minimize-count fl">100</span>
+    </section>
+    <!-- e 缩略栏 -->
+
+    <!-- s modal -->
+    <section class="webchat-modal" id="webchat-modal" class="fixed">
+      <div class="modal-img-box">
+        <img class="webchat-exhibit" src="" id="webchat-exhibit">
+      </div>
+    </section>
+    <!-- e modal -->
+
+    <!-- s 客服转接列表 -->
+    <section class="webchat-redirect-wrap hidden" id="webchat-redirect-wrap">
+      <ul class="webchat-waiter-list">
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">AAAA</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">BBB</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">CCC</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">AAAA</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">BBB</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">CCC</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">AAAA</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">BBB</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">CCC</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">AAAA</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">BBB</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">CCC</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">AAAA</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">BBB</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">CCC</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+      </ul>
+      <div class="redirect-btn-nav">
+        <div class="redirect-btn fr" onclick="javascript: WebChat.closeRedirectWindow();">取消</div>
+        <div class="redirect-btn fr" onclick="javascript: WebChat.transferCustomer();">确认</div>
+      </div>
+    </section>
+    <!-- e 客服转接列表 -->
+
+    <!-- s 视屏 -->
+    <section class="webchat-live-video hidden" id="webchat-live-video">
+      <ul class="webchat-live-message fl">
+        <li class="live-messgae-item fl">
+          <span>客户手机号：</span>
+          <span>1111111111</span>
+        </li>
+        <li class="live-messgae-item fl">
+          <span>客户姓名：</span>
+          <span>张三</span>
+        </li>
+        <li class="live-messgae-item fl">
+          <span>专属客服名称：</span>
+          <span>李四</span>
+        </li>
+        <li class="live-messgae-item fl">
+          <span>客服ID：</span>
+          <span>00001</span>
+        </li>
+      </ul>
+      <div class="webchat-video-screen fl">
+        <div class="webchat-screen-wrap"></div>
+      </div>
+      <div class="webchat-live-close"></div>
+    </section>
+    <!-- e 视屏 -->
+
+    <!-- s 杂项 -->
+    <section class="webchat-sundry hidden">
+      <canvas class="webchat-back-canvas" id="webchat-back-canvas"></canvas>
+      <img src="" class="webchat-back-photo" id="webchat-back-photo">
+      <input type="file" id="webchat-file-input" multiple="true" onchange="javascript: WebChat.getImage();">
+    </section>
+    <!-- e 杂项 -->
+  </div>
+  <script type="text/javascript">
+    var WebChat = {
+      Attrs: null,
+      Doms: null,
+      RongCloud: null,
+      main: function () {
+        this.initAttrs();
+      },
+
+      initAttrs: function () {
+        this.RongCloud = {
+          IMClient: null,
+          Token: null,
+          AppKey: null,
+        };
+        this.Attrs = {
+          talk: {
+            id: null,        //当前交谈对象的id
+            whole: {},       //所有有我交谈过的人
+          },
+          image: {
+            file: [],      //抓取的图片的文件
+            count: 1       //总共多少张
+          },
+          message: {
+            unreadCount:{}     //未读消息数
+          },
+          current: {
+            listType: "customer",    //当前的列表类型
+            imageIndex: 0,
+            redirectDom: 0,
+            index: 0
+          }
+          sendArgs: {      //发送的数据
+            conversationtype: 1,
+            targetId: this.targetId,
+            msg: null
+          },
+          chatType: {      //交谈对象类型
+            customer: {},
+            waiter: {},
+            black: {}
+          },
+          mark: {        //开关
+            history: null
+          }
+        };
+      },
+
+      initDoms: function () {
+        this.Doms = {
+          webchatDom: $("#webchat");      //whole wrap
+          navDom: $("#webchat-nav"); //导航区
+          list: {
+            wholeDom: $("#webchat-list"); //列表内容区
+            contentDom: $("#webchat-list-content"); //列表内容区
+          },
+          conversation: {
+            wholeDom: $("#webchat-conversation"); //会话区
+            windowDom: $("#webchat-conversation-window"); //会话窗口
+            contentDom: $("#webchat-conversation-content"); //会话内容部分
+            writeDom: $("#webchat-conversation-write");    //输入区
+            customerNameDom: $("#webchat-customer-name"); //客户名
+            imageListDom: $("#webchat-image-list"); //图片区
+            inputDom: $("#webchat-input"); //输入框
+          },
+          minimize: {
+            wholeDom: $("#webchat-minimize"); //最小化按钮
+            openSignDom: $("#webchat-open-sign");   //最小化打开标志
+          },
+          sundry: {
+            fileInputDom: $("#webchat-file-input");      //FileUpload
+            canvasDom: $("#webchat-back-canvas");    //画布
+            backImageDom: $("#webchat-back-photo");
+          },
+
+          modalDom: $("#webchat-modal");      //modal
+          exhibitDom: $("#webchat-exhibit");      //展示的图片
+          teleprompterContentDom: $("#webchat-teleprompter-content");    //提词器
+          waiterListDom: $("#webchat-waiter-list");    //转接客服展示区
+        };
+      },
+
+
+      /* s 窗口操作 */
+        showWindow: function(thisDom) {
+          var Attrs = this.Attrs;
+          Attrs.message.unreadCount[Attrs.target.id] = 0; //清空当前客户的未读消息数
+          var targetId = thisDom.attr("data-target-id"); //获得点击的客户id
+          var targetName = thisDom.attr("data-target-name"); //获得点击的客户name
+          if (targetId !== Attrs.target.id) { //若与当前聊天对象不符
+            Attrs.mark.history = true; //设置可以获取历史记录
+            Attrs.target.id = targetId; //修改当前聊天对象
+            this.Doms.conversation.contentDom.html(""); //清空会话区所有消息
+            if (thisDom.attr("data-badge")) {      //有未读消息
+              thisDom.find(".webchat-tip-unread").remove(); //移除未读消息标志
+              thisDom.attr("data-badge", ""); //是否存在未读消息设置为否
+              this.loadUnreadMsg(function(amount) { //加载未读消息数
+                WebChat.loadHistoryMsg("unread", amount); //在历史消息中获取对应数量的消息
+              });
+            }
+            this.Doms.conversation.customerNameDom.text(targetName); //改变客户名
+            this.Doms.conversation.wholeDom.show(); //会话区show
+          }
+        },
+        openWebChat: function() {
+          this.Doms.minimize.wholeDom.hide();
+          this.Doms.navDom.show();
+          this.Doms.list.wholeDom.show();
+          this.Doms.conversation.wholeDom.show();
+        },
+        hideWindow: function() {
+          this.Doms.conversation.wholeDom.hide();
+        },
+        minimize: function() {
+          this.Doms.navDom.hide();
+          this.Doms.list.wholeDom.hide();
+          this.Doms.conversation.wholeDom.hide();
+          this.Doms.minimize.wholeDom.show();
+        },
+        closeWebChat: function() {
+          this.Doms.navDom.hide();
+          this.Doms.list.wholeDom.hide();
+          this.Doms.conversation.wholeDom.hide();
+          this.Doms.conversation.contentDom.html("");
+          this.Doms.minimize.wholeDom.show();
+          this.Doms.conversation.inputDom.val("");
+        },
+      /* e 窗口操作 */
+
+      /* s 键盘操作 */
+      inputOperate: function(event) {
+        var e = event || window.event;
+        e.stopPropagation();
+        if (e.keyCode == 13) {
+          e.preventDefault();
+          if (e.ctrlKey) {
+            $(this).val(function(index, text) {
+              return text + "\n";
+            });
+          } else {
+            WebChat.send();
+          }
+        }
+      },
+      keepSide: function(event) {
+        var e = event || window.event;
+        e.stopPropagation();
+        if (e.ctrlKey) {
+          e.preventDefault();
+          if (e.keyCode == 37) { //lef
+            var Doms = WebChat.Doms;
+            Doms.webchatDom.html("");
+            Doms.webchatDom.append(Doms.navDom).append(Doms.listDom).append(WebChat.convrDom).append(WebChat.miniBtnDom);
+            Doms.webchatDom.css({
+              left: 0,
+              right: "none"
+            });
+            WebChat.openSignDom.remove();
+            WebChat.miniBtnDom.children().first().before(WebChat.openSignDom);
+            WebChat.miniBtnDom.css({
+              left: 0,
+              right: "none"
+            });
+          } else if (e.keyCode == 39) { //right
+            WebChat.webchatDom.html("");
+            WebChat.webchatDom.append(WebChat.convrDom).append(WebChat.listDom).append(WebChat.navDom).append(WebChat.miniBtnDom);
+            WebChat.webchatDom.css({
+              left: "none",
+              right: 0
+            });
+            WebChat.openSignDom.remove();
+            WebChat.miniBtnDom.children().last().after(WebChat.openSignDom);
+            WebChat.miniBtnDom.css({
+              left: "none",
+              right: 0
+            });
+          } else if (e.keyCode == 38) { //up
+            WebChat.webchatDom.css({
+              top: 0,
+              bottom: "none"
+            });
+            WebChat.miniBtnDom.css({
+              top: 0,
+              bottom: "none"
+            });
+          } else if (e.keyCode == 40) { //Down
+            WebChat.webchatDom.css({
+              top: "none",
+              bottom: 0
+            });
+            WebChat.miniBtnDom.css({
+              top: "none",
+              bottom: 0
+            });
+          }
+        }
+      }
+      /* e 键盘操作 */
+    };
+  </script>
+</body>
+
+</html>

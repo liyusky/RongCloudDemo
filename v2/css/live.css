@@ -1,0 +1,46 @@
+.webchat-live {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  background: #141111;
+}
+
+.webchat-live .webchat-live-message {
+  width: 30%;
+  height: 100%;
+  padding: 5%;
+}
+
+.webchat-live .webchat-live-message .live-messgae-item {
+  width: 100%;
+  height: 50px;
+  line-height: 30px;
+  font-size: 20px;
+  padding: 10px 20px;
+  background: #fff;
+  margin-top: 100px;
+}
+
+.webchat-live .webchat-video-screen {
+  width: 40%;
+  height: 100%;
+  padding: 5%;
+}
+
+.webchat-live .webchat-video-screen .webchat-screen-wrap {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+}
+
+.webchat-live .webchat-live-close {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 50px;
+  right: 50px;
+  background: #fff;
+}

@@ -15,7 +15,7 @@
   border-top-right-radius: 5px;
 }
 
-.webchat-conversation .webchat-conversation-header .webchat-target-name {
+.webchat-conversation .webchat-conversation-header .webchat-customer-name {
   height: 25px;
   line-height: 25px;
   color: #333;
@@ -129,7 +129,7 @@
   max-height: 100%;
 }
 
-.webchat-conversation .webchat-conversation-footer {
+.webchat-conversation .webchat-conversation-write {
   width: 550px;
   height: 122px;
   background: #F9F9F9;
@@ -138,7 +138,7 @@
   border-bottom-right-radius: 5px;
 }
 
-.webchat-conversation .webchat-conversation-footer .webchat-input {
+.webchat-conversation .webchat-conversation-write .webchat-input {
   height: 80px;
   width: 100%;
   user-modify: read-write;
@@ -156,11 +156,11 @@
   word-wrap: break-word;
 }
 
-.webchat-conversation .webchat-conversation-footer .webchat-input .input-img {
+.webchat-conversation .webchat-conversation-write .webchat-input .input-img {
   max-width: 130px;
 }
 
-.webchat-conversation .webchat-conversation-footer .webchat-image-nav {
+.webchat-conversation .webchat-conversation-write .webchat-image-nav {
   width: 459px;
   height: 36px;
   padding: 5px;
@@ -168,41 +168,41 @@
   overflow-x: scroll;
 }
 
-.webchat-conversation .webchat-conversation-footer .webchat-image-nav::-webkit-scrollbar-track {
+.webchat-conversation .webchat-conversation-write .webchat-image-nav::-webkit-scrollbar-track {
   background-color: #fff;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   height: 5px;
   border-radius: 100px;
 }
 
-.webchat-conversation .webchat-conversation-footer .webchat-image-nav::-webkit-scrollbar {
+.webchat-conversation .webchat-conversation-write .webchat-image-nav::-webkit-scrollbar {
   height: 5px;
   background-color: #D6D6D7;
 }
 
-.webchat-conversation .webchat-conversation-footer .webchat-image-nav::-webkit-scrollbar-thumb {
+.webchat-conversation .webchat-conversation-write .webchat-image-nav::-webkit-scrollbar-thumb {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
   background-color: #A5A5A5;
   border-radius: 100px;
 }
 
-.webchat-conversation .webchat-conversation-footer .webchat-image-nav .webchat-image-list {
+.webchat-conversation .webchat-conversation-write .webchat-image-nav .webchat-image-list {
   width: 0;
   height: 25px;
 }
 
-.webchat-conversation .webchat-conversation-footer .webchat-image-nav .webchat-image-list .webchat-image-wrap {
+.webchat-conversation .webchat-conversation-write .webchat-image-nav .webchat-image-list .webchat-image-wrap {
   width: 45px;
   height: 25px;
   padding: 0 5px;
 }
 
-.webchat-conversation .webchat-conversation-footer .webchat-image-nav .webchat-image-list .webchat-image-wrap .webchat-image-input {
+.webchat-conversation .webchat-conversation-write .webchat-image-nav .webchat-image-list .webchat-image-wrap .webchat-image-input {
   width: 35px;
   height: 25px;
 }
 
-.webchat-conversation .webchat-conversation-footer .webchat-image-nav .webchat-image-list .webchat-image-wrap .image-badge {
+.webchat-conversation .webchat-conversation-write .webchat-image-nav .webchat-image-list .webchat-image-wrap .image-badge {
   display: none;
   width: 14px;
   height: 14px;
@@ -216,11 +216,11 @@
   text-align: center;
 }
 
-.webchat-conversation .webchat-conversation-footer .webchat-image-nav .webchat-image-list .webchat-image-wrap:hover .image-badge {
+.webchat-conversation .webchat-conversation-write .webchat-image-nav .webchat-image-list .webchat-image-wrap:hover .image-badge {
   display: block;
 }
 
-.webchat-conversation .webchat-conversation-footer .webchat-send-btn {
+.webchat-conversation .webchat-conversation-write .webchat-send-btn {
   width: 70px;
   height: 25px;
   border: 1px solid #E3E3E3;
@@ -229,7 +229,7 @@
   color: #606060;
 }
 
-.webchat-conversation .webchat-conversation-footer .webchat-send-btn:hover {
+.webchat-conversation .webchat-conversation-write .webchat-send-btn:hover {
   background: #3DCE3D;
   color: #fff;
   border-color: #3DCE3D;

@@ -88,6 +88,18 @@ ul li {
   display: none;
 }
 
+.show-block {
+  display: block;
+}
+
+.show-inline {
+  display: inline;
+}
+
+.show-inline-block {
+  display: inline-block;
+}
+
 .saying-background-left {
   background: #fff;
 }

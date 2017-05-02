@@ -5,10 +5,14 @@
   <meta charset="utf-8">
   <title>聊天</title>
   <link rel="stylesheet" href="./css/resetting.css">
-  <link rel="stylesheet" href="./css/webchat_nav.css">
-  <link rel="stylesheet" href="./css/webchat_nav.css">
-  <link rel="stylesheet" href="./css/webchat_nav.css">
-  <link rel="stylesheet" href="./css/webchat_nav.css">
+  <link rel="stylesheet" href="./css/sundry.css">
+  <link rel="stylesheet" href="./css/conversation.css">
+  <link rel="stylesheet" href="./css/list.css">
+  <link rel="stylesheet" href="./css/minimize.css">
+  <link rel="stylesheet" href="./css/nav.css">
+  <link rel="stylesheet" href="./css/teleprompter.css">
+  <link rel="stylesheet" href="./css/redirect.css">
+  <link rel="stylesheet" href="./css/live.css">
   <script src="./javascript/require.js" charset="utf-8"></script>
   <script src="./javascript/jquery.min.js" charset="utf-8"></script>
   <script src="./javascript/RongIMLib-2.2.5.min.js" charset="utf-8"></script>
@@ -40,8 +44,9 @@
       </div>
     </nav>
     <!-- e 导航栏 -->
+
     <!-- s 会话列表 -->
-    <div class="webchat-list fl" id="webchat-list">
+    <section class="webchat-list fl" id="webchat-list">
       <div class="webchat-list-action">
         <div class="webchat-input-box fl">
           <input type="text" class="list-input fl">
@@ -54,10 +59,11 @@
       <div class="webchat-list-wrap">
         <ul class="webchat-list-content" id="webchat-list-content"></ul>
       </div>
-    </div>
+    </section>
     <!-- e 会话列表 -->
+
     <!-- s 会话内容 -->
-    <div class="webchat-conversation fl" id="webchat-conversation">
+    <section class="webchat-conversation fl" id="webchat-conversation">
       <div class="webchat-conversation-header relative">
         <p class="webchat-target-name" id="webchat-target-name">liyusky</p>
         <div class="webchat-conversation-tools tools-right">
@@ -78,10 +84,11 @@
         </div>
         <button type="button" class="webchat-send-btn fr" onclick="javascript: WebChat.send();">发送</button>
       </div>
-    </div>
+    </section>
     <!-- e 会话内容 -->
+
     <!-- s 提词器 -->
-    <div class="webchat-teleprompter fl" id="webchat-teleprompter">
+    <section class="webchat-teleprompter fl" id="webchat-teleprompter">
       <div class="webchat-teleprompter-header">
         <span>快捷发送</span>
         <span style="text-align: right;float: right; padding-right: 15px;" onclick="javascript: WebChat.addTeleprompter();">+</span>
@@ -242,47 +249,206 @@
           </ul>
         </div>
       </div>
-    </div>
+    </section>
     <!-- e 提词器 -->
+
     <!-- s 缩略栏 -->
-    <div class="webchat-minimize" id="webchat-minimize">
+    <section class="webchat-minimize" id="webchat-minimize">
       <img src="./images/8.png" class="minimize-sign webchat-open-sign fl" onclick="javascript: WebChat.openWebChat();" title="展开">
       <img src="" class="minimize-sign fl" title="发来消息的人数">
       <span class="minimize-count fl">5</span>
       <img src="" class="minimize-sign fl" title="未读消息数">
       <span class="minimize-count fl">100</span>
-    </div>
+    </section>
     <!-- e 缩略栏 -->
+
     <!-- s modal -->
-    <div class="webchat-modal" id="webchat-modal" class="fixed">
+    <section class="webchat-modal" id="webchat-modal" class="fixed">
       <div class="modal-img-box">
         <img class="webchat-exhibit" src="" id="webchat-exhibit">
       </div>
-    </div>
+    </section>
     <!-- e modal -->
+
     <!-- s 客服转接列表 -->
-    <div class="webchat-waiter-redirect" id="webchat-waiter-redirect" style="display: none;">
+    <section class="webchat-redirect-wrap hidden" id="webchat-redirect-wrap">
       <ul class="webchat-waiter-list">
-        <li class="waiter-list-item">
+        <li class="waiter-list-item fl">
           <label>
             <div class="webchat-waiter-message">
-              <div class="webchat-waiter-avatar"></div>
-              <div class="webchat-waiter-name"></div>
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">AAAA</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">BBB</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">CCC</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">AAAA</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">BBB</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">CCC</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">AAAA</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">BBB</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">CCC</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">AAAA</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">BBB</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">CCC</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">AAAA</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">BBB</div>
+            </div>
+            <input type="radio" name="waiter-redirect" value="" class="hidden">
+          </label>
+        </li>
+        <li class="waiter-list-item fl">
+          <label>
+            <div class="webchat-waiter-message">
+              <div class="webchat-waiter-avatar fl"></div>
+              <div class="webchat-waiter-name fl">CCC</div>
             </div>
             <input type="radio" name="waiter-redirect" value="" class="hidden">
           </label>
         </li>
       </ul>
       <div class="redirect-btn-nav">
-        <div class="" onclick="javascript: WebChat.transferCustomer();">确认</div>
-        <div class="" onclick="javascript: WebChat.closeRedirectWindow();">消息</div>
+        <div class="redirect-btn fr" onclick="javascript: WebChat.closeRedirectWindow();">取消</div>
+        <div class="redirect-btn fr" onclick="javascript: WebChat.transferCustomer();">确认</div>
       </div>
-    </div>
+    </section>
     <!-- e 客服转接列表 -->
+
+    <!-- s 视屏 -->
+    <section class="webchat-live-video hidden" id="webchat-live-video">
+      <ul class="webchat-live-message fl">
+        <li class="live-messgae-item fl">
+          <span>客户手机号：</span>
+          <span>1111111111</span>
+        </li>
+        <li class="live-messgae-item fl">
+          <span>客户姓名：</span>
+          <span>张三</span>
+        </li>
+        <li class="live-messgae-item fl">
+          <span>专属客服名称：</span>
+          <span>李四</span>
+        </li>
+        <li class="live-messgae-item fl">
+          <span>客服ID：</span>
+          <span>00001</span>
+        </li>
+      </ul>
+      <div class="webchat-video-screen fl">
+        <div class="webchat-screen-wrap"></div>
+      </div>
+      <div class="webchat-live-close"></div>
+    </section>
+    <!-- e 视屏 -->
+
     <!-- s 杂项 -->
-    <canvas class="webchat-back-canvas" id="webchat-back-canvas"></canvas>
-    <img src="" class="webchat-back-photo" id="webchat-back-photo">
-    <input type="file" id="webchat-image-file" multiple="true" onchange="javascript: WebChat.getImage();">
+    <section class="webchat-sundry hidden">
+      <canvas class="webchat-back-canvas" id="webchat-back-canvas"></canvas>
+      <img src="" class="webchat-back-photo" id="webchat-back-photo">
+      <input type="file" id="webchat-image-file" multiple="true" onchange="javascript: WebChat.getImage();">
+    </section>
     <!-- e 杂项 -->
   </div>
 </body>
