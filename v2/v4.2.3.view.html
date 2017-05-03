@@ -13,12 +13,10 @@
   <link rel="stylesheet" href="./css/teleprompter.css">
   <link rel="stylesheet" href="./css/redirect.css">
   <link rel="stylesheet" href="./css/live.css">
-  <script src="./javascript/AgoraRtcAgentSDK-1.4.2.js" charset="utf-8"></script>
-  
-  <script src="./javascript/RongIMLib-2.2.5.min.js" charset="utf-8"></script>
-  <script src="./javascript/RongCallLib-2.3.0.min.js" charset="utf-8"></script>
   <script src="./javascript/require.js" charset="utf-8"></script>
   <script src="./javascript/jquery.min.js" charset="utf-8"></script>
+  <script src="./javascript/RongIMLib-2.2.5.min.js" charset="utf-8"></script>
+  <script src="./javascript/RongCallLib-2.3.0.min.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -453,8 +451,6 @@
       <input type="file" id="webchat-file-input" multiple="true" onchange="javascript: WebChat.getImage();">
     </section>
     <!-- e 杂项 -->
-
-    <button type="button" name="button" onclick="WebChat.openLive()">aaaaaaaaaaaaaaaaaaaaaa</button>
   </div>
   <script type="text/javascript">
     var WebChat = {
@@ -465,7 +461,7 @@
         this.detectRuntime();
         this.initAttrs();
         this.getToken();
-        this.initDoms();
+        this.initDom();
         this.loadRongCloud();
         this.initEvent();
       },
@@ -497,7 +493,7 @@
               unreadCount:{}     //未读消息数
             },
             current: {
-              listType: "waiter",    //当前的列表类型
+              listType: "customer",    //当前的列表类型
               redirectDom: 0,
               imageIndex: 0
             },
@@ -505,7 +501,7 @@
               conversationtype: 1,
               msg: null
             },
-            chatList: {      //交谈对象类型
+            chatType: {      //交谈对象类型
               customer: {},
               waiter: {},
               black: {}
@@ -527,9 +523,9 @@
           //         this.Token = data.Token;
           //     }
           // });
-          this.Attrs.target.id = "weihort";
-          this.RongCloud.AppKey = "qd46yzrfq0bzf";
-          this.RongCloud.Token = "M7MX0gfSKd6L81+AI6lVXWu+MJ+TRSiRYDQiQyOR+6rolamrJDbsxz9SZKKJf79BLFidu2R9N1ODQinz4m10I6P5nqEpLAsD";
+          this.Attrs.target.id = null;
+          this.RongCloud.AppKey = "ik1qhw09i234p";
+          this.RongCloud.Token = "VP0ZdYropmGlbsLs+5NlyXquDCdi0JfiOlIY+u/RT1ov/JV3R9myhP2bLOW96DXsbPEAgGQkW74j5rl6YL+a0w==";
         },
         initDoms: function () {
           this.Doms = {
@@ -595,9 +591,7 @@
           require.config({ //导入文件
             paths: {
               protobuf: './javascript/protobuf-2.1.5.min',
-              RongIMLib: './javascript/RongIMLib-2.2.5.min',
-              AgoraRtcAgentSDK: './javascript/AgoraRtcAgentSDK-1.4.2',
-              RongCallLib: './javascript/RongCallLib-2.3.0.min',
+              RongIMLib: './javascript/RongIMLib-2.2.5.min'
             }
           });
           require(['protobuf', 'RongIMLib'], function(protobuf, RongIMLib) { //加载导入的文件
@@ -649,21 +643,19 @@
               var targetId = message.senderUserId; //对方Id
               var extra = WebChat.translateJson(message.content.extra);    //获取额外信息
               var role = extra.role; //对方身份
-
               if (Attrs.target.id === null) { //是第一个发送者
                 Attrs.target.id = targetId; //设置为当前聊天对象
               }
-
-              if (!Attrs.chatList[role][targetId]) {   //没有记录该客户
-                Attrs.chatList[role][targetId] = extra;  //记录该客户
-                WebChat.Attrs = Attrs;
-                WebChat.addListTip(message, role); //添加该用户的tip
-              }
-
               switch (Attrs.current.listType) {    //当前选择的列表类型
                 case "customer":
                   switch (role) {        //对方身份
                     case "customer":   //对方是客户
+                      if (!Attrs.chatType[role][targetId]) {   //没有记录该客户
+                        Attrs.chatType[role][targetId] = extra;  //记录该客户
+                        WebChat.Attrs = Attrs;
+                        WebChat.addListTip(message, "customer"); //添加该用户的tip
+                      }
+
                       if (targetId === Attrs.target.id) {     //是当前聊天对象
                         Attrs.message.unreadCount[targetId] = 0;//该对象未读消息数清空
                         WebChat.Attrs = Attrs;
@@ -706,10 +698,21 @@
                 case "waiter":
                   switch (role) {    //对方身份
                     case "customer":   //对方是客户
+                      if (!Attrs.chatType[role][targetId]) {
+                        Attrs.chatType[role][targetId] = extra;
+                      }
+
+                      if (!!Attrs.message.unreadCount[targetId]) {
+                        Attrs.message.unreadCount[targetId] += 1;
+                      }
+                      else {
+                        Attrs.message.unreadCount[targetId] = 1;
+                      }
+
                       Attrs = WebChat.setUnreadCount(Attrs);
                       break;
                     case "waiter":
-                      if (targetId === Attrs.target.id) {
+                      if (targetId === WebChat.targetId) {
                         Attrs.message.unreadCount[targetId] = 0; //该对象未读消息数清空
                         WebChat.Attrs = Attrs;
                         WebChat.addSaying(message, "only"); //显示该消息
@@ -722,23 +725,29 @@
                   }
                   break;
                 case "black":
+                  if (role === "customer" && !Attrs.chatType[role][targetId]) {
+                    Attrs.chatType[role][targetId] = extra;
+                  }
                   Attrs = WebChat.setUnreadCount(Attrs);
                   break;
               }
               switch (message.messageType) {
-                case RongIMClient.MessageType.InviteMessage: // 收到音视频通话邀请
-                  WebChat.joinCall();    //加入通话
-                  break;
-                case RongIMClient.MessageType.SummaryMessage: // 结束语音通话后收到
-                  break;
-                case RongIMClient.MessageType.RingingMessage: // 响铃消息
-
-                  break;
-                case RongIMClient.MessageType.AcceptMessage: // 同意接听音视频通话消息
-
-                  break;
-                case RongIMClient.MessageType.MediaModifyMessage: // 视频转音频消息
-                  break;
+                case RongIMClient.MessageType.InviteMessage:
+                  // 收到音视频通话邀请
+                break;
+                case RongIMClient.MessageType.SummaryMessage:
+                  // 结束语音通话后收到
+                break;
+                case RongIMClient.MessageType.RingingMessage:
+                  // 响铃消息
+                break;
+                case RongIMClient.MessageType.AcceptMessage:
+                  // 同意接听音视频通话消息
+                break;
+                case RongIMClient.MessageType.MediaModifyMessage:
+                  // 视频转音频消息
+                break;
+                //other conversationTypes
               }
               WebChat.Attrs = Attrs;
             }
@@ -776,18 +785,16 @@
                 targetRole: Attrs.current.listType,
                 name: "一二三",
                 mobile: "12345678900",
-                // unreadMessageCount: 0
+                unreadMessageCount: 0
               }
             };
 
             this.setSendArgs(sendParam);
             this.sendMessage(); //发送文本消息
           }
-
           if (imageFiles.length > 0) {
             WebChat.setThumbnail(imageFiles[Attrs.current.imageIndex], WebChat.singleImageSend);
           }
-
           this.Doms.conversation.inputDom.val(""); //清空输入框
           Attrs.current.imageIndex = -1;
           this.Attrs = Attrs;
@@ -851,13 +858,14 @@
         },
         setSendArgs: function(messageContent) {      //设置发送的信息参数
           var Attrs = this.Attrs;
-          var msg = null;
+          var msg;
           switch (messageContent.type) {
             case "text":
               msg = new RongIMLib.TextMessage({
                 content: messageContent.saying,
                 extra: messageContent.extra
               }); // 设置发送到信息
+              Attrs.sendArgs.msg = msg;
               break;
             case "image":
               msg = new RongIMLib.ImageMessage({
@@ -865,6 +873,7 @@
                 imageUri: messageContent.imgUri,
                 extra: messageContent.extra
               });
+              Attrs.sendArgs.msg = msg;
               break;
             case "redirection":
               msg = new this.RongIMClient.RegisterMessage.PersonMessage({
@@ -872,14 +881,14 @@
                 content: messageContent.content,
                 extra: messageContent.extra
               });
+              Attrs.sendArgs.msg = msg;
               break;
             case "video":
               Attrs.sendArgs.mediaType = messageContent.mediaType;
               Attrs.sendArgs.invertUserIds = messageContent.invertUserIds;
-              Attrs.sendArgs.extra = JSON.stringify(messageContent.extra);
+              Attrs.sendArgs.extra = messageContent.extra;
               break;
           }
-          Attrs.sendArgs.msg = msg;
           this.Attrs.sendArgs = Attrs.sendArgs;
         },
         sendMessage: function(callback) {
@@ -888,13 +897,11 @@
           this.RongCloud.IMClient.getInstance().sendMessage(args.conversationtype, Attrs.target.id, args.msg, { //发送消息
             onSuccess: function(message) {
               var targetRole = Attrs.current.listType;
-              // Attrs.chatList[targetRole] = WebChat.preventNullValue(Attrs.chatList[targetRole], Attrs.target.id, false);
-              if (!Attrs.chatList[targetRole][Attrs.target.id]) { //列表区没有该用户的tip
+              if (!Attrs.chatType[targetRole][Attrs.current.target.id]) { //列表区没有该用户的tip
                 WebChat.Attrs = Attrs;
                 WebChat.addListTip(message, targetRole); //添加该客户的tip
-                Attrs.chatList[targetRole][Attrs.target.id] = message.content.extra; //设置存在该tip
+                Attrs.chatType[targetRole][Attrs.current.target.id] = message.content.extra; //设置存在该tip
               }
-
               WebChat.Attrs = Attrs;
               WebChat.addSaying(message, "only"); //在会话区添加消息
               this.Attrs = Attrs;
@@ -1126,7 +1133,7 @@
           var count = arguments.length;
           if (count === 1) {
             type = arguments[0];
-            var list = this.Attrs.chatList[type];
+            var list = this.Attrs.chatType[type];
             for (var targetId in list) {
               message = list[targetId];
               htmlStr += this.setListTipHtml(message, type, targetId);
@@ -1182,11 +1189,11 @@
                 var targetId = list[i].targetId;
                 var receivedTime = list[i].targetId;
                 if (role !== "customer" || (receivedTime >= deadLine && role === "customer")) {
-                  Attrs.chatList[role][targetId] = list[i];
+                  Attrs.chatType[role][targetId] = list[i];
                 }
               }
               WebChat.Attrs = Attrs;
-              localStorage.chatList = JSON.stringify(Attrs.chatList);
+              localStorage.chatType = JSON.stringify(Attrs.chatList);
               setTimeout(this.getConversationList, 3600000); //每隔一小时刷新一次
             },
             onError: function(error) {
@@ -1202,52 +1209,33 @@
           this.Doms.live.wholeDom.show();
           var sendParam = {
             type: "video",
-            mediaType: 2, //视屏
+            mediaType: 1, //视屏
             invertUserIds: [this.Attrs.target.id],
             extra: {
               role: "waiter",
-              targetRole: this.Attrs.current.listType,
+              targetRole: Attrs.current.listType,
               name: "一二三",
               mobile: "12345678900"
             }
           };
-          console.log(sendParam);
           this.setSendArgs(sendParam);
           this.startCall();
         },
         closeLive: function () {
-          this.hungupCall();
           this.Doms.live.wholeDom.hide();
         },
         startCall: function () {
-          var mediaType = this.RongCloud.IMLib.VoIPMediaType.MEDIA_VEDIO; //视频通话
+          // var mediaType = this.RongCloud.IMLib.VoIPMediaType.MEDIA_VEDIO; //视频通话
           //var mediaType = this.RongCloud.IMLib.VoIPMediaType.MEDIA_AUDIO; //音频通话
           var Attrs = this.Attrs;
           var args = Attrs.sendArgs;
           this.RongCloud.IMClient.getInstance().startCall(args.conversationtype, Attrs.target.id, args.invertUserIds, args.mediaType, args.extra,{
             onSuccess:function(){
-              console.log(1);
                // => startCall successfully
             },
             onError:function(err){
-              console.log(err);
                // => startCall error
             }
-          });
-        },
-        hungupCall: function () {
-          var Attrs = this.Attrs;
-          var args = Attrs.sendArgs;
-          this.RongCloud.IMClient.getInstance().hungupCall(args.conversationtype, Attrs.target.id, args.mediaType);
-        },
-        joinCall: function () {
-          this.RongCloud.IMClient.getInstance().joinCall(this.Attrs.sendArgs.mediaType,{
-             onSuccess:function(){
-               console.log("joinCall Successfully");
-             },
-             onError:function(err){
-                 console.log("joinCall err",err);
-             }
           });
         },
       /* e 视屏 */
@@ -1414,11 +1402,11 @@
           this.RongCloud.IMClient.getInstance().addToBlacklist(userId, {
             onSuccess: function() {
               WebChat.removeTip(thisDom);
-              WebChat.Attrs.chatList.black[userId] = {
+              WebChat.Attrs.chatType.black[userId] = {
                 name: userName,
                 mobile: userMobile
               };
-              localStorage.BlackList = JSON.stringify(WebChat.Attrs.chatList.black);
+              localStorage.BlackList = JSON.stringify(WebChat.Attrs.chatType.black);
             },
             onError: function(error) {
               // 加入黑名单失败。
@@ -1434,8 +1422,8 @@
           this.RongCloud.IMClient.getInstance().removeFromBlacklist(userId, {
             onSuccess: function() {
               WebChat.removeTip(thisDom);
-              delete WebChat.Attrs.chatList.black[userId];
-              localStorage.BlackList = JSON.stringify(WebChat.Attrs.chatList.black);
+              delete WebChat.Attrs.chatType.black[userId];
+              localStorage.BlackList = JSON.stringify(WebChat.Attrs.chatType.black);
             },
             onError: function(error) {}
           });
@@ -1539,7 +1527,7 @@
             extra = this.translateJson(message.latestMessage.content.extra);
             targetName = extra.name;
             targetMobile = extra.mobile;
-            unreadMessageCount = this.message.unreadCount[targetId];
+            unreadMessageCount = message.unreadMessageCount;
             lastTime = this.formatDate(message.sentTime, "tip");
           }
           else if (message.content) {
@@ -1553,7 +1541,7 @@
             targetId = arguments[2];
             targetName = message.name;
             targetMobile = message.mobile;
-            unreadMessageCount = this.message.unreadCount[targetId];
+            unreadMessageCount = message.unreadMessageCount;
           }
 
           if (unreadMessageCount === 0) {
@@ -1576,7 +1564,7 @@
               "</li>";
           }
           else if (type == "waiter") {
-            htmlStr = "<li class='webchat-tip fl' data-target-id='" + targetId + "' data-target-name='" + targetName + "' data-badge='' onclick='javascript: WebChat.showWindow($(this));'>" +
+            htmlStr = "<li class='webchat-tip fl' data-target-id='" + targetId + "' data-target-name='" + name + "' data-badge='' onclick='javascript: WebChat.showWindow($(this));'>" +
               "<div class='webchat-avatar fl relative'>" +
               "<img src='' class='avatar-img'>" +
               "<i class='avatar-status-sign webchat-tip-unread'></i>" +
@@ -1584,7 +1572,7 @@
               "</div>" +
               "<div class='webchat-target fl'>" +
               "<div class='target-box'>" +
-              "<p class='tip-information font-sm omit'>" + targetName + "</p>" +
+              "<p class='tip-information font-sm omit'>" + userName + "</p>" +
               "</div>" +
               "<div class='target-box'>" +
               "<p class='tip-information font-sm omit'>" + lastSaying + "</p>" +
@@ -1685,11 +1673,11 @@
           }
         },
         setUnreadCount: function (Attrs) {
-          if (!!Attrs.message.unreadCount[Attrs.target.id]) {
-            Attrs.message.unreadCount[Attrs.target.id] += 1;
+          if (!!Attrs.message.unreadCount[targetId]) {
+            Attrs.message.unreadCount[targetId] += 1;
           }
           else {
-            Attrs.message.unreadCount[Attrs.target.id] = 1;
+            Attrs.message.unreadCount[targetId] = 1;
           }
           return Attrs;
         },
