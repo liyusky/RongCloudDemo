@@ -9,14 +9,14 @@
 }
 
 .webchat-modal .modal-img-box {
-  width: 70%;
+  height: 80%;
   position: absolute;
-  top: 50%;
+  top: 10%;
   left: 50%;
 }
 
 .webchat-modal .modal-img-box .webchat-exhibit {
-  width: 100%;
+  height: 100%;
 }
 
 .webchat-back-canvas {

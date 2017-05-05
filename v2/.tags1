@@ -4,317 +4,299 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-html	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^<html>$/;"	function	line:2
-head	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^<head>$/;"	function	line:4
-meta	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^  <meta charset="utf-8">$/;"	function	line:5
-title	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^  <title>聊天<\/title>$/;"	function	line:6
-link	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^  <link rel="stylesheet" href=".\/css\/resetting.css">$/;"	function	line:7
-link	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^  <link rel="stylesheet" href=".\/css\/sundry.css">$/;"	function	line:8
-link	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^  <link rel="stylesheet" href=".\/css\/conversation.css">$/;"	function	line:9
-link	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^  <link rel="stylesheet" href=".\/css\/list.css">$/;"	function	line:10
-link	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^  <link rel="stylesheet" href=".\/css\/minimize.css">$/;"	function	line:11
-link	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^  <link rel="stylesheet" href=".\/css\/nav.css">$/;"	function	line:12
-link	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^  <link rel="stylesheet" href=".\/css\/teleprompter.css">$/;"	function	line:13
-link	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^  <link rel="stylesheet" href=".\/css\/redirect.css">$/;"	function	line:14
-link	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^  <link rel="stylesheet" href=".\/css\/live.css">$/;"	function	line:15
-script	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^  <script src=".\/javascript\/require.js" charset="utf-8"><\/script>$/;"	function	line:16
-script	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^  <script src=".\/javascript\/jquery.min.js" charset="utf-8"><\/script>$/;"	function	line:17
-script	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^  <script src=".\/javascript\/RongIMLib-2.2.5.min.js" charset="utf-8"><\/script>$/;"	function	line:18
-script	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^  <script src=".\/javascript\/RongCallLib-2.3.0.min.js" charset="utf-8"><\/script>$/;"	function	line:19
-body	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^<body>$/;"	function	line:22
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^  <div id="webchat" class="webchat fixed">$/;"	function	line:23
-nav	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^    <nav class="webchat-nav fl relative" id="webchat-nav">$/;"	function	line:25
-ul	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^      <ul class="webchat-nav-list">$/;"	function	line:26
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <li class="webchat-nav-tag" title="头像">$/;"	function	line:27
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <img src=".\/images\/33.jpg" class="webchat-tag-img">$/;"	function	line:28
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <li class="webchat-nav-tag" data-target-type="customer" onclick="javascript: WebChat.showList('customer');" title="客户">$/;"	function	line:30
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <img src=".\/images\/2.png" class="webchat-tag-img">$/;"	function	line:31
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <li class="webchat-nav-tag" data-target-type="waiter" onclick="javascript: WebChat.showList('waiter');" title="客服">$/;"	function	line:33
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <img src=".\/images\/3.png" class="webchat-tag-img">$/;"	function	line:34
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <li class="webchat-nav-tag" data-target-type="black" onclick="javascript: WebChat.showList('black');" title="群组">$/;"	function	line:36
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <img src="" class="webchat-tag-img">$/;"	function	line:37
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <li class="webchat-nav-tag" data-target-type="black" onclick="javascript: WebChat.showList('black');" title="黑名单">$/;"	function	line:39
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <img src=".\/images\/5.png" class="webchat-tag-img">$/;"	function	line:40
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^      <div class="webchat-nav-retract" title="收起">$/;"	function	line:43
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <img src=".\/images\/6.png" class="webchat-tag-img" onclick="javascript: WebChat.minimize();">$/;"	function	line:44
-section	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^    <section class="webchat-list fl" id="webchat-list">$/;"	function	line:50
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^      <div class="webchat-list-action">$/;"	function	line:51
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <div class="webchat-input-box fl">$/;"	function	line:52
-input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <input type="text" class="list-input fl">$/;"	function	line:53
-i	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <i title="搜索">search<\/i>$/;"	function	line:54
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <div class="list-action-nav fl">$/;"	function	line:56
-button	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <button type="button" class="list-action-btn" title="转接"><\/button>$/;"	function	line:57
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^      <div class="webchat-list-wrap">$/;"	function	line:60
-ul	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <ul class="webchat-list-content" id="webchat-list-content"><\/ul>$/;"	function	line:61
-section	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^    <section class="webchat-conversation fl" id="webchat-conversation">$/;"	function	line:67
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^      <div class="webchat-conversation-header relative">$/;"	function	line:68
-p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <p class="webchat-customer-name" id="webchat-customer-name">liyusky<\/p>$/;"	function	line:69
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <div class="webchat-conversation-tools tools-right">$/;"	function	line:70
-a	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <a href="javascript: void(0);" class="tools-btn fl" onclick="javascript: WebChat.minimize();">-<\/a>$/;"	function	line:71
-a	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <a href="javascript: void(0);" class="tools-btn fl" style="border-top-right-radius: 5px;" onclick="javascript: WebChat.closeWebChat();">x<\/a>$/;"	function	line:72
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <div class="webchat-conversation-tools tools-left">$/;"	function	line:74
-a	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <a href="javascript: void(0);" class="tools-btn" onclick="javascript: WebChat.hideWindow();">&lt;<\/a>$/;"	function	line:75
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^      <div class="webchat-conversation-window" id="webchat-conversation-window">$/;"	function	line:78
-ul	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <ul class="webchat-conversation-content" id="webchat-conversation-content"><\/ul>$/;"	function	line:79
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^      <div class="webchat-conversation-write" id="webchat-conversation-write">$/;"	function	line:81
-textarea	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <textarea class="webchat-input fl" id="webchat-input"><\/textarea>$/;"	function	line:82
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <div class="webchat-image-nav fl">$/;"	function	line:83
-ul	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <ul class="webchat-image-list" id="webchat-image-list"><\/ul>$/;"	function	line:84
-button	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <button type="button" class="webchat-send-btn fr" onclick="javascript: WebChat.send();">发送<\/button>$/;"	function	line:86
-section	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^    <section class="webchat-teleprompter fl" id="webchat-teleprompter">$/;"	function	line:92
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^      <div class="webchat-teleprompter-header">$/;"	function	line:93
-span	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <span>快捷发送<\/span>$/;"	function	line:94
-span	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <span style="text-align: right;float: right; padding-right: 15px;" onclick="javascript: WebChat.addTeleprompter();">+<\/span>$/;"	function	line:95
-ul	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^      <ul class="webchat-teleprompter-content" data-count="3" id="webchat-teleprompter-content">$/;"	function	line:97
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <li class="webchat-teleprompter-item">$/;"	function	line:98
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <div class="teleprompter-item-header" data-link-content="teleprompter-default">$/;"	function	line:99
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <img src="" class="teleprompter-expansion-sign fl" onclick="javascript: WebChat.showLinkContent($(this));" data-show="1">$/;"	function	line:100
-p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <p class="webchat-teleprompter-title omit fl" ondblclick="javascript: WebChat.modifyTitle($(this));">默认提词器<\/p>$/;"	function	line:101
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <img src="" class="teleprompter-expansion-sign fr" onclick="javascript: WebChat.addLinkHint($(this));">$/;"	function	line:102
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <img src="" class="teleprompter-expansion-sign fr" onclick="javascript: WebChat.removeLinkContent($(this));">$/;"	function	line:103
-ul	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <ul class="teleprompter-item-content" id="teleprompter-default">$/;"	function	line:105
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:106
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:107
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:108
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:109
-p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">第一条<\/p>$/;"	function	line:110
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:112
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:113
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:114
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:115
-p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">第二条<\/p>$/;"	function	line:116
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:118
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:119
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:120
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:121
-p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">第三条<\/p>$/;"	function	line:122
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:124
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:125
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:126
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:127
-p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">第四条<\/p>$/;"	function	line:128
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:130
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:131
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:132
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:133
-p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">第五条<\/p>$/;"	function	line:134
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:136
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:137
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:138
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:139
-p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">第六条<\/p>$/;"	function	line:140
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:142
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:143
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:144
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:145
-p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">第七条<\/p>$/;"	function	line:146
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <li class="webchat-teleprompter-item">$/;"	function	line:150
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <div class="teleprompter-item-header" data-link-content="teleprompter-1">$/;"	function	line:151
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <img src="" class="teleprompter-expansion-sign fl">$/;"	function	line:152
-p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <p class="webchat-teleprompter-title omit fl">xdfasfad<\/p>$/;"	function	line:153
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <img src="" class="teleprompter-expansion-sign fr">$/;"	function	line:154
-ul	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <ul class="teleprompter-item-content" id="teleprompter-1">$/;"	function	line:156
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:157
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:158
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:159
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:160
-p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:161
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:163
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:164
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:165
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:166
-p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:167
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:169
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:170
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:171
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:172
-p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:173
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:175
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:176
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:177
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:178
-p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:179
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:181
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:182
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:183
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:184
-p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:185
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:187
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:188
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:189
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:190
-p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:191
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:193
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:194
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:195
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:196
-p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:197
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <li class="webchat-teleprompter-item">$/;"	function	line:201
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <div class="teleprompter-item-header" data-link-content="teleprompter-2">$/;"	function	line:202
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <img src="" class="teleprompter-expansion-sign fl">$/;"	function	line:203
-p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <p class="webchat-teleprompter-title omit fl">xdfasfad<\/p>$/;"	function	line:204
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <img src="" class="teleprompter-expansion-sign fr">$/;"	function	line:205
-ul	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <ul class="teleprompter-item-content" id="teleprompter-2">$/;"	function	line:207
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:208
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:209
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:210
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:211
-p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:212
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:214
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:215
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:216
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:217
-p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:218
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:220
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:221
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:222
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:223
-p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:224
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:226
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:227
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:228
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:229
-p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:230
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:232
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:233
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:234
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:235
-p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:236
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:238
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:239
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:240
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:241
-p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:242
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:244
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:245
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:246
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:247
-p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:248
-section	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^    <section class="webchat-minimize" id="webchat-minimize">$/;"	function	line:257
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^      <img src=".\/images\/8.png" id="webchat-open-sign" class="minimize-sign webchat-open-sign fl" onclick="javascript: WebChat.openWebChat();" title="展开">$/;"	function	line:258
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^      <img src="" class="minimize-sign fl" title="发来消息的人数">$/;"	function	line:259
-span	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^      <span class="minimize-count fl">5<\/span>$/;"	function	line:260
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^      <img src="" class="minimize-sign fl" title="未读消息数">$/;"	function	line:261
-span	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^      <span class="minimize-count fl">100<\/span>$/;"	function	line:262
-section	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^    <section class="webchat-modal fixed" id="webchat-modal">$/;"	function	line:267
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^      <div class="modal-img-box">$/;"	function	line:268
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <img class="webchat-exhibit" src="" id="webchat-exhibit">$/;"	function	line:269
-section	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^    <section class="webchat-redirect hidden" id="webchat-redirect">$/;"	function	line:275
-ul	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^      <ul class="webchat-waiter-list" id="webchat-waiter-list">$/;"	function	line:276
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:277
-label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <label>$/;"	function	line:278
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:279
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:280
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-name fl">AAAA<\/div>$/;"	function	line:281
-input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:283
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:286
-label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <label>$/;"	function	line:287
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:288
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:289
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-name fl">BBB<\/div>$/;"	function	line:290
-input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:292
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:295
-label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <label>$/;"	function	line:296
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:297
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:298
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-name fl">CCC<\/div>$/;"	function	line:299
-input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:301
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:304
-label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <label>$/;"	function	line:305
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:306
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:307
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-name fl">AAAA<\/div>$/;"	function	line:308
-input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:310
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:313
-label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <label>$/;"	function	line:314
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:315
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:316
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-name fl">BBB<\/div>$/;"	function	line:317
-input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:319
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:322
-label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <label>$/;"	function	line:323
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:324
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:325
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-name fl">CCC<\/div>$/;"	function	line:326
-input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:328
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:331
-label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <label>$/;"	function	line:332
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:333
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:334
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-name fl">AAAA<\/div>$/;"	function	line:335
-input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:337
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:340
-label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <label>$/;"	function	line:341
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:342
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:343
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-name fl">BBB<\/div>$/;"	function	line:344
-input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:346
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:349
-label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <label>$/;"	function	line:350
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:351
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:352
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-name fl">CCC<\/div>$/;"	function	line:353
-input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:355
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:358
-label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <label>$/;"	function	line:359
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:360
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:361
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-name fl">AAAA<\/div>$/;"	function	line:362
-input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:364
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:367
-label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <label>$/;"	function	line:368
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:369
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:370
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-name fl">BBB<\/div>$/;"	function	line:371
-input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:373
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:376
-label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <label>$/;"	function	line:377
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:378
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:379
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-name fl">CCC<\/div>$/;"	function	line:380
-input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:382
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:385
-label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <label>$/;"	function	line:386
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:387
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:388
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-name fl">AAAA<\/div>$/;"	function	line:389
-input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:391
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:394
-label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <label>$/;"	function	line:395
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:396
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:397
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-name fl">BBB<\/div>$/;"	function	line:398
-input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:400
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:403
-label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <label>$/;"	function	line:404
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:405
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:406
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^              <div class="webchat-waiter-name fl">CCC<\/div>$/;"	function	line:407
-input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:409
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^      <div class="redirect-btn-nav">$/;"	function	line:413
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <div class="redirect-btn fr" onclick="javascript: WebChat.closeRedirectWindow();">取消<\/div>$/;"	function	line:414
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <div class="redirect-btn fr" onclick="javascript: WebChat.customerRedirect();">确认<\/div>$/;"	function	line:415
-section	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^    <section class="webchat-live-video hidden" id="webchat-live-video">$/;"	function	line:421
-ul	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^      <ul class="webchat-live-message fl">$/;"	function	line:422
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <li class="live-messgae-item fl">$/;"	function	line:423
-span	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <span>客户手机号：<\/span>$/;"	function	line:424
-span	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <span>1111111111<\/span>$/;"	function	line:425
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <li class="live-messgae-item fl">$/;"	function	line:427
-span	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <span>客户姓名：<\/span>$/;"	function	line:428
-span	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <span>张三<\/span>$/;"	function	line:429
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <li class="live-messgae-item fl">$/;"	function	line:431
-span	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <span>专属客服名称：<\/span>$/;"	function	line:432
-span	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <span>李四<\/span>$/;"	function	line:433
-li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <li class="live-messgae-item fl">$/;"	function	line:435
-span	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <span>客服ID：<\/span>$/;"	function	line:436
-span	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          <span>00001<\/span>$/;"	function	line:437
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^      <div class="webchat-video-screen fl">$/;"	function	line:440
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^        <div class="webchat-screen-wrap"><\/div>$/;"	function	line:441
-div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^      <div class="webchat-live-close"><\/div>$/;"	function	line:443
-section	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^    <section class="webchat-sundry hidden" id="webchat-sundry">$/;"	function	line:448
-canvas	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^      <canvas class="webchat-back-canvas" id="webchat-back-canvas"><\/canvas>$/;"	function	line:449
-img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^      <img src="" class="webchat-back-photo" id="webchat-back-photo">$/;"	function	line:450
-input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^      <input type="file" id="webchat-file-input" multiple="true" onchange="javascript: WebChat.getImage();">$/;"	function	line:451
-script	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^  <script type="text\/javascript">$/;"	function	line:455
-add0	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          function add0(m) {$/;"	function	line:1372
-moving	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.1.view.html	/^          function moving(event) {$/;"	function	line:1650
+html	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^<html>$/;"	function	line:2
+head	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^<head>$/;"	function	line:4
+meta	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^  <meta charset="utf-8">$/;"	function	line:5
+title	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^  <title>聊天<\/title>$/;"	function	line:6
+link	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^  <link rel="stylesheet" href=".\/css\/resetting.css">$/;"	function	line:7
+link	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^  <link rel="stylesheet" href=".\/css\/sundry.css">$/;"	function	line:8
+link	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^  <link rel="stylesheet" href=".\/css\/conversation.css">$/;"	function	line:9
+link	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^  <link rel="stylesheet" href=".\/css\/list.css">$/;"	function	line:10
+link	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^  <link rel="stylesheet" href=".\/css\/minimize.css">$/;"	function	line:11
+link	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^  <link rel="stylesheet" href=".\/css\/nav.css">$/;"	function	line:12
+link	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^  <link rel="stylesheet" href=".\/css\/teleprompter.css">$/;"	function	line:13
+link	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^  <link rel="stylesheet" href=".\/css\/redirect.css">$/;"	function	line:14
+link	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^  <link rel="stylesheet" href=".\/css\/live.css">$/;"	function	line:15
+script	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^  <script src=".\/javascript\/require.js" charset="utf-8"><\/script>$/;"	function	line:16
+script	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^  <script src=".\/javascript\/jquery.min.js" charset="utf-8"><\/script>$/;"	function	line:17
+script	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^  <script src=".\/javascript\/RongIMLib-2.2.5.min.js" charset="utf-8"><\/script>$/;"	function	line:18
+body	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^<body>$/;"	function	line:21
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^  <div id="webchat" class="webchat fixed">$/;"	function	line:22
+nav	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^    <nav class="webchat-nav fl relative" id="webchat-nav">$/;"	function	line:24
+ul	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^      <ul class="webchat-nav-list">$/;"	function	line:25
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <li class="webchat-nav-tag" title="头像">$/;"	function	line:26
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <img src=".\/images\/33.jpg" class="webchat-tag-img">$/;"	function	line:27
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <li class="webchat-nav-tag" data-target-type="customer" onclick="javascript: WebChat.showList('customer');" title="客户">$/;"	function	line:29
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <img src=".\/images\/2.png" class="webchat-tag-img">$/;"	function	line:30
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <li class="webchat-nav-tag" data-target-type="waiter" onclick="javascript: WebChat.showList('waiter');" title="客服">$/;"	function	line:32
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <img src=".\/images\/3.png" class="webchat-tag-img">$/;"	function	line:33
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <img src="" class="webchat-tag-img">$/;"	function	line:36
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <li class="webchat-nav-tag" data-target-type="black" onclick="javascript: WebChat.showList('black');" title="黑名单">$/;"	function	line:38
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <img src=".\/images\/5.png" class="webchat-tag-img">$/;"	function	line:39
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^      <div class="webchat-nav-retract" title="收起">$/;"	function	line:42
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <img src=".\/images\/6.png" class="webchat-tag-img" onclick="javascript: WebChat.minimize();">$/;"	function	line:43
+section	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^    <section class="webchat-list fl" id="webchat-list">$/;"	function	line:49
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^      <div class="webchat-list-action">$/;"	function	line:50
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <div class="webchat-input-box fl">$/;"	function	line:51
+input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <input type="text" class="list-input fl">$/;"	function	line:52
+i	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <i title="搜索">search<\/i>$/;"	function	line:53
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <div class="list-action-nav fl">$/;"	function	line:55
+button	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <button type="button" class="list-action-btn" title="转接"><\/button>$/;"	function	line:56
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^      <div class="webchat-list-wrap relative">$/;"	function	line:59
+ul	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <ul class="webchat-list-content" id="webchat-list-customer"><\/ul>$/;"	function	line:60
+ul	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <ul class="webchat-list-content hidden" id="webchat-list-waiter"><\/ul>$/;"	function	line:61
+ul	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <ul class="webchat-list-content hidden" id="webchat-list-black"><\/ul>$/;"	function	line:62
+section	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^    <section class="webchat-conversation fl" id="webchat-conversation">$/;"	function	line:68
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^      <div class="webchat-conversation-header relative">$/;"	function	line:69
+p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <p class="webchat-customer-name" id="webchat-customer-name">liyusky<\/p>$/;"	function	line:70
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <div class="webchat-conversation-tools tools-right">$/;"	function	line:71
+a	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <a href="javascript: void(0);" class="tools-btn fl" onclick="javascript: WebChat.minimize();">-<\/a>$/;"	function	line:72
+a	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <a href="javascript: void(0);" class="tools-btn fl" style="border-top-right-radius: 5px;" onclick="javascript: WebChat.closeWebChat();">x<\/a>$/;"	function	line:73
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <div class="webchat-conversation-tools tools-left">$/;"	function	line:75
+a	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <a href="javascript: void(0);" class="tools-btn" onclick="javascript: WebChat.hideWindow();">&lt;<\/a>$/;"	function	line:76
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^      <div class="webchat-conversation-window" id="webchat-conversation-window">$/;"	function	line:79
+ul	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <ul class="webchat-conversation-content" id="webchat-conversation-content"><\/ul>$/;"	function	line:80
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^      <div class="webchat-conversation-write" id="webchat-conversation-write">$/;"	function	line:82
+textarea	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <textarea class="webchat-input fl" id="webchat-input"><\/textarea>$/;"	function	line:83
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <div class="webchat-image-nav fl">$/;"	function	line:84
+ul	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <ul class="webchat-image-list" id="webchat-image-list"><\/ul>$/;"	function	line:85
+button	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <button type="button" class="webchat-send-btn fr" onclick="javascript: WebChat.send();">发送<\/button>$/;"	function	line:87
+section	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^    <section class="webchat-teleprompter fl" id="webchat-teleprompter">$/;"	function	line:93
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^      <div class="webchat-teleprompter-header">$/;"	function	line:94
+span	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <span>快捷发送<\/span>$/;"	function	line:95
+span	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <span style="text-align: right;float: right; padding-right: 15px;" onclick="javascript: WebChat.addTeleprompter();">+<\/span>$/;"	function	line:96
+ul	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^      <ul class="webchat-teleprompter-content" data-count="3" id="webchat-teleprompter-content">$/;"	function	line:98
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <li class="webchat-teleprompter-item">$/;"	function	line:99
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <div class="teleprompter-item-header" data-link-content="teleprompter-default">$/;"	function	line:100
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <img src="" class="teleprompter-expansion-sign fl" onclick="javascript: WebChat.showLinkContent($(this));" data-show="1">$/;"	function	line:101
+p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <p class="webchat-teleprompter-title omit fl" ondblclick="javascript: WebChat.modifyTitle($(this));">默认提词器<\/p>$/;"	function	line:102
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <img src="" class="teleprompter-expansion-sign fr" onclick="javascript: WebChat.addLinkHint($(this));">$/;"	function	line:103
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <img src="" class="teleprompter-expansion-sign fr" onclick="javascript: WebChat.removeLinkContent($(this));">$/;"	function	line:104
+ul	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <ul class="teleprompter-item-content" id="teleprompter-default">$/;"	function	line:106
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:107
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:108
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:109
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:110
+p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">第一条<\/p>$/;"	function	line:111
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:113
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:114
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:115
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:116
+p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">第二条<\/p>$/;"	function	line:117
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:119
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:120
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:121
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:122
+p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">第三条<\/p>$/;"	function	line:123
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:125
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:126
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:127
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:128
+p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">第四条<\/p>$/;"	function	line:129
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:131
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:132
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:133
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:134
+p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">第五条<\/p>$/;"	function	line:135
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:137
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:138
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:139
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:140
+p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">第六条<\/p>$/;"	function	line:141
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:143
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:144
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:145
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:146
+p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">第七条<\/p>$/;"	function	line:147
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <li class="webchat-teleprompter-item">$/;"	function	line:151
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <div class="teleprompter-item-header" data-link-content="teleprompter-1">$/;"	function	line:152
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <img src="" class="teleprompter-expansion-sign fl">$/;"	function	line:153
+p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <p class="webchat-teleprompter-title omit fl">xdfasfad<\/p>$/;"	function	line:154
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <img src="" class="teleprompter-expansion-sign fr">$/;"	function	line:155
+ul	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <ul class="teleprompter-item-content" id="teleprompter-1">$/;"	function	line:157
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:158
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:159
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:160
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:161
+p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:162
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:164
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:165
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:166
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:167
+p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:168
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:170
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:171
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:172
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:173
+p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:174
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:176
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:177
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:178
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:179
+p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:180
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:182
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:183
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:184
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:185
+p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:186
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:188
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:189
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:190
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:191
+p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:192
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:194
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:195
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:196
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:197
+p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:198
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <li class="webchat-teleprompter-item">$/;"	function	line:202
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <div class="teleprompter-item-header" data-link-content="teleprompter-2">$/;"	function	line:203
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <img src="" class="teleprompter-expansion-sign fl">$/;"	function	line:204
+p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <p class="webchat-teleprompter-title omit fl">xdfasfad<\/p>$/;"	function	line:205
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <img src="" class="teleprompter-expansion-sign fr">$/;"	function	line:206
+ul	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <ul class="teleprompter-item-content" id="teleprompter-2">$/;"	function	line:208
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:209
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:210
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:211
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:212
+p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:213
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:215
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:216
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:217
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:218
+p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:219
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:221
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:222
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:223
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:224
+p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:225
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:227
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:228
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:229
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:230
+p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:231
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:233
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:234
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:235
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:236
+p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:237
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:239
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:240
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:241
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:242
+p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:243
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <li class="teleprompter-hint hint-default-height">$/;"	function	line:245
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.showWholeHint($(this));">$/;"	function	line:246
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.modifyHint($(this));">$/;"	function	line:247
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <img src="" class="teleprompter-hint-operation fl" onclick="javascript: WebChat.deleteHint($(this));">$/;"	function	line:248
+p	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <p class="teleprompter-hint-message omit no-select" ondblclick="javascript: WebChat.quickSend($(this));">xxxxxxxxxxxhdfghdfghfdghfghfxxxxxxxxxxxxxxxxx<\/p>$/;"	function	line:249
+section	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^    <section class="webchat-minimize" id="webchat-minimize">$/;"	function	line:258
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^      <img src=".\/images\/8.png" id="webchat-open-sign" class="minimize-sign webchat-open-sign fl" onclick="javascript: WebChat.openWebChat();" title="展开">$/;"	function	line:259
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^      <img src="" class="minimize-sign fl" title="发来消息的人数">$/;"	function	line:260
+span	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^      <span class="minimize-count fl">5<\/span>$/;"	function	line:261
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^      <img src="" class="minimize-sign fl" title="未读消息数">$/;"	function	line:262
+span	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^      <span class="minimize-count fl">100<\/span>$/;"	function	line:263
+section	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^    <section class="webchat-modal fixed" id="webchat-modal">$/;"	function	line:268
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^      <div class="modal-img-box">$/;"	function	line:269
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <img class="webchat-exhibit" src="" id="webchat-exhibit">$/;"	function	line:270
+section	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^    <section class="webchat-redirect hidden" id="webchat-redirect">$/;"	function	line:276
+ul	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^      <ul class="webchat-waiter-list" id="webchat-waiter-list">$/;"	function	line:277
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:278
+label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <label>$/;"	function	line:279
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:280
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:281
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-name fl">AAAA<\/div>$/;"	function	line:282
+input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:284
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:287
+label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <label>$/;"	function	line:288
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:289
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:290
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-name fl">BBB<\/div>$/;"	function	line:291
+input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:293
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:296
+label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <label>$/;"	function	line:297
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:298
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:299
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-name fl">CCC<\/div>$/;"	function	line:300
+input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:302
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:305
+label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <label>$/;"	function	line:306
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:307
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:308
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-name fl">AAAA<\/div>$/;"	function	line:309
+input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:311
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:314
+label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <label>$/;"	function	line:315
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:316
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:317
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-name fl">BBB<\/div>$/;"	function	line:318
+input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:320
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:323
+label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <label>$/;"	function	line:324
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:325
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:326
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-name fl">CCC<\/div>$/;"	function	line:327
+input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:329
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:332
+label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <label>$/;"	function	line:333
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:334
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:335
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-name fl">AAAA<\/div>$/;"	function	line:336
+input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:338
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:341
+label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <label>$/;"	function	line:342
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:343
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:344
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-name fl">BBB<\/div>$/;"	function	line:345
+input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:347
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:350
+label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <label>$/;"	function	line:351
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:352
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:353
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-name fl">CCC<\/div>$/;"	function	line:354
+input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:356
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:359
+label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <label>$/;"	function	line:360
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:361
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:362
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-name fl">AAAA<\/div>$/;"	function	line:363
+input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:365
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:368
+label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <label>$/;"	function	line:369
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:370
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:371
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-name fl">BBB<\/div>$/;"	function	line:372
+input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:374
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:377
+label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <label>$/;"	function	line:378
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:379
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:380
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-name fl">CCC<\/div>$/;"	function	line:381
+input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:383
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:386
+label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <label>$/;"	function	line:387
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:388
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:389
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-name fl">AAAA<\/div>$/;"	function	line:390
+input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:392
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:395
+label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <label>$/;"	function	line:396
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:397
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:398
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-name fl">BBB<\/div>$/;"	function	line:399
+input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:401
+li	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <li class="waiter-list-item fl">$/;"	function	line:404
+label	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          <label>$/;"	function	line:405
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <div class="webchat-waiter-message">$/;"	function	line:406
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-avatar fl"><\/div>$/;"	function	line:407
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^              <div class="webchat-waiter-name fl">CCC<\/div>$/;"	function	line:408
+input	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^            <input type="radio" name="waiter-redirect" value="" class="hidden">$/;"	function	line:410
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^      <div class="redirect-btn-nav">$/;"	function	line:414
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <div class="redirect-btn fr" onclick="javascript: WebChat.closeRedirectWindow();">取消<\/div>$/;"	function	line:415
+div	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^        <div class="redirect-btn fr" onclick="javascript: WebChat.customerRedirect();">确认<\/div>$/;"	function	line:416
+section	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^    <section class="webchat-sundry" id="webchat-sundry">$/;"	function	line:423
+canvas	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^      <canvas class="webchat-back-canvas" id="webchat-back-canvas"><\/canvas>$/;"	function	line:424
+img	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^      <img src="" class="webchat-back-photo" id="webchat-back-photo">$/;"	function	line:425
+script	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^  <script type="text\/javascript">$/;"	function	line:431
+add0	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          function add0(m) {$/;"	function	line:1362
+moving	D:\Project\RongCloud\SOCKETDEMO\v2\v4.2.7.view.html	/^          function moving(event) {$/;"	function	line:1635

@@ -45,6 +45,12 @@
 .webchat-list .webchat-list-wrap {
   width: 100%;
   height: 540px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.webchat-list .webchat-list-wrap::-webkit-scrollbar {
+  width: 0px;
 }
 
 .webchat-list .webchat-list-wrap .webchat-list-content {
