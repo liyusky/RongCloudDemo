@@ -62,17 +62,17 @@
   width: 100%;
 }
 
-.webchat-list .webchat-list-wrap .webchat-list-content .customer-list {
+.webchat-list .webchat-list-wrap .webchat-list-content .customer-tip {
   height: 40px;
 }
 
-.webchat-list .webchat-list-wrap .webchat-list-content .customer-list .tip-user-status {
+.webchat-list .webchat-list-wrap .webchat-list-content .customer-tip .tip-user-status {
   width: 30px;
   height: 40px;
   padding: 10px 0 10px 10px;
 }
 
-.webchat-list .webchat-list-wrap .webchat-list-content .customer-list .tip-user-status .webchat-hint-lamp {
+.webchat-list .webchat-list-wrap .webchat-list-content .customer-tip .tip-user-status .webchat-hint-lamp {
   display: inline-block;
   width: 16px;
   height: 16px;
@@ -83,41 +83,70 @@
   color: #fff;
 }
 
-.webchat-list .webchat-list-wrap .webchat-list-content .customer-list .tip-user-identity {
+.webchat-list .webchat-list-wrap .webchat-list-content .customer-tip .tip-user-identity {
   width: 170px;
   height: 40px;
   line-height: 40px;
 }
 
-.webchat-list .webchat-list-wrap .webchat-list-content .customer-list .tip-user-identity .webchat-user-name {
+.webchat-list .webchat-list-wrap .webchat-list-content .customer-tip .tip-user-identity .webchat-user-name {
   display: inline-block;
   width: 60px;
   height: 40px;
   padding: 0 5px;
 }
 
-.webchat-list .webchat-list-wrap .webchat-list-content .customer-list .webchat-user-phone {
+.webchat-list .webchat-list-wrap .webchat-list-content .customer-tip .webchat-user-phone {
   display: inline-block;
   width: 110px;
   height: 40px;
 }
 
-.webchat-list .webchat-list-wrap .webchat-list-content .customer-list .webchat-tip-operation {
+.webchat-list .webchat-list-wrap .webchat-list-content .customer-tip .webchat-tip-operation {
   width: 70px;
   height: 40px;
   padding: 10px 5px;
 }
 
-.webchat-list .webchat-list-wrap .webchat-list-content .customer-list .webchat-tip-operation .customer-to-black {
+.webchat-list .webchat-list-wrap .webchat-list-content .customer-tip .webchat-tip-operation .customer-to-black {
   width: 20px;
   height: 20px;
   margin: 0 5px;
 }
 
-.webchat-list .webchat-list-wrap .webchat-list-content .waiter-list {
-  height: 66px;
-  padding-top: 10px;
-  padding-left: 10px;
+.webchat-list .webchat-list-wrap .webchat-list-content .waiter-tip {
+  height: 60px;
+  padding: 10px;
+}
+
+.webchat-list .webchat-list-wrap .webchat-list-content .waiter-tip .tip-avatar {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 5px;
+  background: orange;
+  color: #fff;
+  line-height: 40px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.webchat-list .webchat-list-wrap .webchat-list-content .waiter-tip .tip-name {
+  width: 150px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  color: #333;
+  border-right: 1px solid #999;
+  letter-spacing: 1em;
+}
+
+.webchat-list .webchat-list-wrap .webchat-list-content .waiter-tip .tip-status {
+  width: 50px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  color: red;
 }
 
 .webchat-list .webchat-list-wrap .webchat-list-content .waiter-list .webchat-hint-lamp {

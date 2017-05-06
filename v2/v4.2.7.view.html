@@ -5,7 +5,6 @@
   <meta charset="utf-8">
   <title>聊天</title>
   <link rel="stylesheet" href="./css/resetting.css">
-  <link rel="stylesheet" href="./css/sundry.css">
   <link rel="stylesheet" href="./css/conversation.css">
   <link rel="stylesheet" href="./css/list.css">
   <link rel="stylesheet" href="./css/minimize.css">
@@ -13,6 +12,7 @@
   <link rel="stylesheet" href="./css/teleprompter.css">
   <link rel="stylesheet" href="./css/redirect.css">
   <link rel="stylesheet" href="./css/live.css">
+  <link rel="stylesheet" href="./css/sundry.css">
   <script src="./javascript/require.js" charset="utf-8"></script>
   <script src="./javascript/jquery.min.js" charset="utf-8"></script>
   <script src="./javascript/RongIMLib-2.2.5.min.js" charset="utf-8"></script>
@@ -66,14 +66,15 @@
 
     <!-- s 会话内容 -->
     <section class="webchat-conversation fl" id="webchat-conversation">
-      <div class="webchat-conversation-header relative">
+      <div class="webchat-conversation-header relative" id="webchat-conversation-header">
         <p class="webchat-customer-name" id="webchat-customer-name">liyusky</p>
-        <div class="webchat-conversation-tools tools-right">
-          <a href="javascript: void(0);" class="tools-btn fl" onclick="javascript: WebChat.minimize();">-</a>
-          <a href="javascript: void(0);" class="tools-btn fl" style="border-top-right-radius: 5px;" onclick="javascript: WebChat.closeWebChat();">x</a>
+        <div class="webchat-conversation-tools tools-right" id="webchat-conversation-tools-right">
+          <span class="tools-btn fl" onclick="javascript: WebChat.showTeleprompter();">s</span>
+          <span class="tools-btn fl" onclick="javascript: WebChat.minimize();">-</span>
+          <span class="tools-btn fl" style="border-top-right-radius: 5px;" onclick="javascript: WebChat.closeWebChat();">x</span>
         </div>
         <div class="webchat-conversation-tools tools-left">
-          <a href="javascript: void(0);" class="tools-btn" onclick="javascript: WebChat.hideWindow();">&lt;</a>
+          <span class="tools-btn" onclick="javascript: WebChat.hideWindow();">&lt;</span>
         </div>
       </div>
       <div class="webchat-conversation-window" id="webchat-conversation-window">
@@ -90,12 +91,13 @@
     <!-- e 会话内容 -->
 
     <!-- s 提词器 -->
-    <section class="webchat-teleprompter fl" id="webchat-teleprompter">
-      <div class="webchat-teleprompter-header">
+    <section class="webchat-teleprompter fl radius-t-r-5 radius-b-r-5" id="webchat-teleprompter">
+      <div class="webchat-teleprompter-header radius-t-r-5">
+        <span style="text-align: left;float: left; padding-left: 15px;" onclick="javascript: WebChat.closeTeleprompter();">&lt;</span>
         <span>快捷发送</span>
         <span style="text-align: right;float: right; padding-right: 15px;" onclick="javascript: WebChat.addTeleprompter();">+</span>
       </div>
-      <ul class="webchat-teleprompter-content" data-count="3" id="webchat-teleprompter-content">
+      <ul class="webchat-teleprompter-content radius-b-r-5" data-count="3" id="webchat-teleprompter-content">
         <li class="webchat-teleprompter-item">
           <div class="teleprompter-item-header" data-link-content="teleprompter-default">
             <img src="" class="teleprompter-expansion-sign fl" onclick="javascript: WebChat.showLinkContent($(this));" data-show="1">
@@ -274,147 +276,12 @@
 
     <!-- s 客服转接列表 -->
     <section class="webchat-redirect hidden" id="webchat-redirect">
-      <ul class="webchat-waiter-list" id="webchat-waiter-list">
-        <li class="waiter-list-item fl">
-          <label>
-            <div class="webchat-waiter-message">
-              <div class="webchat-waiter-avatar fl"></div>
-              <div class="webchat-waiter-name fl">AAAA</div>
-            </div>
-            <input type="radio" name="waiter-redirect" value="" class="hidden">
-          </label>
-        </li>
-        <li class="waiter-list-item fl">
-          <label>
-            <div class="webchat-waiter-message">
-              <div class="webchat-waiter-avatar fl"></div>
-              <div class="webchat-waiter-name fl">BBB</div>
-            </div>
-            <input type="radio" name="waiter-redirect" value="" class="hidden">
-          </label>
-        </li>
-        <li class="waiter-list-item fl">
-          <label>
-            <div class="webchat-waiter-message">
-              <div class="webchat-waiter-avatar fl"></div>
-              <div class="webchat-waiter-name fl">CCC</div>
-            </div>
-            <input type="radio" name="waiter-redirect" value="" class="hidden">
-          </label>
-        </li>
-        <li class="waiter-list-item fl">
-          <label>
-            <div class="webchat-waiter-message">
-              <div class="webchat-waiter-avatar fl"></div>
-              <div class="webchat-waiter-name fl">AAAA</div>
-            </div>
-            <input type="radio" name="waiter-redirect" value="" class="hidden">
-          </label>
-        </li>
-        <li class="waiter-list-item fl">
-          <label>
-            <div class="webchat-waiter-message">
-              <div class="webchat-waiter-avatar fl"></div>
-              <div class="webchat-waiter-name fl">BBB</div>
-            </div>
-            <input type="radio" name="waiter-redirect" value="" class="hidden">
-          </label>
-        </li>
-        <li class="waiter-list-item fl">
-          <label>
-            <div class="webchat-waiter-message">
-              <div class="webchat-waiter-avatar fl"></div>
-              <div class="webchat-waiter-name fl">CCC</div>
-            </div>
-            <input type="radio" name="waiter-redirect" value="" class="hidden">
-          </label>
-        </li>
-        <li class="waiter-list-item fl">
-          <label>
-            <div class="webchat-waiter-message">
-              <div class="webchat-waiter-avatar fl"></div>
-              <div class="webchat-waiter-name fl">AAAA</div>
-            </div>
-            <input type="radio" name="waiter-redirect" value="" class="hidden">
-          </label>
-        </li>
-        <li class="waiter-list-item fl">
-          <label>
-            <div class="webchat-waiter-message">
-              <div class="webchat-waiter-avatar fl"></div>
-              <div class="webchat-waiter-name fl">BBB</div>
-            </div>
-            <input type="radio" name="waiter-redirect" value="" class="hidden">
-          </label>
-        </li>
-        <li class="waiter-list-item fl">
-          <label>
-            <div class="webchat-waiter-message">
-              <div class="webchat-waiter-avatar fl"></div>
-              <div class="webchat-waiter-name fl">CCC</div>
-            </div>
-            <input type="radio" name="waiter-redirect" value="" class="hidden">
-          </label>
-        </li>
-        <li class="waiter-list-item fl">
-          <label>
-            <div class="webchat-waiter-message">
-              <div class="webchat-waiter-avatar fl"></div>
-              <div class="webchat-waiter-name fl">AAAA</div>
-            </div>
-            <input type="radio" name="waiter-redirect" value="" class="hidden">
-          </label>
-        </li>
-        <li class="waiter-list-item fl">
-          <label>
-            <div class="webchat-waiter-message">
-              <div class="webchat-waiter-avatar fl"></div>
-              <div class="webchat-waiter-name fl">BBB</div>
-            </div>
-            <input type="radio" name="waiter-redirect" value="" class="hidden">
-          </label>
-        </li>
-        <li class="waiter-list-item fl">
-          <label>
-            <div class="webchat-waiter-message">
-              <div class="webchat-waiter-avatar fl"></div>
-              <div class="webchat-waiter-name fl">CCC</div>
-            </div>
-            <input type="radio" name="waiter-redirect" value="" class="hidden">
-          </label>
-        </li>
-        <li class="waiter-list-item fl">
-          <label>
-            <div class="webchat-waiter-message">
-              <div class="webchat-waiter-avatar fl"></div>
-              <div class="webchat-waiter-name fl">AAAA</div>
-            </div>
-            <input type="radio" name="waiter-redirect" value="" class="hidden">
-          </label>
-        </li>
-        <li class="waiter-list-item fl">
-          <label>
-            <div class="webchat-waiter-message">
-              <div class="webchat-waiter-avatar fl"></div>
-              <div class="webchat-waiter-name fl">BBB</div>
-            </div>
-            <input type="radio" name="waiter-redirect" value="" class="hidden">
-          </label>
-        </li>
-        <li class="waiter-list-item fl">
-          <label>
-            <div class="webchat-waiter-message">
-              <div class="webchat-waiter-avatar fl"></div>
-              <div class="webchat-waiter-name fl">CCC</div>
-            </div>
-            <input type="radio" name="waiter-redirect" value="" class="hidden">
-          </label>
-        </li>
-      </ul>
-      <div class="redirect-btn-nav">
+      <header class="webchat-redirect-header">选择您要转接的客服</header>
+      <ul class="webchat-waiter-list" id="webchat-waiter-list"></ul>
+      <footer class="redirect-btn-nav">
         <div class="redirect-btn fr" onclick="javascript: WebChat.closeRedirectWindow();">取消</div>
-        <div class="redirect-btn fr" onclick="javascript: WebChat.customerRedirect();">确认</div>
-      </div>
+        <div class="redirect-btn fr" onclick="javascript: WebChat.redirecting($(this));">确认</div>
+      </footer>
     </section>
     <!-- e 客服转接列表 -->
 
@@ -434,16 +301,18 @@
       Doms: null,
       RongCloud: null,
       main: function () {
-        this.detectRuntime();
+        this.detectEnvironment();
         this.initAttrs();
         this.getToken();
         this.initDoms();
+        this.initRedirect();
         this.loadRongCloud();
+        this.initList();
         this.initEvent();
       },
 
       /* s 初始化 */
-        detectRuntime: function () {
+        detectEnvironment: function () {
           if (typeof(Storage) == "undefined") {
             alert("您的浏览器未搭建本模块核心环境，请更换浏览器");
             return false;
@@ -454,25 +323,24 @@
             IMLib: null,
             IMClient: null,
             Token: null,
-            AppKey: null,
+            AppKey: null
           };
           this.Attrs = {
             target: {
               id: null,        //当前交谈对象的id
-              whole: {},       //所有有我交谈过的人
+              whole: {}       //所有有我交谈过的人
             },
             image: {
               files: [],      //抓取的图片的文件
               src: [],        //地址集合
-              count: -1,      //总共多少张
+              count: -1      //总共多少张
             },
             message: {
               unreadCount:{}     //未读消息数
             },
             current: {
               listType: "customer",    //当前的列表类型
-              redirectDom: 0,
-              imageIndex: 0,
+              imageIndex: 0
             },
             sendArgs: {      //发送的数据
               conversationtype: 1,
@@ -516,6 +384,8 @@
             },
             conversation: {
               wholeDom:        $("#webchat-conversation"), //会话区
+              headerDom:       $("#webchat-conversation-header"), //头部
+              toolsRightDom:   $("#webchat-conversation-tools-right"),
               customerNameDom: $("#webchat-customer-name"), //客户名
               windowDom:       $("#webchat-conversation-window"), //会话窗口
               contentDom:      $("#webchat-conversation-content"), //会话内容部分
@@ -546,8 +416,42 @@
             },
             temporary:    {
               redirectTipDom: null,
+              redirectWaiterDom: null
             },
           };
+        },
+        initList: function () {
+          if (localStorage.CustomerList) {
+            this.Attrs.chatList.customer = JSON.parse(localStorage.CustomerList);
+          }
+
+          if (localStorage.WaiterList) {
+            this.Attrs.chatList.waiter = JSON.parse(localStorage.WaiterList);
+          }
+
+          if (localStorage.BlackList) {
+            this.Attrs.chatList.black = JSON.parse(localStorage.BlackList);
+          }
+
+          this.addListTip("customer");
+          this.addListTip("waiter");
+          this.addListTip("black");
+        },
+        initRedirect: function () {
+          var WaiterList = this.Attrs.chatList.waiter;
+          var htmlStr = "";
+          for (var id in WaiterList) {
+            var name = WaiterList[id];
+            htmlStr += "<li class='waiter-list-item fl' data-id='" + id + "' onclick='javascript: WebChat.selectWaiter($(this));'>" +
+              "<label>" +
+              "<div class='webchat-waiter-message'>" +
+              "<div class='webchat-waiter-avatar fl'>" + name.slice(-1)  + "</div>" +
+              "<div class='webchat-waiter-name fr'>" + name + "</div>" +
+              "</div>" +
+              "</label>" +
+              "</li>";
+          }
+          this.Doms.redirect.waiterListDom.append(htmlStr);
         },
         initEvent: function () {
           this.Doms.minimize.wholeDom.on("mousedown", this.movement);
@@ -583,6 +487,7 @@
         initRongCloud: function() {      //初始化融云
           //初始化
           this.RongCloud.IMClient.init(this.RongCloud.AppKey);  //
+          this.setMsgType("Redirection");
         },
         setRongCloudListen: function() {    //添加监听
           // 连接状态监听器
@@ -701,7 +606,9 @@
         connectRongCloudSever: function() {
           // 连接融云服务器。
           this.RongCloud.IMClient.connect(this.RongCloud.Token, {
-            onSuccess: function(userId) {},
+            onSuccess: function(userId) {
+              WebChat.getBlackList();
+            },
             onTokenIncorrect: function() {},
             onError: function(errorCode) {
               console.log(errorCode);
@@ -759,21 +666,32 @@
             }
           };
           WebChat.setSendArgs(sendParam);
-          WebChat.sendMessage(function() {
-            var Attrs = WebChat.Attrs;
-            if (++WebChat.Attrs.current.imageIndex < WebChat.Attrs.image.files.length) {
-              console.log("len ====================== " + Attrs.image.files.length);
-              console.log("index ========================= " + WebChat.Attrs.current.imageIndex);
-              WebChat.setThumbnail(WebChat.singleImageSend);
-            }
-            else {
-              WebChat.Attrs.image.files = [];
-              WebChat.Attrs.image.src = [];
-              WebChat.Attrs.image.count = 0;
-              WebChat.Attrs.current.imageIndex = 0;
-              WebChat.Doms.conversation.imageListDom.html("");
-            }
-          });
+          var len = WebChat.Attrs.image.files.length;
+          var index = WebChat.Attrs.current.imageIndex;
+          if (index < len) {
+            WebChat.sendMessage(function() {
+              WebChat.Attrs.current.imageIndex += 1;
+              var len = WebChat.Attrs.image.files.length;
+              var index = WebChat.Attrs.current.imageIndex;
+              if (index < len) {
+                WebChat.setThumbnail(WebChat.singleImageSend);
+              }
+              else {
+                WebChat.Attrs.image.files = [];
+                WebChat.Attrs.image.src = [];
+                WebChat.Attrs.image.count = 0;
+                WebChat.Attrs.current.imageIndex = 0;
+                WebChat.Doms.conversation.imageListDom.html("");
+              }
+            });
+          }
+          else {
+            WebChat.Attrs.image.files = [];
+            WebChat.Attrs.image.src = [];
+            WebChat.Attrs.image.count = 0;
+            WebChat.Attrs.current.imageIndex = 0;
+            WebChat.Doms.conversation.imageListDom.html("");
+          }
         },
         quickSend: function(thisDom, event) {      //快捷发送
           var Attrs = this.Attrs;
@@ -798,8 +716,8 @@
           }
         },
         setMsgType: function(type) {      // 设置自定义类型
-          if (type === "redirection") {
-            var messageName = "redirection"; // 消息名称。
+          if (type === "Redirection") {
+            var messageName = "RedirectionMessage"; // 消息名称。
             var objectName = "UD:Redirection"; // 消息内置名称，请按照此格式命名。
             var mesasgeTag = new RongIMLib.MessageTag(false, false); // 消息是否保存是否计数，true true 保存且计数，false false 不保存不计数。
             var propertys = ["redirectId", "content", "extra"]; // 消息类中的属性名。
@@ -824,7 +742,7 @@
               });
               break;
             case "redirection":
-              msg = new this.RongIMClient.RegisterMessage.PersonMessage({
+              msg = new this.RongCloud.IMClient.RegisterMessage.RedirectionMessage({
                 redirectId: messageContent.redirectId,
                 content: messageContent.content,
                 extra: messageContent.extra
@@ -840,10 +758,11 @@
           this.Attrs.sendArgs = Attrs.sendArgs;
         },
         sendMessage: function(callback) {
-          var Attrs = this.Attrs;
+          var Attrs = WebChat.Attrs;
           var args = Attrs.sendArgs;
           this.RongCloud.IMClient.getInstance().sendMessage(args.conversationtype, Attrs.target.id, args.msg, { //发送消息
             onSuccess: function(message) {
+              console.log(message);
               var receiveRole = Attrs.current.listType;
               if (!Attrs.chatList[receiveRole][Attrs.target.id]) { //列表区没有该用户的信息
                 Attrs.chatList[receiveRole][Attrs.target.id] = message.content.extra; //设置存在该tip
@@ -852,7 +771,6 @@
               console.log("sendMsg  ========================= " + Attrs.current.imageIndex);
               WebChat.Attrs = Attrs;
               WebChat.addSaying(message, "only"); //在会话区添加消息
-              WebChat.Attrs = Attrs;
               if (callback) callback();
             },
             onError: function(errorCode, message) {
@@ -876,7 +794,7 @@
               thisDom.find(".webchat-tip-unread").remove(); //移除未读消息标志
               thisDom.attr("data-badge", ""); //是否存在未读消息设置为否
               this.loadUnreadMsg(function(amount) { //加载未读消息数
-                WebChat.loadHistoryMsg("unread", amount); //在历史消息中获取对应数量的消息
+                // WebChat.loadHistoryMsg("unread", amount); //在历史消息中获取对应数量的消息
               });
             }
             this.Doms.conversation.customerNameDom.text(targetName); //改变客户名
@@ -914,6 +832,20 @@
       /* e 窗口操作 */
 
       /* s 提词器 */
+        closeTeleprompter: function () {
+          this.Doms.teleprompter.wholeDom.hide();
+          this.Doms.conversation.wholeDom.addClass("radius-t-r-5 radius-b-r-5");
+          this.Doms.conversation.headerDom.addClass("radius-t-r-5");
+          this.Doms.conversation.toolsRightDom.addClass("radius-t-r-5");
+          this.Doms.conversation.writeDom.addClass("radius-b-r-5");
+        },
+        showTeleprompter: function () {
+          this.Doms.conversation.wholeDom.removeClass("radius-t-r-5 radius-b-r-5");
+          this.Doms.conversation.headerDom.removeClass("radius-t-r-5");
+          this.Doms.conversation.toolsRightDom.removeClass("radius-t-r-5");
+          this.Doms.conversation.writeDom.removeClass("radius-b-r-5");
+          this.Doms.teleprompter.wholeDom.show();
+        },
         showWholeHint: function(thisDom, event) {
           var e = event || window.event;
           var itemDom = thisDom.parent();
@@ -1041,13 +973,21 @@
       /* e 提词器 */
 
       /* s 转接 */
-        customerRedirect: function(thisDom) {
-          var redirectId = $("input[name='waiter-redirect']:checked").val();
-          if (redirectId) {
-            this.closeRedirectWindow();
+        selectWaiter: function (thisDom) {
+          if (this.Doms.temporary.redirectWaiterDom) {
+            this.Doms.temporary.redirectWaiterDom.removeClass("stress");
+          }
+          thisDom.addClass("stress");
+          this.Doms.temporary.redirectWaiterDom = thisDom;
+        },
+        redirecting: function(thisDom, event) {
+          var ev = window.event || event;
+          ev.stopPropagation();
+          if (this.Doms.temporary.redirectWaiterDom) {
+            var waiterId = this.Doms.temporary.redirectWaiterDom.attr("data-id");
             sendParam = {
-              type: "text",
-              redirectId: redirectId,
+              type: "redirection",
+              redirectId: waiterId,
               content: "This message is used to redirect.",
               extra: {
                 senderRole: "waiter",
@@ -1056,19 +996,33 @@
                 mobile: "12345678900",
               }
             };
-            this.setMsgType("redirection");
+
             this.setSendArgs(sendParam);
             this.sendMessage(function() { //发送文本消息
-              this.Doms.temporary.redirectTipDom.parents(".webchat-tip").remove();
+              delete WebChat.Attrs.chatList.customer[WebChat.Attrs.target.id];
+              localStorage.CustomerList = JSON.stringify(WebChat.Attrs.chatList.customer);
+              WebChat.Doms.temporary.redirectTipDom.parents(".webchat-tip").remove();
+              WebChat.closeRedirectWindow();
             });
           }
+          else {
+            alert("请选择您要转接的客服");
+          }
         },
-        openRedirectWindow: function(thisDom) {
+        openRedirectWindow: function(thisDom, event) {
+          var ev = window.event || event;
+          ev.stopPropagation();
           this.Doms.temporary.redirectTipDom = thisDom;
+          this.Attrs.target.id = thisDom.parents(".webchat-tip").attr("data-id");
+          console.log(this.Attrs.target.id);
+
           this.Doms.redirect.wholeDom.show();
         },
         closeRedirectWindow: function() {
           this.Doms.redirect.wholeDom.hide();
+          WebChat.Doms.temporary.redirectWaiterDom.removeClass("stress");
+          WebChat.Doms.temporary.redirectTipDom = null;
+          WebChat.Doms.temporary.redirectWaiterDom = null;
         },
       /* e 转接*/
 
@@ -1136,6 +1090,7 @@
         getConversationList: function() {
           this.RongCloud.IMClient.getInstance().getConversationList({
             onSuccess: function(list) {
+              console.log(list);
               var Attrs = WebChat.Attrs;
               var len = list.length;
               var deadLine = (new Date()).getTime() - 604800000; //一星期前
@@ -1299,8 +1254,11 @@
         getBlackList: function() {
           this.RongCloud.IMClient.getInstance().getBlacklist({
             onSuccess: function(blackList) {
+              console.log(blackList);
               WebChat.getConversationList(function(tipList) {
+                console.log(tipList);
                 for (var lastMessage of tipList) {
+                  console.log(lastMessage);
                   var userId = lastMessage.senderUserId;
                   if (blackList.indexOf(userId) !== -1) {
                     WebChat.addListTip(lastMessage);
@@ -1310,22 +1268,26 @@
               // list => 黑名单列表
             },
             onError: function(error) {
+              console.log(error);
+              alert("获取黑名单失败");
               // 获取黑名单失败
             }
           });
         },
         addToBlackList: function(thisDom) {
           var tipDom = thisDom.parents(".webchat-tip");
-          var userId = tipDom.attr("data-target-id");
-          var userName = tipDom.attr("data-target-name");
-          var userMobile = tipDom.attr("data-target-mobile");
-          this.RongCloud.IMClient.getInstance().addToBlacklist(userId, {
+          var id = tipDom.attr("data-id");
+          var name = tipDom.attr("data-name");
+          var mobile = tipDom.attr("data-mobile");
+          this.RongCloud.IMClient.getInstance().addToBlacklist(id, {
             onSuccess: function() {
               WebChat.removeTip(thisDom);
-              WebChat.Attrs.chatList.black[userId] = {
-                name: userName,
-                mobile: userMobile
+              var message = {
+                name: name,
+                mobile: mobile
               };
+              WebChat.Attrs.chatList.black[id] = message;
+              WebChat.addListTip(message, "blcak");
               localStorage.BlackList = JSON.stringify(WebChat.Attrs.chatList.black);
             },
             onError: function(error) {
@@ -1440,44 +1402,61 @@
           return htmlStr;
         },
         setListTipHtml: function() {
-          var targetId, userName, phone, lastTime, extra, unreadMessageCount;
+          var id, name, mobile, extra, unreadMessageCount;
           var htmlStr = "";
           var message = arguments[0];
           var type = arguments[1];
           if (message.latestMessage) {
-            targetId = message.senderUserId;
+            id = message.senderUserId;
             extra = this.translateJson(message.latestMessage.content.extra);
-            targetName = extra.name;
-            targetMobile = extra.mobile;
-            unreadMessageCount = this.message.unreadCount[targetId];
-            lastTime = this.formatDate(message.sentTime, "tip");
+            name = extra.name;
+            mobile = extra.mobile;
+            unreadMessageCount = this.Attrs.message.unreadCount[id];
           }
           else if (message.content) {
-            targetId = message.senderUserId;
+            id = message.senderUserId;
             extra = this.translateJson(message.content.extra);
-            targetName = extra.name;
-            targetMobile = extra.mobile;
+            name = extra.name;
+            mobile = extra.mobile;
             unreadMessageCount = 0;
           }
           else if (arguments.length === 3) {
-            targetId = arguments[2];
-            targetName = message.name;
-            targetMobile = message.mobile;
-            unreadMessageCount = this.message.unreadCount[targetId];
+            id = arguments[2];
+            unreadMessageCount = this.Attrs.message.unreadCount[id];
+            switch (type) {
+              case "waiter":
+                name = message;
+                break;
+              case "customer":
+                name = message.name;
+                mobile = message.mobile;
+                break;
+              default:
+                name = message.name;
+                mobile = message.mobile;
+            }
+          }
+          else {
+            switch (type) {
+              case "black":
+                name = message.name;
+                mobile = message.mobile;
+                break;
+            }
           }
 
-          if (unreadMessageCount === 0) {
+          if (!unreadMessageCount) {
             unreadMessageCount = "";
           }
 
           if (type == "customer") {
-            htmlStr = "<li class='webchat-tip customer-list' data-target-id='" + targetId + "' data-target-name='" + targetName + "' data-target-mobile='" + targetMobile + "' data-badge='1' onclick='javascript: WebChat.showWindow($(this));'>" +
+            htmlStr = "<li class='webchat-tip customer-tip' data-id='" + id + "' data-name='" + name + "' data-mobile='" + mobile + "' data-badge='1' onclick='javascript: WebChat.showWindow($(this));'>" +
               "<div class='tip-user-status fl'>" +
               "<span class='webchat-hint-lamp'>" + unreadMessageCount + "</span>" +
               "</div>" +
               "<div class='tip-user-identity fl'>" +
-              "<span class='webchat-user-name fl'>" + targetName + "</span>" +
-              "<span class='webchat-user-phone fl'>" + targetMobile + "</span>" +
+              "<span class='webchat-user-name fl'>" + name + "</span>" +
+              "<span class='webchat-user-phone fl'>" + mobile + "</span>" +
               "</div>" +
               "<div class='webchat-tip-operation fl'>" +
               "<img src='./images/1.png' alt='' class='customer-to-black fl' onclick='javascript: WebChat.openRedirectWindow($(this));'>" +
@@ -1486,31 +1465,23 @@
               "</li>";
           }
           else if (type == "waiter") {
-            htmlStr = "<li class='webchat-tip customer-list' data-target-id='" + targetId + "' data-target-name='" + targetName + "' data-target-mobile='" + targetMobile + "' data-badge='1' onclick='javascript: WebChat.showWindow($(this));'>" +
-              "<div class='tip-user-status fl'>" +
-              "<span class='webchat-hint-lamp'>" + unreadMessageCount + "</span>" +
-              "</div>" +
-              "<div class='tip-user-identity fl'>" +
-              "<span class='webchat-user-name fl'>" + targetName + "</span>" +
-              "<span class='webchat-user-phone fl'>" + targetMobile + "</span>" +
-              "</div>" +
-              "<div class='webchat-tip-operation fl'>" +
-              "<img src='./images/1.png' alt='' class='customer-to-black fl' onclick='javascript: WebChat.openRedirectWindow($(this));'>" +
-              "<img src='./images/11.png' alt='' class='customer-to-black fl' onclick='javascript: WebChat.addToBlackList($(this));'>" +
-              "</div>" +
+            htmlStr = "<li class='webchat-tip waiter-tip' data-id='" + id + "' data-name='" + name + "' data-badge='1' onclick='javascript: WebChat.showWindow($(this));'>" +
+              "<div class='tip-avatar fl'>" + name.slice(-1) + "</div>" +
+              "<div class='tip-name fl'>" + name + "</div>" +
+              "<div class='tip-status fl'>" + unreadMessageCount + "</div>" +
               "</li>";
           }
           else if (type == "black") {
-            htmlStr = "<li class='webchat-tip customer-list' data-target-id='" + targetId + "' data-target-name='" + targetName + "' data-target-mobile='" + targetMobile + "' data-badge='1' onclick='javascript: WebChat.showWindow($(this));'>" +
+            htmlStr = "<li class='webchat-tip customer-list' data-id='" + id + "' data-name='" + name + "' data-mobile='" + mobile + "' data-badge='1' onclick='javascript: WebChat.showWindow($(this));'>" +
               "<div class='tip-user-status fl'>" +
               "<span class='webchat-hint-lamp'></span>" +
               "</div>" +
               "<div class='tip-user-identity fl'>" +
-              "<span class='webchat-user-name fl'>" + targetName + "</span>" +
-              "<span class='webchat-user-phone fl'>" + targetMobile + "</span>" +
+              "<span class='webchat-user-name fl'>" + name + "</span>" +
+              "<span class='webchat-user-phone fl'>" + mobile + "</span>" +
               "</div>" +
               "<div class='webchat-tip-operation fl'>" +
-              "<img src='./images/11.png' alt='' class='customer-to-black fl' onclick='javascript: WebChat.removeFromBlackList($(this));'>" +
+              "<img src='./images/11.png' class='customer-to-black fl' onclick='javascript: WebChat.removeFromBlackList($(this));'>" +
               "</div>" +
               "</li>";
           }

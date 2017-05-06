@@ -2,27 +2,44 @@
   width: 900px;
   height: 500px;
   position: absolute;
-  background: orange;
+  background: #fff;
   top: 50px;
   left: 50px;
   z-index: 5;
+  color: #0E0E0E;
+  user-select: none;
+}
+
+.webchat-redirect .webchat-redirect-header {
+  width: 100%;
+  height: 60px;
+  line-height: 40px;
+  padding-top: 10px;
+  text-align: center;
+  font-size: 24px;
+  color: #767EC7;
 }
 
 .webchat-redirect .webchat-waiter-list {
   width: 850px;
-  height: 400px;
-  margin: 25px;
+  height: 390px;
+  margin: 0px 25px;
 }
 
 .webchat-redirect .webchat-waiter-list .waiter-list-item {
-  width: 120px;
+  width: 150px;
   height: 40px;
   margin: 10px;
-  background: pink;
+  background: #E5E5E5;
+  border-radius: 5px;
+}
+.webchat-redirect .webchat-waiter-list .waiter-list-item:hover{
+  background: #767EC7;
+  color: #fff;
 }
 
 .webchat-redirect .webchat-waiter-list .waiter-list-item .webchat-waiter-message {
-  width: 120px;
+  width: 150px;
   height: 40px;
   padding: 5px;
 }
@@ -31,9 +48,18 @@
   width: 30px;
   height: 30px;
   margin-right: 10px;
+  margin-left: 10px;
+  background: #204792;
+  color: #F2F2F2;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 5px;
 }
 
 .webchat-redirect .webchat-waiter-list .waiter-list-item .webchat-waiter-message .webchat-waiter-name {
+  width: 90px;
+  height: 100%;
   line-height: 30px;
   text-align: center;
 }
@@ -41,7 +67,6 @@
 .webchat-redirect .redirect-btn-nav {
   width: 100%;
   height: 50px;
-  background: rgb(126, 173, 199);
 }
 
 .webchat-redirect .redirect-btn-nav .redirect-btn {
@@ -49,6 +74,13 @@
   height: 30px;
   line-height: 30px;
   text-align: center;
-  background: #ffffff;
-  margin: 10px;
+  background: #F5F5F5;
+  margin: 0 10px;
+  border: 1px solid #E3E3E3;
+}
+
+.webchat-redirect .redirect-btn-nav .redirect-btn:hover {
+  background: #3DCE3D;
+  color: #fff;
+  border-color: #3DCE3D;
 }

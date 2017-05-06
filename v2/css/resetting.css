@@ -107,3 +107,34 @@ ul li {
 .saying-background-right {
   background: #98E165;
 }
+
+.radius-t-l-5{
+  border-top-left-radius: 5px;
+}
+
+.radius-t-r-5{
+  border-top-right-radius: 5px;
+}
+
+.radius-b-l-5{
+  border-bottom-left-radius: 5px;
+}
+
+.radius-b-r-5{
+  border-bottom-right-radius: 5px;
+}
+
+.radius-5{
+  border-radius: 5px;
+}
+
+.btn-hover:hover {
+  background: #3DCE3D;
+  color: #fff;
+  border-color: #3DCE3D;
+}
+
+.stress {
+  background: #767EC7 !important;
+  color: #FFF;
+}
