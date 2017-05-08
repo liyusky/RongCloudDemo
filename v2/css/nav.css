@@ -13,17 +13,47 @@
 .webchat-nav .webchat-nav-list .webchat-nav-tag {
   width: 100%;
   height: 50px;
+  padding: 10px;
+  text-align: center;
+  line-height: 30px;
+}
+
+.webchat-nav .webchat-nav-list .webchat-nav-tag .webchat-nav-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  background: #C0A753;
+  color: #FFF;
+  font-size: 20px;
+}
+
+.webchat-nav .webchat-nav-icon {
+  font-size: 26px;
+  color: #FFF;
 }
 
 .webchat-nav .webchat-tag-img {
   width: 30px;
   height: 30px;
-  margin: 10px 11px 10px 9px;
+}
+
+.webchat-nav .webchat-nav-list .chating-sign::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ADDD95;
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  z-index: 2;
 }
 
 .webchat-nav .webchat-nav-retract {
   width: 100%;
   height: 50px;
+  padding: 10px;
   position: absolute;
   bottom: 0;
   left: 0;

@@ -12,13 +12,16 @@
   border-right: 1px solid #D9D9D9;
 }
 
-.webchat-conversation .webchat-conversation-header .webchat-customer-name {
+.webchat-conversation .webchat-conversation-header .webchat-customer-title {
   height: 25px;
   line-height: 25px;
   color: #333;
   text-align: center;
+  margin: 0 auto;
 }
-
+.webchat-conversation .webchat-conversation-header .webchat-customer-title .history-sign {
+  margin-left: 1em;
+}
 .webchat-conversation .webchat-conversation-header .webchat-conversation-tools {
   height: 37px;
   position: absolute;
@@ -45,6 +48,7 @@
   line-height: 25px;
   background: #F5F5F5;
   text-decoration: none;
+  font-size: 20px;
 }
 
 .webchat-conversation .webchat-conversation-header .webchat-conversation-tools .tools-btn:hover {

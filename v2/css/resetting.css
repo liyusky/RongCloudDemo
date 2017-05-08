@@ -134,7 +134,12 @@ ul li {
   border-color: #3DCE3D;
 }
 
-.stress {
+.redirect-selected {
   background: #767EC7 !important;
   color: #FFF;
+}
+
+.tip-selected {
+  background: #f58c51 !important;
+  color: #fff;
 }
