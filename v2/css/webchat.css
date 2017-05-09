@@ -5,8 +5,8 @@
 }
 
 webchat {
-  min-height: 590px;
-  margin: 10px;
+  min-height: 1123px;
+  user-select: none;
 }
 
 ul li {
@@ -34,7 +34,7 @@ ul li {
 }
 
 .omit {
-  overflow: hidden;
+  /*overflow: hidden;*/
   text-overflow: ellipsis;
 }
 

@@ -15,13 +15,16 @@
 .webchat-conversation .webchat-conversation-header .webchat-customer-title {
   height: 25px;
   line-height: 25px;
-  color: #333;
+  font-size: 20px;
   text-align: center;
-  margin: 0 auto;
+  user-select: none;
 }
+
 .webchat-conversation .webchat-conversation-header .webchat-customer-title .history-sign {
   margin-left: 1em;
+  color: #FE4C40;
 }
+
 .webchat-conversation .webchat-conversation-header .webchat-conversation-tools {
   height: 37px;
   position: absolute;

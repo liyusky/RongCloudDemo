@@ -39,10 +39,10 @@
   width: 25px;
   height: 25px;
   margin: 0 auto;
-  border: 1px solid #fff;
   font-size: 20px;
   text-align: center;
   line-height: 25px;
+  color: #252246;
 }
 
 .webchat-list .webchat-list-wrap {
@@ -63,6 +63,7 @@
 
 .webchat-list .webchat-list-wrap .webchat-list-content .webchat-tip {
   width: 100%;
+  user-select: none;
 }
 
 .webchat-list .webchat-list-wrap .webchat-list-content .webchat-tip .tip-unread {
@@ -110,8 +111,9 @@
 .webchat-list .webchat-list-wrap .webchat-list-content .customer-tip .tip-btn {
   width: 20px;
   height: 20px;
-  margin: 0 5px;
   margin: 5px;
+  font-size: 20px;
+  line-height: 20px;
 }
 
 .webchat-list .webchat-list-wrap .webchat-list-content .waiter-tip {

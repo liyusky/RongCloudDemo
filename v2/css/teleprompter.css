@@ -5,14 +5,22 @@
   border-color: #D9D9D9;
   border-width: 1px 1px 1px 0;
   background: #F2F2F2;
+  user-select: none;
 }
 
 .webchat-teleprompter .webchat-teleprompter-header {
   width: 100%;
   height: 45px;
   line-height: 45px;
-  color: #333;
   text-align: center;
+  font-size: 20px;
+  user-select: none;
+}
+
+.webchat-teleprompter .webchat-teleprompter-header .teleprompter-header-icon {
+  font-size: 20px;
+  margin: 0 5px;
+  line-height: 45px;
 }
 
 .webchat-teleprompter .webchat-teleprompter-content {
@@ -38,14 +46,16 @@
   color: #fff;
   background: #727272;
   color: #fff;
-  padding: 5px 10px;
+  padding: 5px 0;
+  user-select: none;
 }
 
 .webchat-teleprompter .webchat-teleprompter-content .webchat-teleprompter-item .teleprompter-item-header .teleprompter-expansion-sign {
   width: 25px;
   height: 25px;
   font-size: 20px;
-  margin-right: 10px;
+  text-align: center;
+  line-height: 25px;
 }
 
 .webchat-teleprompter .webchat-teleprompter-content .webchat-teleprompter-item .teleprompter-item-header .webchat-teleprompter-title {
@@ -59,7 +69,8 @@
 .webchat-teleprompter .webchat-teleprompter-content .webchat-teleprompter-item .teleprompter-item-content .teleprompter-hint {
   width: 100%;
   line-height: 20px;
-  padding: 5px 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .webchat-teleprompter .webchat-teleprompter-content .webchat-teleprompter-item .teleprompter-item-content .teleprompter-hint:hover {
@@ -73,13 +84,33 @@
 }
 
 .webchat-teleprompter .webchat-teleprompter-content .webchat-teleprompter-item .teleprompter-item-content .teleprompter-hint .teleprompter-hint-operation {
-  font-size: 20px;
   width: 20px;
   height: 20px;
-  margin-right: 10px;
+  font-size: 20px;
+  text-align: center;
+  margin:5px;
+  vertical-align: middle;
+}
+
+.webchat-teleprompter .webchat-teleprompter-content .webchat-teleprompter-item .teleprompter-item-content .teleprompter-hint .show-sign {
+  margin-top: 3px;
+  color: #1CDDB1;
+}
+
+.webchat-teleprompter .webchat-teleprompter-content .webchat-teleprompter-item .teleprompter-item-content .teleprompter-hint .modify-sign {
+  color: #006FFF;
+}
+
+.webchat-teleprompter .webchat-teleprompter-content .webchat-teleprompter-item .teleprompter-item-content .teleprompter-hint .delete-sign {
+  margin-top: 3px;
+  color: #666;
 }
 
 .webchat-teleprompter .webchat-teleprompter-content .webchat-teleprompter-item .teleprompter-item-content .teleprompter-hint .teleprompter-hint-message {
   font-size: 16px;
   outline: none;
+  word-break: break-all;
+  line-height: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
